@@ -79,3 +79,19 @@ footer{
 	
 	
 
+.pro{
+	float: left;
+	margin-left: 24%;}
+	
+.img-vet{
+	border:solid;
+	border-color:#082F77;
+	margin-top: 1px;
+}
+
+
+#nuestros{
+	display:flex;
+	margin-top: 5%;
+	width: 60%;
+}
