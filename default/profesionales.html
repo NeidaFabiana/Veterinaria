@@ -5,6 +5,8 @@
     <title>Vet Vida</title>
 	<meta charset="utf-8" />
 	<link href="assets/css/vet.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="assets/css/jquery.slide.css" />
+
 	</head>
 		<body>
 			
@@ -25,9 +27,28 @@
 			</nav>
 		</header>				
 		<section class="bg_col">		
-		<div class="">
-			<img src="assets/imagen/banner1.jpg"width="1250" height="380" />
-		</div>
+		 <div class="slide">
+      <ul>
+        <li><img  src="assets/imagen/slide3.jpg" width="1000" height="450" ></li>
+        <li><img  src="assets/imagen/slide2.jpg" width="1000" height="450"></li>
+        <li><img  src="assets/imagen/slide.jpg" width="1000" height="450"></li>
+        <li><img  src="assets/imagen/slide4.jpg" width="1000" height="450"></li>
+        <li><img  src="assets/imagen/slide5.jpg" width="1000" height="450"></li>
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="assets/js/jquery.slide.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('.slide').slide({
+          'slideSpeed': 3000,
+          'isShowArrow': true,
+          'dotsEvent': 'mouseenter',
+          'isLoadAllImgs': true
+        });
+      });
+    </script>
 		</section>
 		
          <!-- Noticias https://www.clinicaveterinariaborrell.com-->    		
