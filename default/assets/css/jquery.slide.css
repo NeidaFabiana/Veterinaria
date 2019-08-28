@@ -1,8 +1,8 @@
 .slide {
   position: relative;
   margin: 3px auto;
-  width: 80%;
-  height: 450px;
+  width: 90%;
+  height: 100%;
   background: #ccc;
 }
 
@@ -74,10 +74,10 @@
 
 .slide .arrow .arrow-left {
   left: 20px;
-  background: url("../img/arrow-left.png");
+  background: url("assets/imagen/arrow-left.png");
 }
 
 .slide .arrow .arrow-right {
   right: 20px;
-  background: url("../img/arrow-right.png");
+  background: url("assets/imagen/arrow-right.png");
 }

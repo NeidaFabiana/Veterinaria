@@ -49,8 +49,7 @@ body {
 	}
 	
 .menulate {
-			text-decoration: none;
-
+	text-decoration: none;
     float: none;
     position: relative;
 	}
@@ -62,7 +61,7 @@ body {
         color: white;
         display: inline-block;
         font-size: 16px;
-        line-height: 32px;
+        line-height: 35px;
         padding: 10px 0;
         position: relative;
 		width:200;
