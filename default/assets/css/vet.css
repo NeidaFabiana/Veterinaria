@@ -48,7 +48,7 @@ section{
 }
 
 .sect-consejos {
- background-image: url(https://www.hillspet.com.my/content/dam/cp-sites/hills/hills-pet/global/articles/dog-care/heros/HP_PCC_lg_dog_behavior_appearance_hero.jpg);
+ background-image: url(consejos.jpg);
  height: 550px;
 }
 
@@ -115,8 +115,32 @@ label span, h1, h2, h3, h4, p, li {
 	text-decoration: none;
 	left: 10%;
 	right: 10%;
+	 
+	  opacity: 0.5;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: opacity 0.5s;
 }
+	.item:hover{
+		opacity: 1;
+	  } 
 
+a {
+    text-shadow: 2px 2px 2px #000;
+}
+a {
+    color: #fff;
+    text-shadow: 2px 2px 2px transparent;
+    transition: text-shadow 0.5s;
+}	  
+	  a:active, a:hover {
+    outline-width: 0;
+}
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+	  
 .prof{
 	float: left;
 	width:120%;
@@ -129,6 +153,7 @@ label span, h1, h2, h3, h4, p, li {
 	left: 10%;
 	right: 10%;
 }
+	
 
 .pro1{
 	width: 100%;
@@ -407,4 +432,36 @@ footer{
 .calendario{
 	margin-left: 20%;
 	margin-right: 20%;
+}
+
+.articleList.articleList > .component-content .articleList-list .articleList-article-wrapper:hover .articleList-description img {
+    opacity: 1;
+}
+
+.articleList.articleList > .component-content .articleList-list .articleList-article-wrapper .articleList-description img {
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+    opacity: 0.5;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: opacity 0.5s;
+}
+
+
+img {
+    border-style: none;
+}
+* {
+    box-sizing: border-box;
+}
+a {
+    color: #006fb6;
+    text-decoration: none;
+}
+
+.articleList-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
