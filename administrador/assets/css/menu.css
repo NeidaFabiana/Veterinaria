@@ -1,0 +1,48 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #DEE1E1;
+}
+
+#pushobj {
+	position: absolute;
+	top: 70px;
+	left: 300px;
+	background: #8396a9;
+	z-index: 1;
+	width: 750px;
+}
+
+#logo{
+	width: 10%;
+}
+
+div,li {
+    font-family: Raleway,Arial,sans-serif!important;
+}
+
+li {
+    text-decoration: none;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+li {
+    font-weight: 400!important;
+    letter-spacing: .2em!important;
+    line-height: 1.45!important;
+}
+
+ h2 {
+    font-size: 1.28rem;
+    line-height: 1.55;
+	text-align: left;
+}
+
+.font-titulo{
+	padding-bottom: 0;
+	box-sizing: border-box;
+    font-size: 200%;
+	color: #072E64;
+	text-align: center;
+}
