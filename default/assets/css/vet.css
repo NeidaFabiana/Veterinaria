@@ -52,12 +52,12 @@ section{
 
 .sect-consejos {
  background-image: url(consejos.jpg);
- height: 550px;
+ background-size: 100% 100%;
 }
 
 .sect-cons {
-background-color:#DEE1E1 ;
- height: 900px;
+	background-color:#DEE1E1 ;
+	height: 900px;
 }
 
 #logo{
@@ -106,7 +106,7 @@ background-color:#DEE1E1 ;
 	width: 20%;
 	position: absolute;
 	right: -40%;
-	margin-top: -57%;	
+	margin-top: -50%;	
 }	
 
 #cont {
@@ -205,6 +205,8 @@ p {
  		
 #nuestros-prof{
 	display:flex;
+	left: 10%;
+	right: 10%;
 	
 }
 
@@ -259,7 +261,6 @@ footer{
 .content-one{
 	margin-top: -11%;
 	width: 25%;
-	/*float: right;*/
 	position: absolute;
 	right: 10%;
 }	
@@ -270,7 +271,6 @@ footer{
 
 .content1{
 	width: 30%;
-	/*float: right;*/
 	position: absolute;
 	right: 40%;
 }	
@@ -320,7 +320,7 @@ footer{
 	border-color: #072E64;
     border-radius: 6px;
 	position:absolute;
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-left: 8%;
         left: 45%;
 		
@@ -345,7 +345,6 @@ footer{
 
 .content2{
 	width: 45%;
-	/*float: right;*/
 	position: absolute;
 	right: 10%;
 }	
@@ -395,7 +394,6 @@ footer{
 
 .cont{
 	width: 37%;
-	/*float: right;*/
 	position: absolute;
 	left: 10%;
 }	
