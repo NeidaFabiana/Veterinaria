@@ -1,0 +1,34 @@
+<?php
+
+class Consejos {
+    private $idConsejos;
+	private $Titulo;
+    private $Desc;
+   
+   
+    function getIdConsejos() {
+        return $this->idConsejos;
+    }
+
+    function getTitulo() {
+        return $this->Titulo;
+    }
+	
+	function getDesc() {
+        return $this->Desc;
+    }
+	
+    function setIdConsejos($idConsejos) {
+        $this->idConsejos = $idConsejos;
+    }
+
+    function setTitulo($Titulo) {
+        $this->Titulo = $titulo;
+    }
+
+    function setDesc($Desc) {
+        $this->Desc = $Desc;
+    }
+
+
+}

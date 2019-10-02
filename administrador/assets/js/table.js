@@ -1,6 +1,6 @@
   $(function() {
-
-        $('#makeEditable').SetEditable({ $addButton: $('#but_add')});
+		console.log("Aqui");
+        $('.makeEditable').SetEditable({ $addButton: $('#but_add')});
 
         $('#submit_data').on('click',function() {
         var td = TableToCSV('makeEditable', ',');
