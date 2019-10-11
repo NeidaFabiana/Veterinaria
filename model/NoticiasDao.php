@@ -11,11 +11,11 @@ class NoticiasDAO  extends Model{
 	
 
 	  public function getListNoticias() {
-        $sql = "SELECT * FROM noticias";
+        $sql = "SELECT * FROM Noticias";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $noticia = new Noticias( $linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'],$linha['Img']);
+            $noticia = new Noticias( $linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'],$linha['Imgnoti']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -29,7 +29,7 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $noticia = new Noticias($linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'],$linha['Img']);
+            $noticia = new Noticias($linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'],$linha['Imgnoti']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -83,18 +83,17 @@ class NoticiasDAO  extends Model{
     }
 
     public function getImagenFromNoticia($id) {
-        $sql =  "SELECT i.* FROM Noticias_has_Imagenes AS ni "
-                . "INNER JOIN  Imagenes as i "
-                . "ON i.idImagenes = ni.Imagenes_idImagenes WHERE Noticias_idNoticias = :Noticias_idNoticias;";
+        $sql =  "SELECT i.* FROM Noticias_has_ImagenNoti AS ni "
+                . "INNER JOIN  ImagenNoti as i "
+                . "ON i.idImagenNoti = ni.ImagenNoti_idImagenNoti WHERE Noticias_idNoticias = :Noticias_idNoticias;";
         $result = $this->ExecuteQuery($sql, [':Noticias_idNoticias' => $id]);
         $Img=[];
         if ($result) {
              foreach ($result as $linha) {
-                 $Img[] = new Imagenes(
+                 $Img[] = new ImagenNoti(
 				 
-						$linha['idImagenes']);
+						$linha['idImagenNoti']);
                         $linha['Nombre'],
-                        $linha['Fecha'],
                          
              }
             }
@@ -116,8 +115,8 @@ class NoticiasDAO  extends Model{
 	
 	    public function removerNoticia($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Noticias_has_Imagenes WHERE Noticias_idNoticias  = :Noticias_idNoticias", [':Noticias_idNoticias' => $id])){
-			$sql = "DELETE FROM Noticias_has_Imagenes WHERE Noticias_idNoticias = :idn";
+		if($this->ExecuteQuery("SELECT * FROM Noticias_has_ImagenNoti WHERE Noticias_idNoticias  = :Noticias_idNoticias", [':Noticias_idNoticias' => $id])){
+			$sql = "DELETE FROM Noticias_has_ImagenNoti WHERE Noticias_idNoticias = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM Noticias WHERE idNoticias = :idNoticias";
 				if($this->ExecuteCommand($sql, [':idNoticias'=>$id])){

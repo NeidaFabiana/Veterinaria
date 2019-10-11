@@ -5,7 +5,7 @@ class Consejos {
     private $idConsejos;
 	private $titulo;
     private $descripcion;
-    private $img;
+    private $imgcons;
    
    
     function getIdConsejos() {
@@ -20,8 +20,8 @@ class Consejos {
         return $this->descripcion;
     }
 	
-	function getImg() {
-        return $this->img;
+	function getImgcons() {
+        return $this->imgcons;
     }
 	
     function setIdConsejos($idConsejos) {
@@ -36,8 +36,8 @@ class Consejos {
         $this->descripcion = $descripcion;
     }
 
-	function setImg($img) {
-        $this->img = $img;
+	function setImgcons($imgcons) {
+        $this->imgcons = $imgcons;
     }
  
 }

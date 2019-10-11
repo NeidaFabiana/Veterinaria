@@ -5,7 +5,7 @@ class Profesionales {
     private $idProfesionales;
 	private $nombre;
     private $formacion;
-    private $foto;
+    private $imgprof;
    
     function getIdProfesionales() {
         return $this->idProfesionales;
@@ -19,8 +19,8 @@ class Profesionales {
         return $this->formacion;
     }
 	
-	function getFoto() {
-        return $this->foto;
+	function getImgprof() {
+        return $this->imgprof;
     }
 	
 
@@ -36,8 +36,8 @@ class Profesionales {
         $this->formacion = $formacion;
     }
 	
-	function setFoto($foto) {
-		$this->foto = $foto;
+	function setImgprof($imgprof) {
+		$this->imgprof = $imgprof;
     }
 
 }

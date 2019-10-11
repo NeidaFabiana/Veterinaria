@@ -3,24 +3,24 @@
 class Servicios {
 	
     private $idServicios;
-	private $titulo;
+	private $servicio;
     private $descripcion;
-    private $img;
+    private $imgserv;
    
     function getIdServicios() {
         return $this->idServicios;
     }
 
-    function getTitulo() {
-        return $this->titulo;
+    function getServicio() {
+        return $this->servicio;
     }
 	
 	function getDescripcion() {
         return $this->descripcion;
     }
 	
-	function getImg() {
-        return $this->img;
+	function getImgserv() {
+        return $this->imgserv;
     }
 	
 
@@ -28,16 +28,16 @@ class Servicios {
         $this->idServicios = $idServicios;
     }
 
-    function setTitulo($titulo) {
-        $this->titulo = $titulo;
+    function setServicio($servicio) {
+        $this->servicio = $servicio;
     }
 
     function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
 	
-	function setImg($img) {
-		$this->img = $img;
+	function setImgserv($imgserv) {
+		$this->imgserv = $imgserv;
     }
 
 }

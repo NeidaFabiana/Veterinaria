@@ -5,7 +5,7 @@ class Noticias {
     private $idNoticias;
 	private $titulo;
     private $descripcion;
-    private $img;
+    private $imgnoti;
    
     function getIdNoticias() {
         return $this->idNoticias;
@@ -19,8 +19,8 @@ class Noticias {
         return $this->descripcion;
     }
 	
-	function getImg() {
-        return $this->img;
+	function getImgnoti() {
+        return $this->imgnoti;
     }
 	
 
@@ -36,8 +36,8 @@ class Noticias {
         $this->descripcion = $descripcion;
     }
 	
-	function setImg($img) {
-		$this->img = $img;
+	function setImgnoti($imgnoti) {
+		$this->imgnoti = $imgnoti;
     }
 
 }
