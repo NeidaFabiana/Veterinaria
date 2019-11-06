@@ -93,7 +93,7 @@ class ConsejosDAO  extends Model{
                  $Img[] = new ImagenCons(
 				 
 						$linha['idImagenCons']);
-                        $linha['Nombre'],
+                        $linha['Nombre'];
                          
              }
             }

@@ -93,7 +93,7 @@ class ProfesionalesDAO  extends Model{
                  $Img[] = new ImagenProf(
 				 
 						$linha['idImagenProf']);
-                        $linha['Nombre'],
+                        $linha['Nombre'];
                          
              }
             }

@@ -3,16 +3,22 @@ class Home extends Controller{
 
     public function __construct() {
         parent::__construct();
-    $this->model=new NoticiaDAO(); 
+		$this->model=new NoticiasDAO(); 
+    
+    
+	
+    
 
 	}
 
     public function index(){
-		 $data['listNews']=$this->model->getListUltimasNoticiasImagens();
-		 $this->model=new ImagemDAO(); 
-		 $data['listImagem']=$this->model->getListUltimasImagem();
-		 $this->model=new VideoDAO(); 
-	     $data['listVideo']=$this->model->getListUltimasVideo();
+		$data['listNoti']=$this->model->getListUltimasNoticiasImagens();
+		$this->model=new SlideDAO(); 
+		$data['listImagem']=$this->model->getListUltimasImagem();
+		$this->model=new ProfesionalesDAO(); 
+		$data['listProf']=$this->model->getListUltimasProfesionalesImagens();
+		$this->model=new ConsejosDAO(); 
+		$data['listCons']=$this->model->getListUltimasConsejos();
 		
         //echo $this->texto;
         $this->view->load("header");

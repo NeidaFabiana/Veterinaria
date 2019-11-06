@@ -69,6 +69,7 @@ class Controller {
 
         if (!$class) {
             $class = new $this->config->defaultClass;
+			var_dump($class);
             $class->index();			
         }
     }

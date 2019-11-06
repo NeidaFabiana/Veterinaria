@@ -82,7 +82,7 @@ class NoticiasDAO  extends Model{
         }
     }
 
-    public function getImagenFromNoticia($id) {
+    public function getImagenFromNoticias($id) {
         $sql =  "SELECT i.* FROM Noticias_has_ImagenNoti AS ni "
                 . "INNER JOIN  ImagenNoti as i "
                 . "ON i.idImagenNoti = ni.ImagenNoti_idImagenNoti WHERE Noticias_idNoticias = :Noticias_idNoticias;";
@@ -93,7 +93,7 @@ class NoticiasDAO  extends Model{
                  $Img[] = new ImagenNoti(
 				 
 						$linha['idImagenNoti']);
-                        $linha['Nombre'],
+                        $linha['Nombre'];
                          
              }
             }
