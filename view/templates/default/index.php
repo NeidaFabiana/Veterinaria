@@ -2,7 +2,7 @@
 $list_prof = $data['listProf'];
 $list_noti = $data['listNoti'];
 $list_cons = $data['listCons'];
-$img = $data['listImagem'];
+$img = $data['listImagenSlide'];
 ?>	
 	
 		
@@ -11,7 +11,7 @@ $img = $data['listImagem'];
 					<?php foreach ($img as $listaImagem): ?>
 					<div class="slide">
 						<ul>
-							<li><img  src="<? $this->asset?>system/upload/<?php echo $listaImagem->getIdSlide()?>" width="100%" height="100%" ></li>
+							<li><img  src="<? $this->asset?>system/upload/<?php echo $listaImagem->getImagen()?>" width="100%" height="100%" ></li>
 							</ul>
 						 <?php endforeach; ?>
 					</div>
