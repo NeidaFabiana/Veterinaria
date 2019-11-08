@@ -74,7 +74,7 @@ class AdminServicios extends Admin {
   
   
    public function editServicios($id) {
-        $data['imag'] = $this->model->getServiciosById($id);
+        $data['serv'] = $this->model->getServiciosById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
@@ -111,7 +111,7 @@ class AdminServicios extends Admin {
 	 public function delServicios($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['imag'] = $this->model->getServiciosById($id);
+        $data['serv'] = $this->model->getServiciosById($id);
         $this->view->load('header');
         $this->view->load('nav');
         $this->view->load('sevicios_del', $data);
@@ -121,7 +121,7 @@ class AdminServicios extends Admin {
     public function removeServicios() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
-            $idimagen = filter_input(INPUT_POST,'idServicios',FILTER_SANITIZE_STRING);
+            $idServicios = filter_input(INPUT_POST,'idServicios',FILTER_SANITIZE_STRING);
             if($this->model->removeServicios($idServicios)){
                 $data['msg'] ='Servicio eliminado con exito!';
             }else{

@@ -77,7 +77,7 @@ class AdminConsultas extends Admin {
   
   
    public function editConsultas($id) {
-        $data['imag'] = $this->model->getConsultasById($id);
+        $data['consu'] = $this->model->getConsultasById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
@@ -117,7 +117,7 @@ class AdminConsultas extends Admin {
 	 public function delConsultas($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['imag'] = $this->model->getConsultasById($id);
+        $data['consu'] = $this->model->getConsultasById($id);
         $this->view->load('header');
         $this->view->load('nav');
         $this->view->load('consultas_del', $data);

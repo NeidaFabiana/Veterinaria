@@ -74,7 +74,7 @@ class AdminConsejos extends Admin {
   
   
    public function editConsejos($id) {
-        $data['imag'] = $this->model->getConsejosById($id);
+        $data['cons'] = $this->model->getConsejosById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
@@ -111,7 +111,7 @@ class AdminConsejos extends Admin {
 	 public function delConsejos($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['imag'] = $this->model->getConsejosById($id);
+        $data['cons'] = $this->model->getConsejosById($id);
         $this->view->load('header');
         $this->view->load('nav');
         $this->view->load('consejos_del', $data);

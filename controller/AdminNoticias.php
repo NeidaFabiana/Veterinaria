@@ -74,7 +74,7 @@ class AdminNoticias extends Admin {
   
   
    public function editNoticias($id) {
-        $data['imag'] = $this->model->getNoticiasById($id);
+        $data['noti'] = $this->model->getNoticiasById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
@@ -111,7 +111,7 @@ class AdminNoticias extends Admin {
 	 public function delNoticias($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['imag'] = $this->model->getNoticiasById($id);
+        $data['noti'] = $this->model->getNoticiasById($id);
         $this->view->load('header');
         $this->view->load('nav');
         $this->view->load('noticias_del', $data);

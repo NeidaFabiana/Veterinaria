@@ -74,7 +74,7 @@ class AdminProfesionales extends Admin {
   
   
    public function editProfesionales($id) {
-        $data['imag'] = $this->model->getProfesionalesById($id);
+        $data['prof'] = $this->model->getProfesionalesById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
@@ -111,7 +111,7 @@ class AdminProfesionales extends Admin {
 	 public function delProfesionales($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['imag'] = $this->model->getProfesionalesById($id);
+        $data['prof'] = $this->model->getProfesionalesById($id);
         $this->view->load('header');
         $this->view->load('nav');
         $this->view->load('profesionales_del', $data);
