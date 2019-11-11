@@ -11,7 +11,7 @@ class SlideDAO extends Model {
     }
 	
 	
-    public function getListImagem() {
+    public function getListImagenSlide() {
         $sql = "SELECT * FROM Slide";
         $result = $this->ExecuteQuery($sql, []);
 

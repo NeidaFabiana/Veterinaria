@@ -7,15 +7,19 @@ $img = $data['listImagenSlide'];
 	
 		
 				<section class="sect-slide">	
-				
+				<?php if ($img): ?>
 					<?php foreach ($img as $listaImagem): ?>
 					<div class="slide">
 						<ul>
 							<li><img  src="<? $this->asset?>system/upload/<?php echo $listaImagem->getImagen()?>" width="100%" height="100%" ></li>
 							</ul>
-						 <?php endforeach; ?>
+					
 					</div>
-
+					<?php endforeach; ?>
+					
+					<?php else:?>
+						  <li>No fueron registrados las imagenes!</li>
+					<?php endif; ?>
 						<script src="<?php echo $this->asset?>https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 						<script src="<?php echo $this->asset?>assets/js/jquery.slide.js"></script>
 						<script type="text/javascript">
@@ -28,8 +32,7 @@ $img = $data['listImagenSlide'];
 							});
 						  });
 						</script>
-						<script>
-						</script>
+						
 		
 				</section>
 		

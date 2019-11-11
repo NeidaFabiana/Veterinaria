@@ -8,7 +8,7 @@ class AdminConsejos extends Admin {
     }
 
     public function index() {
-        $data['listCons'] = $this->model->getListImagem();
+        $data['listCons'] = $this->model->getListConsejos();
     //    echo "<pre>";
     //    print_r($data);
      //  echo "</pre>";

@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /Veterinaria/
-  RewriteCond $1 !^(index\.php|images|assets|robots\.txt|bootstrap.min.css\.map)
+  RewriteBase /Neida/Veterinaria/Veterinaria/
+  RewriteCond $1 !^(index\.php|bootstrap.min.css\.map)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ index.php?query=$1 [L]

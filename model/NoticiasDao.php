@@ -15,7 +15,7 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $noticia = new Noticias( $linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'],$linha['Imgnoti']);
+            $noticia = new Noticias( $linha['idNoticias'], $linha['titulo'], $linha['descripcion'],$linha['imgnoti']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -29,7 +29,7 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $noticia = new Noticias($linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'],$linha['Imgnoti']);
+            $noticia = new Noticias($linha['idNoticias'], $linha['titulo'], $linha['descripcion'],$linha['imgnoti']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -43,9 +43,9 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromNoticia($linha['idNoticias']);
+            $Img = $this->getImagenFromNoticias($linha['idNoticias']);
 
-            $noticia = new Noticias($linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'], $Img);
+            $noticia = new Noticias($linha['idNoticias'], $linha['titulo'], $linha['descripcion'], $Img);
 
             $this->listNoticias[] = $noticia;
         }
@@ -57,16 +57,16 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromNoticia($linha['idNoticias']);
+            $Img = $this->getImagenFromNoticias($linha['idNoticias']);
 
-            $noticia = new Noticias($linha['idNoticias'], $linha['Titulo'], $linha['Descripcion'], $Img);
+            $noticia = new Noticias($linha['idNoticias'], $linha['titulo'], $linha['descripcion'], $Img);
 
             $this->listNoticias[] = $noticia;
         }
         return $this->listNoticias;
     }
 
-    public function getNoticiaById($id) {
+    public function getNoticiasById($id) {
         $sql = "SELECT * FROM Noticias WHERE idNoticias = :idNoticias";
         $result = $this->ExecuteQuery($sql, [':idNoticias' => $id]);
        // echo "<pre>";
@@ -74,9 +74,9 @@ class NoticiasDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromNoticia($id);
+            $Img = $this->getImagenFromNoticias($id);
             $news = $result[0];
-            return new Noticias($news['idNoticias'], $news['Titulo'], $news['Descripcion'], $Img);
+            return new Noticias($news['idNoticias'], $news['titulo'], $news['descripcion'], $Img);
         } else {
             return null;
         }
@@ -85,14 +85,14 @@ class NoticiasDAO  extends Model{
     public function getImagenFromNoticias($id) {
         $sql =  "SELECT i.* FROM Noticias_has_ImagenNoti AS ni "
                 . "INNER JOIN  ImagenNoti as i "
-                . "ON i.idImagenNoti = ni.ImagenNoti_idImagenNoti WHERE Noticias_idNoticias = :Noticias_idNoticias;";
+                . "ON i.idImagen = ni.ImagenNoti_idImagen WHERE Noticias_idNoticias = :Noticias_idNoticias;";
         $result = $this->ExecuteQuery($sql, [':Noticias_idNoticias' => $id]);
         $Img=[];
         if ($result) {
              foreach ($result as $linha) {
                  $Img[] = new ImagenNoti(
 				 
-						$linha['idImagenNoti']);
+						$linha['idImagen']);
                         $linha['Nombre'];
                          
              }
@@ -100,7 +100,7 @@ class NoticiasDAO  extends Model{
         return $Img;
     }
 	 public function insereNoticia($news) {
-        $sql = "INSERT INTO Noticias(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
+        $sql = "INSERT INTO Noticias(titulo,descripcion) VALUES(:Titulo,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Titulo' => $news->getTitulo(),
             ':Descripcion' => $news->getDescripcion()]);
@@ -140,8 +140,8 @@ class NoticiasDAO  extends Model{
     
 
 	 public function atualizarNoticia($noticia) {
-        $sql = 'UPDATE Noticias SET Titulo = :Titulo,'
-                . ' Descripcion=:Descripcion WHERE idNoticias =:idNoticias';
+        $sql = 'UPDATE Noticias SET titulo = :Titulo,'
+                . ' descripcion=:Descripcion WHERE idNoticias =:idNoticias';
         $param = [':Titulo'=>$noticia->getTitulo(),
             ':Descripcion'=>$noticia->getDescripcion(),
             ':idNoticias'=>$noticia->getIdNoticias()];

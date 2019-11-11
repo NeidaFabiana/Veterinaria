@@ -8,7 +8,7 @@ class AdminServicios extends Admin {
     }
 
     public function index() {
-        $data['listServ'] = $this->model->getListImagem();
+        $data['listServ'] = $this->model->getListServicios();
     //    echo "<pre>";
     //    print_r($data);
      //  echo "</pre>";

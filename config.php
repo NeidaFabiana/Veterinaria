@@ -1,6 +1,7 @@
 <?php
 
-
+//Simple MVC Configuration File
+//Inicialização da variável $config
 unset($config);
 $config = new stdClass();
 $config->defaultClass = "Home";
@@ -8,8 +9,8 @@ $config->base_url = '/Neida/Veterinaria/Veterinaria/';
 $config->url = 'http://'.$_SERVER['HTTP_HOST']. $config->base_url;
 $config->asset = $config->base_url . 'view/templates/';
 $config->template = 'default';
-
-
+//FTP: senha nome
+//Database
 if ($_SERVER['HTTP_HOST'] == "localhost") {
     $config->dbuser = 'root'; //nomedoaluno
     $config->dbpassword = ''; //senha

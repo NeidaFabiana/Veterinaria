@@ -223,7 +223,6 @@
 		</script>
 		
 		<script src="<?php echo $this->asset?>assets/js/bootstable.js" ></script>
-		<script src="<?php echo $this->asset?>assets/js/table.js" ></script>
 
     </body>
 </html>

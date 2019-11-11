@@ -9,24 +9,8 @@ a{
 	color:#fff;
 	text-decoration:none;
 }
-img.mb_bgimage{
-	position:fixed;
-	left:0px;
-	top:0px;
-	width:100%;
-	opacity:0.8;
-	z-index:1;
-	background-size: 100% 100%;
-}
-.mb_overlay{
-	width:100%;
-	height:100%;
-	position:fixed;
-	top:0px;
-	left:0px;
-	background:transparent url(../images/pattern.png) repeat top left;
-	z-index:2;
-}
+
+
 .mb_pattern div{
 	position:absolute;
 	width:50px;
@@ -55,10 +39,10 @@ img.mb_bgimage{
 	margin-bottom:2px;
 	opacity:0.9;
 	display:block;
-	width:120px;
-	height:98px;
+	width:180px;
+	height:50px;
 	color:#fff;
-	line-height:98px;
+	line-height:50px;
 	text-align:center;
 	text-transform:uppercase;
 	outline:none;
@@ -117,22 +101,8 @@ span.mb_close:hover{
 .mb_content_inner p{
 	padding:5px 0px;
 }
-ul.mb_imagelist li{
-	float:left;
-	margin:2px;
-	cursor:pointer;
-}
-ul.mb_imagelist li img{
-	display:block;
-	opacity:0.3;
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-transition: all 0.5s ease-in-out;
-}
-ul.mb_imagelist li img:hover{
-	opacity:1.0;
-}
+
+
 .mb_content form label{
 	float:left;
 	width:100px;

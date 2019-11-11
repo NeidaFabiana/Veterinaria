@@ -100,10 +100,10 @@ class ProfesionalesDAO  extends Model{
         return $Img;
     }
 	 public function insereProfesionales($prof) {
-        $sql = "INSERT INTO Profesionales(formacion,descripcion) VALUES(:Formacion,:Descripcion)";
+        $sql = "INSERT INTO Profesionales(nombre,formacion) VALUES(:Nombre,:Formacion)";
         $result = $this->ExecuteCommand($sql,
-                [':Formacion' => $news->getFormacion(),
-            ':Descripcion' => $news->getDescripcion()]);
+                [':Nombre' => $news->getNombre(),
+            ':Formacion' => $news->getFormacion()]);
         if ($result) {
             return true;
         } else {

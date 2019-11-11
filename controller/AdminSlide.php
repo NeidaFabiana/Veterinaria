@@ -4,7 +4,7 @@ class AdminSlide extends Admin {
 
     public function __construct() {
         parent::__construct();
-        $this->model = new ImagenSlideDao();
+        $this->model = new SlideDao();
     }
 
     public function index() {

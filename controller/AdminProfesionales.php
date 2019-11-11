@@ -8,7 +8,7 @@ class AdminProfesionales extends Admin {
     }
 
     public function index() {
-        $data['listProf'] = $this->model->getListImagem();
+        $data['listProf'] = $this->model->getListProfesionales();
     //    echo "<pre>";
     //    print_r($data);
      //  echo "</pre>";
@@ -19,56 +19,26 @@ class AdminProfesionales extends Admin {
         $this->view->load("footer");
     }
 
-     
- public function add() {
-    $data['msg'] = '';
-
-  if (filter_input(INPUT_POST, 'add')) {
-    $caminho = getcwd();
-    $diretorio =  $caminho. "/system/upload/";
-    //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
-    $arquivo = $diretorio . $novonome;
-
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
-
-        $caminho = $novonome;
-
-        $if = true;
-    } else {
-        $data['msg'] = "Erro ao subir imagem";
-        $if = false;
-    }
-    if( $if = true){
-        $nombre = $caminho;
-        
-        $formacion = filter_input(INPUT_POST, 'formacion', FILTER_SANITIZE_STRING);
-        if ($nombre && $formacion ) {
-            $img = new Profesionales($idProfesionales=null,$nombre,$formacion);
-
-            if($this->model->insereProfesionales(new Profesionales($nombre,$formacion))){
-
-              $this->view->location('AdminProfesionales');
-                return true;
-            } else {
-                $data['msg'] = 'Error al registrar profesionales!';
+public function add() {
+        $data['msg']="";
+        if (filter_input(INPUT_POST, 'add')) {
+            $nombre = filter_input(INPUT_POST, 'nombre',FILTER_SANITIZE_STRING);
+            $formacion = filter_input(INPUT_POST, 'formacion',FILTER_SANITIZE_STRING);
+            if($nombre && $formacion) {
+                if($this->model->insereProfesionales(new Profesionales($nombre, $formacion))){
+                    $this->view->location('AdminProfesionales');
+                }else{
+                    $data['msg']= "Erro ao cadastrar!!";
+                }
+            }else{
+                $data['msg']= "Preencha todos os campos!";
             }
-        } else {
-            $data['msg'] = 'Coplete todos los campos!';
         }
-  }
-  else{$data['msg'] = 'Error ao subir img';}
-  }
-
-  $this->view->load('header');
-  $this->view->load('nav');
-  $this->view->load('profesionales_add', $data);
-  $this->view->load('footer');
-
-
-
-  }
+        $this->view->load('header');
+        $this->view->load('nav');
+        $this->view->load('profesionales_add',$data);
+        $this->view->load('footer');
+    }
 	 
 	 
   

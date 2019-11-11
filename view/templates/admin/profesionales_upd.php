@@ -1,6 +1,6 @@
 <?php
 $profe = null;
-$message = "Profesionales no encontrada !!";
+$message = "Profesionales no encontrados !!";
 if ($data) {
     $message = $data['msg'];
     if (isset($data['prof'])) {
@@ -14,7 +14,7 @@ if ($data) {
       <div class="app-title">
         <div>
           <h1><i class="fa fa-edit"></i>Profesionales</h1>
-          <p>Nueva profesional</p>
+          <p>Nuevo profesional</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>

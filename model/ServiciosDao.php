@@ -64,9 +64,8 @@ class ServiciosDAO  extends Model{
         if ($result) {
              foreach ($result as $linha) {
                  $Img[] = new ImagenServ(
-				 
-						$linha['idImagenServ']);
-                        $linha['Nombre'],
+				         $linha['nombre'],
+						$linha['idImagen']);
                          
              }
             }

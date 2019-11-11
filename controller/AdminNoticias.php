@@ -8,7 +8,7 @@ class AdminNoticias extends Admin {
     }
 
     public function index() {
-        $data['listNoti'] = $this->model->getListImagem();
+        $data['listNoti'] = $this->model->getListNoticias();
     //    echo "<pre>";
     //    print_r($data);
      //  echo "</pre>";

@@ -8,7 +8,7 @@ class AdminConsultas extends Admin {
     }
 
     public function index() {
-        $data['listConsu'] = $this->model->getListImagem();
+        $data['listConsu'] = $this->model->getListConsultas();
     //    echo "<pre>";
     //    print_r($data);
      //  echo "</pre>";
