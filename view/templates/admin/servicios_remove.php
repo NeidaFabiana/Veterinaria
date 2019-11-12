@@ -1,5 +1,5 @@
 <?php
-$message = "Servicio no encontrada !!";
+$message = "Servicio no encontrado !!";
 if ($data) {
     $message = $data['msg'];
 }

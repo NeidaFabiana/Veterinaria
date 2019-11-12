@@ -41,13 +41,13 @@ class AdminNoti extends Admin {
         $if = false;
     }
     if( $if = true){
-        $imagen = $caminho;
+        $nombre = $caminho;
         
-        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-        if ($imagen && $nombre ) {
-            $img = new ImagenNoti($idImagen=null,$imagen,$nombre);
+        $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
+        if ($nombre && $imagen ) {
+            $img = new ImagenNoti($idImagen=null,$nombre,$imagen);
 
-            if($this->model->insereImagenNoti(new ImagenNoti($imagen,$nombre))){
+            if($this->model->insereImagenNoti(new ImagenNoti($nombre,$imagen))){
 
               $this->view->location('AdminNoti');
                 return true;
@@ -80,13 +80,13 @@ class AdminNoti extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
             $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
             $idImagen = filter_input(INPUT_POST, 'idImagen', FILTER_SANITIZE_STRING);
 
-            if ($imagen && $nombre && $idImagen) {
+            if ($nombre && $imagen && $idImagen) {
                 //atualizar no banco de dados a notícia
-                $img = new ImagenNoti($imagen, $nombre, $idImagen);
+                $img = new ImagenNoti($nombre, $imagen, $idImagen);
                 if ($this->model->atualizarImagenNoti($img)) {
                     $this->view->location("AdminNoti");
                     return true;

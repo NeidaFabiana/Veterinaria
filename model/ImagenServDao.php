@@ -25,7 +25,7 @@ class ImagenServDAO extends Model {
     }
 
 	public function getListUltimasImagenServ(){
-        $sql = "SELECT * FROM ImagenServ order by idImagenServ desc limit 3";
+        $sql = "SELECT * FROM ImagenServ order by idImagen desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,8 +40,8 @@ class ImagenServDAO extends Model {
 
     public function getImagenServById($img) {
 
-            $sql = "SELECT * FROM ImagenServ WHERE idImagen = :idImagenServ;";
-            $result = $this->ExecuteQuery($sql, [':idImagenServ' => $img]);
+            $sql = "SELECT * FROM ImagenServ WHERE idImagen = :idImagen;";
+            $result = $this->ExecuteQuery($sql, [':idImagen' => $img]);
 
     
  if ($result) {
@@ -55,10 +55,10 @@ class ImagenServDAO extends Model {
 	
    
 	 public function insereImagenServ($img) {
-        $sql = "INSERT INTO ImagenServ (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO ImagenServ (nombre,imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
-                [':nombre' => $img->getNombre(),
-            ':imagen' => $img->getImagen()]);
+                [':Nombre' => $img->getNombre(),
+            ':Imagen' => $img->getImagen()]);
         if ($result) {
             return true;
         } else {
@@ -81,8 +81,8 @@ class ImagenServDAO extends Model {
     
 	
     public function removeImagenServ($id) {
-        $sql = "DELETE FROM ImagenServ WHERE idImagen = :idImagenServ";
-        if($this->ExecuteCommand($sql, [':idImagenServ'=>$id])){
+        $sql = "DELETE FROM ImagenServ WHERE idImagen = :idImagen";
+        if($this->ExecuteCommand($sql, [':idImagen'=>$id])){
             return true;
         }else{
             return false;

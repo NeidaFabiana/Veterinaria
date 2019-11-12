@@ -15,7 +15,7 @@ if($data){
 					<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminConsultas/add">Add New Row</button></span>
 
 		<div class="mb_content_inner">		
-			<table class="table table-responsive-md table-sm table-bordered makeEditable">
+			<table class="">
 			 <thead>
 			  <tr>
 				<th>Id:</th>

@@ -41,13 +41,13 @@ class AdminSlide extends Admin {
         $if = false;
     }
     if( $if = true){
-        $imagen = $caminho;
+        $nombre = $caminho;
         
-        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-        if ($imagen && $nombre ) {
-            $img = new ImagenSlide($idSlide=null,$imagen,$nombre);
+        $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
+        if ($nombre && $imagen ) {
+            $img = new ImagenSlide($idSlide=null,$nombre,$imagen);
 
-            if($this->model->insereImagenSlide(new ImagenSlide($imagen,$nombre))){
+            if($this->model->insereImagenSlide(new ImagenSlide($nombre,$imagen))){
 
               $this->view->location('AdminSlide');
                 return true;
@@ -80,13 +80,13 @@ class AdminSlide extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
             $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+			$imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
             $idSlide = filter_input(INPUT_POST, 'idSlide', FILTER_SANITIZE_STRING);
 
-            if ($imagen && $nombre && $idSlide) {
+            if ($nombre && $imagen && $idSlide) {
                 //atualizar no banco de dados a notícia
-                $img = new ImagenSlide($imagen, $nombre, $idSlide);
+                $img = new ImagenSlide($nombre, $imagen, $idSlide);
                 if ($this->model->atualizarImagenSlide($img)) {
                     $this->view->location("AdminSlide");
                     return true;

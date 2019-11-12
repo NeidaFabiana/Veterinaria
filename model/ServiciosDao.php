@@ -29,9 +29,9 @@ class ServiciosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromservicios($linha['idServicios']);
+            $Img = $this->getImagenFromServicios($linha['idServicios']);
 
-            $servicios = new Servicios($linha['idServicios'], $linha['servicio'], $linha['Descripcion'], $Img);
+            $servicios = new Servicios($linha['idServicios'], $linha['servicio'], $linha['descripcion'], $Img);
 
             $this->listServicios[] = $servicios;
         }
@@ -39,7 +39,7 @@ class ServiciosDAO  extends Model{
     }
 	
 
-    public function getserviciosById($id) {
+    public function getServiciosById($id) {
         $sql = "SELECT * FROM Servicios WHERE idServicios = :idServicios";
         $result = $this->ExecuteQuery($sql, [':idServicios' => $id]);
        // echo "<pre>";
@@ -47,7 +47,7 @@ class ServiciosDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromservicios($id);
+            $Img = $this->getImagenFromServicios($id);
             $serv = $result[0];
             return new Servicios($serv['idServicios'], $serv['servicio'], $serv['descripcion'], $Img);
         } else {
@@ -72,7 +72,7 @@ class ServiciosDAO  extends Model{
         return $Img;
     }
 	 public function insereServicios($serv) {
-        $sql = "INSERT INTO Servicios(Servicio,Descripcion) VALUES(:Servicio,:Descripcion)";
+        $sql = "INSERT INTO Servicios(servicio,descripcion) VALUES(:Servicio,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Servicio' => $serv->getServicio(),
             ':Descripcion' => $serv->getDescripcion()]);
@@ -112,8 +112,8 @@ class ServiciosDAO  extends Model{
     
 
 	 public function atualizarServicios($servicios) {
-        $sql = 'UPDATE Servicios SET servicio = :servicio,'
-                . ' Descripcion=:Descripcion WHERE idServicios =:idServicios';
+        $sql = 'UPDATE Servicios SET servicio = :Servicio,'
+                . ' descripcion=:Descripcion WHERE idServicios =:idServicios';
         $param = [':Servicio'=>$servicios->getServicio(),
             ':Descripcion'=>$servicios->getDescripcion(),
             ':idServicios'=>$servicios->getIdServicios()];

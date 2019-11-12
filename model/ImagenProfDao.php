@@ -55,10 +55,10 @@ class ImagenProfDAO extends Model {
 	
    
 	 public function insereImagenProf($img) {
-        $sql = "INSERT INTO ImagenProf (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO ImagenProf (nombre,imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
-                [':nombre' => $img->getNombre(),
-            ':imagen' => $img->getImagen()]);
+                [':Nombre' => $img->getNombre(),
+            ':Imagen' => $img->getImagen()]);
         if ($result) {
             return true;
         } else {

@@ -88,11 +88,11 @@ public function add() {
         $this->view->load('footer');
     }
 
-    public function removeProfesionales() {
+    public function removerProfesionales() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
             $idProfesionales = filter_input(INPUT_POST,'idProfesionales',FILTER_SANITIZE_STRING);
-            if($this->model->removeProfesionales($idProfesionales)){
+            if($this->model->removerProfesionales($idProfesionales)){
                 $data['msg'] ='Profesional eliminado con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la profesional!';            

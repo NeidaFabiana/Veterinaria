@@ -121,8 +121,8 @@ class AdminConsejos extends Admin {
     public function removeConsejos() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
-            $idimagen = filter_input(INPUT_POST,'idConsejos',FILTER_SANITIZE_STRING);
-            if($this->model->removeConsejos($idimagen)){
+            $idConsejos = filter_input(INPUT_POST,'idConsejos',FILTER_SANITIZE_STRING);
+            if($this->model->removeConsejos($idConsejos)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la imagen!';            

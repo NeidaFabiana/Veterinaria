@@ -91,9 +91,9 @@ class NoticiasDAO  extends Model{
         if ($result) {
              foreach ($result as $linha) {
                  $Img[] = new ImagenNoti(
-				 
+				        
+						$linha['Nombre'],
 						$linha['idImagen']);
-                        $linha['Nombre'];
                          
              }
             }

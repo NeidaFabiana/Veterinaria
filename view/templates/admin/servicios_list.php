@@ -31,10 +31,10 @@ if($data){
                             <?php $count++; $ccs_class=($count%2==0)?'even':'odd';?>  
 						<tr class="<?php echo $ccs_class;?>">
                         <td><?php echo $listServ->getIdServicios() ?></td>
-                        <td><?php echo $listServ->getNombre() ?></td>
+                        <td><?php echo $listServ->getServicio() ?></td>
 						<td><?php echo substr($listServ->getDescripcion(), 0,50)."...";?></td>                        
                          <td class="center" style='font-size:10px; font-weight: bold;'>
-                                        <a href="<?php echo $this->base_url?>AdminServicios/add/editServicios/<?php echo $listServ->getIdServicios();?>"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="<?php echo $this->base_url?>AdminServicios/editServicios/<?php echo $listServ->getIdServicios();?>"><i class="fa fa-edit fa-2x"></i></a>
                           
                                         <a href='<?php echo $this->base_url?>AdminServicios/delServicios/<?php echo $listServ->getIdServicios();?>'>&#128465;</a>
                                     </td>

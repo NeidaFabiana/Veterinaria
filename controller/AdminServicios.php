@@ -20,55 +20,26 @@ class AdminServicios extends Admin {
     }
 
      
- public function add() {
-    $data['msg'] = '';
-
-  if (filter_input(INPUT_POST, 'add')) {
-    $caminho = getcwd();
-    $diretorio =  $caminho. "/system/upload/";
-    //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
-    $arquivo = $diretorio . $novonome;
-
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
-
-        $caminho = $novonome;
-
-        $if = true;
-    } else {
-        $data['msg'] = "Erro ao subir imagem";
-        $if = false;
-    }
-    if( $if = true){
-        $servicio = $caminho;
-        
-        $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
-        if ($servicio && $descripcion ) {
-            $img = new Servicios($idServicios=null,$servicio,$descripcion);
-
-            if($this->model->insereServicios(new Servicios($servicio,$descripcion))){
-
-              $this->view->location('AdminServicios');
-                return true;
-            } else {
-                $data['msg'] = 'Error al registrar servicio!';
+  public function add() {
+        $data['msg']="";
+        if (filter_input(INPUT_POST, 'add')) {
+            $servicio = filter_input(INPUT_POST, 'servicio',FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'descripcion',FILTER_SANITIZE_STRING);
+            if($servicio && $descripcion) {
+                if($this->model->insereServicios(new Servicios($servicio, $descripcion))){
+                    $this->view->location('AdminServicios');
+                }else{
+                    $data['msg']= "Erro ao cadastrar!!";
+                }
+            }else{
+                $data['msg']= "Preencha todos os campos!";
             }
-        } else {
-            $data['msg'] = 'Preencha todos os campos!';
         }
-  }
-  else{$data['msg'] = 'Error ao subir img';}
-  }
-
-  $this->view->load('header');
-  $this->view->load('nav');
-  $this->view->load('servicios_add', $data);
-  $this->view->load('footer');
-
-
-
-  }
+        $this->view->load('header');
+        $this->view->load('nav');
+        $this->view->load('servicios_add',$data);
+        $this->view->load('footer');
+    }
 	 
 	 
   

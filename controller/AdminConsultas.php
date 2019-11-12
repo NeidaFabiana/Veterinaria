@@ -19,59 +19,32 @@ class AdminConsultas extends Admin {
         $this->view->load("footer");
     }
 
-     
- public function add() {
-    $data['msg'] = '';
+	public function add() {
+        $data['msg']="";
+        if (filter_input(INPUT_POST, 'add')) {
+			$nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+			$fecha = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_STRING);
+			$horario = filter_input(INPUT_POST, 'horario', FILTER_SANITIZE_STRING);
+			$telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
+			$direccion = filter_input(INPUT_POST, 'direccion', FILTER_SANITIZE_STRING);
+            if($nombre && $fecha && $horario && $telefono && $direccion ) {
+                if($this->model->insereConsultas(new Consultas($nombre,$fecha,$horario,$telefono,$direccion))){
 
-  if (filter_input(INPUT_POST, 'add')) {
-    $caminho = getcwd();
-    $diretorio =  $caminho. "/system/upload/";
-    //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
-    $arquivo = $diretorio . $novonome;
-
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
-
-        $caminho = $novonome;
-
-        $if = true;
-    } else {
-        $data['msg'] = "Erro ao subir consulta";
-        $if = false;
-    }
-    if( $if = true){
-        $nombre = $caminho;
-        
-        $fecha = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_STRING);
-        $horario = filter_input(INPUT_POST, 'horario', FILTER_SANITIZE_STRING);
-        $telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
-        $direccion = filter_input(INPUT_POST, 'direccion', FILTER_SANITIZE_STRING);
-        if ($nombre && $fecha && $horario && $telefono && $direccion ) {
-            $img = new Imagem($idConsultas=null,$nombre,$fecha,$horario,$telefono,$direccion);
-
-            if($this->model->insereConsultas(new Consultas($nombre,$fecha,$horario,$telefono,$direccion))){
-
-              $this->view->location('AdminConsultas');
-                return true;
-            } else {
-                $data['msg'] = 'Error al registrar consulta!';
+                    $this->view->location('AdminConsultas');
+                }else{
+                    $data['msg']= "Erro ao cadastrar!!";
+                }
+            }else{
+                $data['msg']= "Preencha todos os campos!";
             }
-        } else {
-            $data['msg'] = 'Complete todos los campos!';
         }
-  }
-  else{$data['msg'] = 'Error ao subir consulta';}
-  }
-
-  $this->view->load('header');
-  $this->view->load('nav');
-  $this->view->load('consultas_add', $data);
-  $this->view->load('footer');
-
-
-
-  }
+        $this->view->load('header');
+        $this->view->load('nav');
+        $this->view->load('consultas_add',$data);
+        $this->view->load('footer');
+    }
+     
+ 
 	 
 	 
   

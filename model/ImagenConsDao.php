@@ -25,7 +25,7 @@ class ImagenConsDAO extends Model {
     }
 
 	public function getListUltimasImagenCons(){
-        $sql = "SELECT * FROM ImagenCons order by idImagenCons desc limit 3";
+        $sql = "SELECT * FROM ImagenCons order by idImagen desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,8 +40,8 @@ class ImagenConsDAO extends Model {
 
     public function getImagenConsById($img) {
 
-            $sql = "SELECT * FROM ImagenCons  WHERE idImagen = :idImagenCons;";
-            $result = $this->ExecuteQuery($sql, [':idImagenCons' => $img]);
+            $sql = "SELECT * FROM ImagenCons  WHERE idImagen = :idImagen;";
+            $result = $this->ExecuteQuery($sql, [':idImagen' => $img]);
 
     
  if ($result) {
@@ -54,11 +54,11 @@ class ImagenConsDAO extends Model {
 
 	
    
-	 public function insereImagenProf($img) {
-        $sql = "INSERT INTO ImagenCons (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+	 public function insereImagenCons($img) {
+        $sql = "INSERT INTO ImagenCons (nombre,imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
-                [':nombre' => $img->getNombre(),
-            ':imagen' => $img->getImagen()]);
+                [':Nombre' => $img->getNombre(),
+            ':Imagen' => $img->getImagen()]);
         if ($result) {
             return true;
         } else {
@@ -81,8 +81,8 @@ class ImagenConsDAO extends Model {
     
 	
     public function removeImagenCons($id) {
-        $sql = "DELETE FROM ImagenCons WHERE idImagen = :idImagenCons";
-        if($this->ExecuteCommand($sql, [':idImagenCons'=>$id])){
+        $sql = "DELETE FROM ImagenCons WHERE idImagen = :idImagen";
+        if($this->ExecuteCommand($sql, [':idImagen'=>$id])){
             return true;
         }else{
             return false;

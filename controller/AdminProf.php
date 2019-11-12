@@ -41,13 +41,13 @@ class AdminProf extends Admin {
         $if = false;
     }
     if( $if = true){
-        $imagen = $caminho;
+        $nombre = $caminho;
         
-        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-        if ($imagen && $nombre ) {
-            $img = new ImagenProf($idImagen=null,$imagen,$nombre);
+        $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
+        if ($nombre && $imagen ) {
+            $img = new ImagenProf($idImagen=null,$nombre,$imagen);
 
-            if($this->model->insereImagenProf(new ImagenProf($imagen,$nombre))){
+            if($this->model->insereImagenProf(new ImagenProf($nombre,$imagen))){
 
               $this->view->location('AdminProf');
                 return true;

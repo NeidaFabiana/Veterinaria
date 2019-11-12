@@ -24,7 +24,7 @@
 				  <form role="form"  method="post">
 					<div class="form-group">
 					  <label class="control-label">Nombre:</label>
-					  <input class="form-control" type="text" placeholder="Título" name="title">
+					  <input class="form-control" type="text" placeholder="Nombre" name="nombre">
 					</div>
 				  
 					<div class="form-group">

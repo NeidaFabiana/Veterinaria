@@ -70,8 +70,6 @@ class AdminCons extends Admin {
 
   }
 	 
-	 
-  
   
    public function editImagenCons($id) {
         $data['imag'] = $this->model->getImagenConsById($id);

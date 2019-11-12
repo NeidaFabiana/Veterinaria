@@ -15,7 +15,7 @@ class ProfesionalesDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $profesionales = new Profesionales( $linha['idProfesionales'], $linha['formacion'], $linha['descripcion'],$linha['imgprof']);
+            $profesionales = new Profesionales( $linha['idProfesionales'], $linha['nombre'], $linha['formacion'],$linha['imgprof']);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -29,7 +29,7 @@ class ProfesionalesDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $profesionales = new Profesionales($linha['idNoticias'], $linha['formacion'], $linha['descripcion'],$linha['imgprof']);
+            $profesionales = new Profesionales($linha['idProfesionales'], $linha['nombre'], $linha['formacion'],$linha['imgprof']);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -45,7 +45,7 @@ class ProfesionalesDAO  extends Model{
 
             $Img = $this->getImagenFromProfesionales($linha['idProfesionales']);
 
-            $profesionales = new Profesionales($linha['idProfesionales'], $linha['formacion'], $linha['descripcion'], $Img);
+            $profesionales = new Profesionales($linha['idProfesionales'], $linha['nombre'], $linha['formacion'], $Img);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -59,7 +59,7 @@ class ProfesionalesDAO  extends Model{
 
             $Img = $this->getImagenFromProfesionales($linha['idProfesionales']);
 
-            $profesionales = new Profesionales($linha['idProfesionales'], $linha['formacion'], $linha['descripcion'], $Img);
+            $profesionales = new Profesionales($linha['idProfesionales'], $linha['nombre'], $linha['formacion'], $Img);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -74,9 +74,9 @@ class ProfesionalesDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromNoticia($id);
+            $Img = $this->getImagenFromProfesionales($id);
             $prof = $result[0];
-            return new Profesionales($prof['idNoticias'], $prof['Titulo'], $prof['Descripcion'], $Img);
+            return new Profesionales($prof['idProfesionales'], $prof['nombre'], $prof['formacion'], $Img);
         } else {
             return null;
         }
@@ -91,9 +91,9 @@ class ProfesionalesDAO  extends Model{
         if ($result) {
              foreach ($result as $linha) {
                  $Img[] = new ImagenProf(
-				 
-						$linha['idImagenProf']);
-                        $linha['Nombre'];
+				        $linha['nombre'],
+				        $linha['imagen'],
+						$linha['idImagen']);
                          
              }
             }
@@ -102,8 +102,8 @@ class ProfesionalesDAO  extends Model{
 	 public function insereProfesionales($prof) {
         $sql = "INSERT INTO Profesionales(nombre,formacion) VALUES(:Nombre,:Formacion)";
         $result = $this->ExecuteCommand($sql,
-                [':Nombre' => $news->getNombre(),
-            ':Formacion' => $news->getFormacion()]);
+                [':Nombre' => $prof->getNombre(),
+            ':Formacion' => $prof->getFormacion()]);
         if ($result) {
             return true;
         } else {
@@ -140,10 +140,10 @@ class ProfesionalesDAO  extends Model{
     
 
 	 public function atualizarProfesionales($profesionales) {
-        $sql = 'UPDATE Profesionales SET Formacion = :Formacion,'
-                . ' Descripcion=:Descripcion WHERE idProfesionales =:idProfesionales';
-        $param = [':Formacion'=>$profesionales->getFormacion(),
-            ':Descripcion'=>$profesionales->getDescripcion(),
+        $sql = 'UPDATE Profesionales SET nombre = :Nombre,'
+                . ' formacion=:Formacion WHERE idProfesionales =:idProfesionales';
+        $param = [':Nombre'=>$profesionales->getNombre(),
+            ':Formacion'=>$profesionales->getFormacion(),
             ':idProfesionales'=>$profesionales->getIdProfesionales()];
         if($this->ExecuteCommand($sql, $param)){
             return true;

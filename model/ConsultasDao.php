@@ -72,7 +72,7 @@ class ConsultasDAO  extends Model{
 				.'fecha = :Fecha,'
 				.'horario = :Horario,'
 				.'telefono = :Telefono,'
-                . ' Direccion = :Direccion WHERE idConsultas =:idConsultas';
+                . ' direccion = :Direccion WHERE idConsultas =:idConsultas';
         $param = [':Nombre'=>$Consultas->getNombre(),
             ':Fecha'=>$Consultas->getFecha(),
             ':Horario'=>$Consultas->getHorario(),

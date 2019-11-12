@@ -1,6 +1,6 @@
 <?php
 $profe = null;
-$message = "Profesionales no encontrada !!";
+$message = "Profesional no encontrada !!";
 if ($data) {
     $message = $data['msg'];
     if (isset($data['prof'])) {

@@ -41,13 +41,13 @@ class AdminServ extends Admin {
         $if = false;
     }
     if( $if = true){
-        $imagen = $caminho;
+        $nombre = $caminho;
         
-        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+        $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
         if ($imagen && $nombre ) {
-            $img = new ImagenServ($idImagen=null,$imagen,$nombre);
+            $img = new ImagenServ($idImagen=null,$nombre,$imagen);
 
-            if($this->model->insereImagenServ(new ImagenServ($imagen,$nombre))){
+            if($this->model->insereImagenServ(new ImagenServ($nombre,$imagen))){
 
               $this->view->location('AdminServ');
                 return true;
@@ -80,13 +80,13 @@ class AdminServ extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
             $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
             $idImagen = filter_input(INPUT_POST, 'idImagen', FILTER_SANITIZE_STRING);
 
-            if ($imagen && $nombre && $idImagen) {
+            if ($nombre && $imagen && $idImagen) {
                 //atualizar no banco de dados a notícia
-                $img = new ImagenServ($imagen, $nombre, $idImagen);
+                $img = new ImagenServ($nombre, $imagen, $idImagen);
                 if ($this->model->atualizarImagenServ($img)) {
                     $this->view->location("AdminServ");
                     return true;

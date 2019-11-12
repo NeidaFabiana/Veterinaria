@@ -25,7 +25,7 @@ class ImagenNotiDAO extends Model {
     }
 
 	public function getListUltimasImagenNoti(){
-        $sql = "SELECT * FROM ImagenNoti order by idImagenNoti desc limit 3";
+        $sql = "SELECT * FROM ImagenNoti order by idImagen desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,8 +40,8 @@ class ImagenNotiDAO extends Model {
 
     public function getImagenNotiById($img) {
 
-            $sql = "SELECT * FROM ImagenNoti WHERE idImagen = :idImagenNoti;";
-            $result = $this->ExecuteQuery($sql, [':idImagenNoti' => $img]);
+            $sql = "SELECT * FROM ImagenNoti WHERE idImagen = :idImagen;";
+            $result = $this->ExecuteQuery($sql, [':idImagen' => $img]);
 
     
  if ($result) {
@@ -55,10 +55,10 @@ class ImagenNotiDAO extends Model {
 	
    
 	 public function insereImagenServ($img) {
-        $sql = "INSERT INTO ImagenNoti (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO ImagenNoti (nombre,imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
-                [':nombre' => $img->getNombre(),
-            ':imagen' => $img->getImagen()]);
+                [':Nombre' => $img->getNombre(),
+            ':Imagen' => $img->getImagen()]);
         if ($result) {
             return true;
         } else {
@@ -68,8 +68,8 @@ class ImagenNotiDAO extends Model {
 
 	 public function atualizarImagenNoti($img) {
         $sql = 'UPDATE ImagenNoti SET nombre = :Nombre,'
-                . ' imagen=:Imagen  WHERE idImagen =:idImagenNoti';
-        $param = [':idImagenServ'=>$img->getIdImagenNoti(),
+                . ' imagen=:Imagen  WHERE idImagen =:idImagen';
+        $param = [':idImagen'=>$img->getIdImagenNoti(),
 		':Nombre'=>$img->getNombre(),
             ':Imagen'=>$img->getImagen()];
         if($this->ExecuteCommand($sql, $param)){
@@ -81,8 +81,8 @@ class ImagenNotiDAO extends Model {
     
 	
     public function removeImagenNoti($id) {
-        $sql = "DELETE FROM ImagenNoti WHERE idImagen = :idImagenNoti";
-        if($this->ExecuteCommand($sql, [':idImagenNoti'=>$id])){
+        $sql = "DELETE FROM ImagenNoti WHERE idImagen = :idImagen";
+        if($this->ExecuteCommand($sql, [':idImagen'=>$id])){
             return true;
         }else{
             return false;

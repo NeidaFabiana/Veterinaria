@@ -34,7 +34,7 @@ if($data){
                         <td><?php echo $listCons->getTitulo() ?></td>
 						<td><?php echo substr($listCons->getDescripcion(), 0,50)."...";?></td>                        
                          <td class="center" style='font-size:10px; font-weight: bold;'>
-                                        <a href="<?php echo $this->base_url?>AdminConsejos/add/editConsejos/<?php echo $listCons->getIdConsejos();?>"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="<?php echo $this->base_url?>AdminConsejos/editConsejos/<?php echo $listCons->getIdConsejos();?>"><i class="fa fa-edit fa-2x"></i></a>
                           
                                         <a href='<?php echo $this->base_url?>AdminConsejos/delConsejos/<?php echo $listCons->getIdConsejos();?>'>&#128465;</a>
                                     </td>

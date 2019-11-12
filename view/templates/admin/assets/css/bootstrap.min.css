@@ -67,6 +67,8 @@
      color: #fff;
      text-align: left;
      background-color: #DEE1E1;
+	 margin-left: 20%;
+	 margin-top: 10%;
  }
  [tabindex="-1"]:focus {
      outline: 0 !important
@@ -327,7 +329,7 @@
      font-family: inherit;
      font-weight: 500;
      line-height: 1.2;
-     color: inherit
+     color: black;
  }
  h1,
  .h1 {
