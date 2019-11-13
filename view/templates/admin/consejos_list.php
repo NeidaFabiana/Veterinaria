@@ -9,13 +9,13 @@ if($data){
 
 	
 
-	<div class="mb_content">
+	<div class="">
 		<h2>Consejos</h2>
 				
-					<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminConsejos/add">Add New Row</button></span>
+					<span style="float:left"><a id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminConsejos/add">Añadir</a></span>
 
-		<div class="mb_content_inner">		
-			<table class="table table-responsive-md table-sm table-bordered makeEditable">
+		<div class="">		
+			<table class="table table-hover table-bordered" id="sampleTable">
 			 <thead>
 			  <tr>
 				<th>Id:</th>

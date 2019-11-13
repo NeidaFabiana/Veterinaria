@@ -4,11 +4,9 @@
         <title>Administrador VV</title>
 		<meta charset=utf-8>
         
-		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="<?php echo $this->asset?>assets/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Astloch:regular,bold' rel='stylesheet' type='text/css' />
-		<link type="text/css" href="<?php echo $this->asset?>assets/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
 		
 		
 		<link rel="stylesheet" href="<?php echo $this->asset?>assets/css/bootstrap.min.css">

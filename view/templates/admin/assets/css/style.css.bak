@@ -9,14 +9,7 @@ a{
 	color:#fff;
 	text-decoration:none;
 }
-img.mb_bgimage{
-	position:fixed;
-	left:0px;
-	top:0px;
-	width:100%;
-	opacity:0.8;
-	z-index:1;
-}
+
 .mb_overlay{
 	width:100%;
 	height:100%;
@@ -41,13 +34,7 @@ img.mb_bgimage{
 	display:none;
 	z-index:3;
 }
-.mb_pattern div{
-	position:absolute;
-	width:20px;
-	height:20px;
-	background:#000;
-	z-index:10;
-}
+
 .mb_heading h1{
 	position:absolute;
 	top:10px;

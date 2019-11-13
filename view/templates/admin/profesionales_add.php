@@ -24,12 +24,12 @@
 				  <form role="form"  method="post">
 					<div class="form-group">
 					  <label class="control-label">Nombre:</label>
-					  <input class="form-control" type="text" placeholder="Nombre" name="nombre">
+					  <input class="form-control" type="text" placeholder="Nombre" name="Nombre">
 					</div>
 				  
 					<div class="form-group">
 						<label class="control-label">Formación:</label>
-						<textarea name="formacion" class="form-control" rows="4" placeholder="Formación" ></textarea>
+						<textarea name="Formacion" class="form-control" rows="4" placeholder="Formación" ></textarea>
 					</div>
 
 					<div class="tile-footer">

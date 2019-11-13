@@ -16,7 +16,7 @@ class ImagenProfDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenProf($linha['idImagen'], $linha['nombre'], $linha['imagen']);
+            $imagem = new ImagenProf($linha['Nombre'], $linha['Imagen'],$linha['idImagenProf']);
 
             $this->listImagem[] = $imagem;
         }
@@ -29,7 +29,7 @@ class ImagenProfDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenProf($linha['idImagen'], $linha['nombre'], $linha['imagen']);
+            $imagem = new ImagenProf($linha['Nombre'], $linha['Imagen'],$linha['idImagenProf']);
 
             $this->listImagem[] = $imagem;
         }
@@ -40,13 +40,13 @@ class ImagenProfDAO extends Model {
 
     public function getImagenProfById($img) {
 
-            $sql = "SELECT * FROM ImagenProf  WHERE idImagen = :idImagenProf;";
+            $sql = "SELECT * FROM ImagenProf  WHERE idImagenProf = :idImagenProf;";
             $result = $this->ExecuteQuery($sql, [':idImagenProf' => $img]);
 
     
  if ($result) {
             $imgl = $result[0];
-            return new ImagenProf($imgl['idImagen'], $imgl['nombre'], $imgl['imagen']);
+            return new ImagenProf($imgl['Nombre'], $imgl['Imagen'],$imgl['idImagenProf']);
         } else {
             return null;
         }
@@ -55,7 +55,7 @@ class ImagenProfDAO extends Model {
 	
    
 	 public function insereImagenProf($img) {
-        $sql = "INSERT INTO ImagenProf (nombre,imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO ImagenProf (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $img->getNombre(),
             ':Imagen' => $img->getImagen()]);
@@ -67,9 +67,9 @@ class ImagenProfDAO extends Model {
     }
 
 	 public function atualizarImagenProf($img) {
-        $sql = 'UPDATE ImagenProf SET nombre = :Nombre,'
-                . ' imagen=:Imagen  WHERE idImagen =:idImagenProf';
-        $param = [':idImagenProf'=>$img->getIdImagenProf(),
+        $sql = 'UPDATE ImagenProf SET Nombre = :Nombre,'
+                . ' Imagen=:Imagen  WHERE idImagen =:idImagenProf';
+        $param = [':idImagenProf'=>$img->getIdImagen(),
 		':Nombre'=>$img->getNombre(),
             ':Imagen'=>$img->getImagen()];
         if($this->ExecuteCommand($sql, $param)){
@@ -81,7 +81,7 @@ class ImagenProfDAO extends Model {
     
 	
     public function removeImagenProf($id) {
-        $sql = "DELETE FROM ImagenProf WHERE idImagen = :idImagenProf";
+        $sql = "DELETE FROM ImagenProf WHERE idImagenProf = :idImagenProf";
         if($this->ExecuteCommand($sql, [':idImagenProf'=>$id])){
             return true;
         }else{

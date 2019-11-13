@@ -15,7 +15,7 @@ class ConsejosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $consejos = new Consejos( $linha['idConsejos'], $linha['titulo'], $linha['descripcion'],$linha['imgcons']);
+            $consejos = new Consejos($linha['Titulo'], $linha['Descripcion'],$linha['ImgCons'],$linha['idConsejos']);
 
             $this->listConsejos[] = $consejos;
         }
@@ -29,7 +29,7 @@ class ConsejosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $consejos = new Consejos($linha['idConsejos'], $linha['titulo'], $linha['descripcion'],$linha['imgcons']);
+            $consejos = new Consejos($linha['Titulo'], $linha['Descripcion'],$linha['ImgCons'],$linha['idConsejos']);
 
             $this->listConsejos[] = $consejos;
         }
@@ -43,9 +43,9 @@ class ConsejosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromConsejos($linha['idConsejos']);
+            $ImgCons = $this->getImagenFromConsejos($linha['idConsejos']);
 
-            $consejos = new Consejos($linha['idConsejos'], $linha['titulo'], $linha['descripcion'], $Img);
+            $consejos = new Consejos($linha['Titulo'], $linha['Descripcion'], $ImgCons,$linha['idConsejos']);
 
             $this->listConsejos[] = $consejos;
         }
@@ -57,9 +57,9 @@ class ConsejosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromConsejos($linha['idConsejos']);
+            $ImgCons = $this->getImagenFromConsejos($linha['idConsejos']);
 
-            $consejos = new Consejos($linha['idConsejos'], $linha['titulo'], $linha['descripcion'], $Img);
+            $consejos = new Consejos($linha['Titulo'], $linha['Descripcion'], $ImgCons, $linha['idConsejos']);
 
             $this->listConsejos[] = $consejos;
         }
@@ -74,33 +74,34 @@ class ConsejosDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromConsejos($id);
+            $ImgCons = $this->getImagenFromConsejos($id);
             $cons = $result[0];
-            return new Consejos($cons['idConsejos'], $cons['titulo'], $cons['descripcion'], $Img);
+            return new Consejos($cons['Titulo'], $cons['Descripcion'], $ImgCons,$cons['idConsejos']);
         } else {
             return null;
         }
     }
 
     public function getImagenFromconsejos($id) {
-        $sql =  "SELECT i.* FROM Consejos_has_ImagenCons AS ni "
+        $sql =  "SELECT i.* FROM Consejos AS ni "
                 . "INNER JOIN  ImagenCons as i "
                 . "ON i.idImagenCons = ni.ImagenCons_idImagenCons WHERE Consejos_idConsejos = :Consejos_idConsejos;";
         $result = $this->ExecuteQuery($sql, [':Consejos_idConsejos' => $id]);
-        $Img=[];
+        $ImgCons=[];
         if ($result) {
              foreach ($result as $linha) {
-                 $Img[] = new ImagenCons(
+                 $ImgCons[] = new ImagenCons(
 				 
-				        $linha['nombre'],
+				        $linha['Nombre'],
+				        $linha['Imagen'],
 						$linha['idImagenCons']);
                          
              }
             }
-        return $Img;
+        return $ImgCons;
     }
 	 public function insereConsejos($cons) {
-        $sql = "INSERT INTO Consejos(titulo,descripcion) VALUES(:Titulo,:Descripcion)";
+        $sql = "INSERT INTO Consejos(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Titulo' => $cons->getTitulo(),
             ':Descripcion' => $cons->getDescripcion()]);
@@ -115,7 +116,7 @@ class ConsejosDAO  extends Model{
 	
 	    public function removerConsejos($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Consejos_has_ImagenCons WHERE Consejos_idConsejos  = :Consejos_idConsejos", [':Consejos_idConsejos' => $id])){
+		if($this->ExecuteQuery("SELECT * FROM Consejos WHERE Consejos_idConsejos  = :Consejos_idConsejos", [':Consejos_idConsejos' => $id])){
 			$sql = "DELETE FROM Consejos_has_ImagenCons WHERE Consejos_idConsejos = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM Consejos WHERE idConsejos = :idConsejos";
@@ -140,8 +141,8 @@ class ConsejosDAO  extends Model{
     
 
 	 public function atualizarConsejos($consejos) {
-        $sql = 'UPDATE Consejos SET titulo = :Titulo,'
-                . ' descripcion=:Descripcion WHERE idConsejos =:idConsejos';
+        $sql = 'UPDATE Consejos SET Titulo = :Titulo,'
+                . ' Descripcion=:Descripcion WHERE idConsejos =:idConsejos';
         $param = [':Titulo'=>$consejos->getTitulo(),
             ':Descripcion'=>$consejos->getDescripcion(),
             ':idConsejos'=>$consejos->getIdConsejos()];

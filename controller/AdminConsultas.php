@@ -22,11 +22,11 @@ class AdminConsultas extends Admin {
 	public function add() {
         $data['msg']="";
         if (filter_input(INPUT_POST, 'add')) {
-			$nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-			$fecha = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_STRING);
-			$horario = filter_input(INPUT_POST, 'horario', FILTER_SANITIZE_STRING);
-			$telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
-			$direccion = filter_input(INPUT_POST, 'direccion', FILTER_SANITIZE_STRING);
+			$nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+			$fecha = filter_input(INPUT_POST, 'Fecha', FILTER_SANITIZE_STRING);
+			$horario = filter_input(INPUT_POST, 'Horario', FILTER_SANITIZE_STRING);
+			$telefono = filter_input(INPUT_POST, 'Telefono', FILTER_SANITIZE_STRING);
+			$direccion = filter_input(INPUT_POST, 'Direccion', FILTER_SANITIZE_STRING);
             if($nombre && $fecha && $horario && $telefono && $direccion ) {
                 if($this->model->insereConsultas(new Consultas($nombre,$fecha,$horario,$telefono,$direccion))){
 
@@ -56,11 +56,11 @@ class AdminConsultas extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-            $fecha = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_STRING);
-            $horario = filter_input(INPUT_POST, 'horario', FILTER_SANITIZE_STRING);
-            $telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
-            $direccion = filter_input(INPUT_POST, 'direccion', FILTER_SANITIZE_STRING);
+            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+            $fecha = filter_input(INPUT_POST, 'Fecha', FILTER_SANITIZE_STRING);
+            $horario = filter_input(INPUT_POST, 'Horario', FILTER_SANITIZE_STRING);
+            $telefono = filter_input(INPUT_POST, 'Telefono', FILTER_SANITIZE_STRING);
+            $direccion = filter_input(INPUT_POST, 'Direccion', FILTER_SANITIZE_STRING);
             $idConsultas = filter_input(INPUT_POST, 'idConsultas', FILTER_SANITIZE_STRING);
 
             if ($nombre && $fecha && $horario && $telefono && $direccion && $idConsultas) {

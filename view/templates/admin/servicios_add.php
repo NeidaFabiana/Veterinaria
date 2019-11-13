@@ -24,12 +24,12 @@
 				  <form role="form"  method="post">
 					<div class="form-group">
 					  <label class="control-label">Servicio</label>
-					  <input class="form-control" type="text" placeholder="Servicio" name="servicio">
+					  <input class="form-control" type="text" placeholder="Servicio" name="Servicio">
 					</div>
 				  
 					<div class="form-group">
 						<label class="control-label">Descripción</label>
-						<textarea name="descripcion" class="form-control" rows="4" placeholder="Descripción" ></textarea>
+						<textarea name="Descripcion" class="form-control" rows="4" placeholder="Descripción" ></textarea>
 					</div>
 
 

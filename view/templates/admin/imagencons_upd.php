@@ -43,7 +43,7 @@ if ($data) {
               </div>
             </div>
 
-				<input type="hidden" value="<?php echo $imag->getIdImagen() ?>" name="idImagen">
+				<input type="hidden" value="<?php echo $imag->getIdImagen() ?>" name="idImagenCons">
             <div class="form-group">
                 <input name="edit" type="submit" class="btn btn-primary" value="Salvar">
                 <input name="exit" type="submit" class="btn btn-danger" value="Cancelar">

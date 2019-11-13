@@ -9,16 +9,18 @@ class Profesionales extends Controller {
 		  $this->model=new ProfesionalesDAO();
     }
 
-    public function index() {
- $data['listProf'] = $this->model->getListProfesionalesImagens();
+    public function index($b) {
+		$data['listProf'] = $this->model->getListProfesionalesImagens();
 
         $this->view->load("header");
         $this->view->load("nav");
         $this->view->load("profesionales",$data);
         $this->view->load("footer");
+		
+		var_dump($data);die;
     }
 
-		 public function viewProfesionales($idProfesionales) {
+	public function viewProfesionales($idProfesionales) {
         //Método buscar no banco pelo ID 
         $data['profesionales'] = $this->model->getProfesionalesById($idProfesionales);
 		

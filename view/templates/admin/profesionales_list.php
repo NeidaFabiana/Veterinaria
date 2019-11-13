@@ -9,13 +9,13 @@ if($data){
 
 	
 
-	<div class="mb_content">
+	<div class="">
 		<h2>Profesionales</h2>
 				
-					<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminProfesionales/add">Add New Row</button></span>
+					<span style="float:left"><a id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminProfesionales/add">Añadir</a></span>
 
 		<div class="mb_content_inner">		
-			<table class="">
+			<table class="table table-hover table-bordered">
 			 <thead>
 			  <tr>
 				<th>Id:</th>
@@ -33,11 +33,11 @@ if($data){
                         <td><?php echo $listProf->getIdProfesionales() ?></td>
                         <td><?php echo $listProf->getNombre() ?></td>
 						<td><?php echo substr($listProf->getFormacion(), 0,50)."...";?></td>                        
-                         <td class="center" style='font-size:10px; font-weight: bold;'>
-                                        <a href="<?php echo $this->base_url?>AdminProfesionales/editProfesionales/<?php echo $listProf->getIdProfesionales();?>"><i class="fa fa-edit fa-2x"></i></a>
+                        <td class="center" style='font-size:10px; font-weight: bold;'>
+                        <a href="<?php echo $this->base_url?>AdminProfesionales/editProfesionales/<?php echo $listProf->getIdProfesionales();?>"><i class="fa fa-edit fa-2x"></i></a>
                           
-                                        <a href='<?php echo $this->base_url?>AdminProfesionales/delProfesionales/<?php echo $listProf->getIdProfesionales();?>'>&#128465;</a>
-                                    </td>
+                        <a href='<?php echo $this->base_url?>AdminProfesionales/delProfesionales/<?php echo $listProf->getIdProfesionales();?>'>&#128465;</a>
+                        </td>
                         </tr>
                 <?php endforeach; ?>
                           <?php endif;?>   

@@ -9,13 +9,13 @@ if($data){
 
 	
 
-	<div class="mb_content">
+	<div class="">
 		<h2>Consultas</h2>
 				
-					<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminConsultas/add">Add New Row</button></span>
+					<span style="float:left"><a id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminConsultas/add">Añadir</a></span>
 
 		<div class="mb_content_inner">		
-			<table class="">
+			<table class="table table-hover table-bordered">
 			 <thead>
 			  <tr>
 				<th>Id:</th>
@@ -30,7 +30,7 @@ if($data){
 			<tbody>
 			  <?php $count = 0;?>
                          <?php if($list_consu):?>   
-                           <?php foreach($list_cons as $listConsu): ?> 
+                           <?php foreach($list_consu as $listConsu): ?> 
                             <?php $count++; $ccs_class=($count%2==0)?'even':'odd';?>  
 						<tr class="<?php echo $ccs_class;?>">
                         <td><?php echo $listConsu->getIdConsultas() ?></td>

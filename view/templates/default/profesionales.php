@@ -1,5 +1,8 @@
 <?php
+
 $list_prof = $data['listProf'];
+
+
 ?>	
          <!-- Profesionales-->    		
 			<section class="profesionales">
@@ -15,7 +18,7 @@ $list_prof = $data['listProf'];
 								<article>
 									<div id="imag1">
 										 <?php foreach ($prof->getImgprof() as $imagen): ?>
-										<img src="<?php echo $this->asset."system/upload/".$imagem->getNombre()?>" width="390" height="290"/>
+										<img src="<?php echo $this->asset."system/upload/".$imagem->getImagen()?>" width="390" height="290"/>
 										<?php endforeach;?>	
 									</div>
 								

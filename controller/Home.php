@@ -5,10 +5,6 @@ class Home extends Controller{
         parent::__construct();
 		$this->model=new NoticiasDAO(); 
     
-    
-	
-    
-
 	}
 
     public function index(){
@@ -18,7 +14,7 @@ class Home extends Controller{
 		$this->model=new ProfesionalesDAO(); 
 		$data['listProf']=$this->model->getListUltimasProfesionalesImagens();
 		$this->model=new ConsejosDAO(); 
-		$data['listCons']=$this->model->getListUltimasConsejos();
+		$data['listCons']=$this->model->getListUltimasConsejosImagens();
 		
         //echo $this->texto;
         $this->view->load("header");

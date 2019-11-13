@@ -7,16 +7,16 @@ if($data){
 
 ?>
 
-			<div class="mb_content">
+			<div class="">
 				<h2>Imagenes Servicios</h2>
 				
 				
 				
-			<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminServ/add">Add New Row</button></span>
+			<span style="float:left"><a id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminServ/add">Añadir</a></span>
 
 			<div class="mb_content_inner">
 		
-			<table class="table table-responsive-md table-sm table-bordered makeEditable">
+			<table class="table table-hover table-bordered">
 			 <thead>
 			  <tr>
 				<th>Id:</th>

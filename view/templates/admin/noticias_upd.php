@@ -31,12 +31,12 @@ if ($data) {
               <form role="form"  method="post">
                 <div class="form-group">
                   <label class="control-label">Título:</label>
-                  <input class="form-control" placeholder="Título" name="titulo" value = "<?php echo $news->getTitulo();?>">
+                  <input class="form-control" placeholder="Título" name="Titulo" value = "<?php echo $news->getTitulo();?>">
                 </div>
               
                 <div class="form-group">
                     <label class="control-label">Descripción:</label>
-                    <textarea name="descripcion" class="form-control" rows="4" placeholder="Descripción" ><?php echo $news->getDescripcion();?></textarea>
+                    <textarea name="Descripcion" class="form-control" rows="4" placeholder="Descripción" ><?php echo $news->getDescripcion();?></textarea>
                 </div>
 
                <input type="hidden" value="<?php echo $news->getIdNoticias() ?>" name="idNoticias">

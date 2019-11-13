@@ -1,8 +1,9 @@
 <?php
+$img = $data['listImagenSlide'];
+$list_nost = $data['listNosotros'];
 $list_prof = $data['listProf'];
 $list_noti = $data['listNoti'];
 $list_cons = $data['listCons'];
-$img = $data['listImagenSlide'];
 ?>	
 	
 		
@@ -42,15 +43,24 @@ $img = $data['listImagenSlide'];
 						<div class="font-titulo"><p><font><strong>Nosotros</strong></font></p></div>
 
 							<article>
+							
+							<?php if ($list_nost): ?>
+										<?php foreach ($list_nost as $nost): ?>
 								<div id="imag">	
-									<img src="<?php echo $this->asset?>assets/imagen/historia.jpg" width="500" height="370" />
+									<?php if ($nost->getImagen()): ?>
+									<img src="<?php echo $this->asset . "system/upload/" . $nost->getImagen()[0]; ?>" width="500" height="370" />
 								</div>
 								<div class="content">			
-									<p>Mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás. O que é algo muito importante!</p>
-									<p>Somos un equipo de profesionales comprometidas con lo que hacemos. </p>
-									<p>Conocemos las necesidades y la forma de sentir de las mascotas y sus propietarios. Por eso diseñamos los espacios y los protocolos más apropiados para ellos desde el momento que cruzan la puerta, para que su visita médica en nuestro centro veterinario de Barcelona sea lo más agradable y satisfactoria posible.</p>
-									<p>Tenemos una relación cercana y de confianza con nuestros clientes, aportando además un alto conocimiento, experiencia y especialización que garantiza la atención de tu mascota.</p>
-								</div>
+									<p><?php echo $nost->getDescripcion()?></p>
+								
+								<?php endif; ?>
+									</div>
+								<?php endforeach;?>	
+												  
+								<?php else:?>
+									<li>No fueron registrados!</li>
+								<?php endif; ?>
+								
 							</article>
 					</div>			
 					
@@ -72,7 +82,7 @@ $img = $data['listImagenSlide'];
 									<div class="pro1">
 									
 										<?php if ($prof->getImgprof()): ?>
-											<img src="<?php echo $this->asset . "system/upload/" . $prof->getImgprof()[0]->getNombre(); ?>" height="200">
+											<img src="<?php echo $this->asset . "system/upload/" . $prof->getImgprof()[0]->getImagen(); ?>" height="200">
 											
 											<a href="<?php echo $this->url."Profesionales/viewProfesionales/".$prof->getIdProfesionales()?>">
 											<h2><p><?php echo $prof->getNombre()?></p></h2></a>  
@@ -93,7 +103,7 @@ $img = $data['listImagenSlide'];
 							</div>
 						
 							<div>
-							<a class="boton" href="<?php echo $this->base_url?>Profesionales">Ver mas...</a>
+							<a class="boton" href="<?php echo $this->url?>Profesionales">Ver mas...</a>
 							</div>
 							
 					</div>
@@ -116,7 +126,7 @@ $img = $data['listImagenSlide'];
 									<div class="pro1">
 										<?php if ($noti->getImgnoti()): ?>
 										
-										<img  src="<?php echo $this->asset . "system/upload/" . $noti->getImgnoti()[0]->getNombre(); ?>" height="210">
+										<img  src="<?php echo $this->asset . "system/upload/" . $noti->getImgnoti()[0]->getImagen(); ?>" height="210">
 										
 										 <a href="<?php echo $this->url."Noticias/viewNoticias/".$noti->getIdNoticias()?>">
 										<h2><p><span><?php echo $noti->getTitulo() ?></span></p></h2></a>
@@ -137,7 +147,7 @@ $img = $data['listImagenSlide'];
 							</div>
 						
 							<div>
-							<a class="boton" href="<?php echo $this->base_url?>Noticias">Ver mas...</a>
+							<a class="boton" href="<?php echo $this->url?>Noticias">Ver mas...</a>
 							</div>
 					</div>
 					
@@ -157,7 +167,7 @@ $img = $data['listImagenSlide'];
 									<div>
 									
 										<?php if ($cons->getImgcons()): ?>
-										<img  class="<?php echo $this->asset . "system/upload/" . $cons->getImgcons()[0]->getNombre(); ?>" height="110" /></a>
+										<img  class="<?php echo $this->asset . "system/upload/" . $cons->getImgcons()[0]->getImagen(); ?>" height="110" /></a>
 									
 									</div>
 									<div>
@@ -177,7 +187,7 @@ $img = $data['listImagenSlide'];
 								</article>
 								
 								<div>
-								<a class="btn3" href="<?php echo $this->base_url?>Consejos">Ver mas...</a>
+								<a class="btn3" href="<?php echo $this->url?>Consejos">Ver mas...</a>
 								</div>
 							
 						<div class="contentc">

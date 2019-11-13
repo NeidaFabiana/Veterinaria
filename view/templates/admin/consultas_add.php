@@ -24,27 +24,27 @@
 				  <form role="form"  method="post">
 					<div class="form-group">
 					  <label class="control-label">Nombre:</label>
-					  <input class="form-control" type="text" placeholder="Nombre" name="nombre">
+					  <input class="form-control" type="text" placeholder="Nombre" name="Nombre">
 					</div>
 					
 					<div class="form-group">
 					  <label class="control-label">Fecha:</label>
-					  <input class="form-control" type="text" placeholder="Fecha" name="fecha">
+					  <input class="form-control" type="text" placeholder="Fecha" name="Fecha">
 					</div>
 					
 					<div class="form-group">
 					  <label class="control-label">Horario:</label>
-					  <input class="form-control" type="text" placeholder="Horario" name="horario">
+					  <input class="form-control" type="text" placeholder="Horario" name="Horario">
 					</div>
 					
 					<div class="form-group">
 					  <label class="control-label">Telefono:</label>
-					  <input class="form-control" type="text" placeholder="Telefono" name="telefono">
+					  <input class="form-control" type="text" placeholder="Telefono" name="Telefono">
 					</div>
 					
 					<div class="form-group">
 					  <label class="control-label">Dirección:</label>
-					  <input class="form-control" type="text" placeholder="Direccion" name="direccion">
+					  <input class="form-control" type="text" placeholder="Direccion" name="Direccion">
 					</div>
 				  
 				

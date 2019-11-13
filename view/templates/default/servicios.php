@@ -16,7 +16,7 @@ $list_serv = $data['listServ'];
 										<div class="cont">
 										
 											<?php foreach ($serv->getImgserv() as $imagem): ?>
-											<img src="<?php echo $this->asset."system/upload/".$imagem->getNombre()?>" width="100%" height="300"/>
+											<img src="<?php echo $this->asset."system/upload/".$imagem->getImagen()?>" width="100%" height="300"/>
 											<?php endforeach;?>	
 											
 											<h2><a href="<?php echo $this->base_url?>News/viewNews/<?php echo $serv->getIdServicios()?>">
@@ -28,7 +28,7 @@ $list_serv = $data['listServ'];
 									<article>
 										<div class="cont1">		
 											<?php foreach ($serv->getImgserv() as $imagem): ?>
-											<img src="<?php echo $this->asset."system/upload/".$imagem->getNombre()?>" width="100%" height="300"/>
+											<img src="<?php echo $this->asset."system/upload/".$imagem->getImagen()?>" width="100%" height="300"/>
 											<?php endforeach;?>	
 											
 											<h2><a href="<?php echo $this->base_url?>News/viewNews/<?php echo $serv->getIdServicios()?>">

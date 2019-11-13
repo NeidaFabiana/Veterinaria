@@ -15,7 +15,7 @@ class ServiciosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $servicios = new Servicios( $linha['idServicios'], $linha['servicio'], $linha['descripcion'],$linha['imgserv']);
+            $servicios = new Servicios($linha['Servicio'], $linha['Descripcion'],$linha['ImgSer'],$linha['idServicios']);
 
             $this->listServicios[] = $servicios;
         }
@@ -29,9 +29,9 @@ class ServiciosDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromServicios($linha['idServicios']);
+            $ImgSer = $this->getImagenFromServicios($linha['idServicios']);
 
-            $servicios = new Servicios($linha['idServicios'], $linha['servicio'], $linha['descripcion'], $Img);
+            $servicios = new Servicios($linha['Servicio'], $linha['Descripcion'], $ImgSer,$linha['idServicios']);
 
             $this->listServicios[] = $servicios;
         }
@@ -47,16 +47,16 @@ class ServiciosDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromServicios($id);
+            $ImgSer = $this->getImagenFromServicios($id);
             $serv = $result[0];
-            return new Servicios($serv['idServicios'], $serv['servicio'], $serv['descripcion'], $Img);
+            return new Servicios($serv['Servicio'], $serv['Descripcion'], $ImgSer,$serv['idServicios']);
         } else {
             return null;
         }
     }
 
     public function getImagenFromServicios($id) {
-        $sql =  "SELECT i.* FROM Servicios_has_ImagenServ AS ni "
+        $sql =  "SELECT i.* FROM Servicios AS ni "
                 . "INNER JOIN  ImagenServ as i "
                 . "ON i.idImagenServ = ni.ImagenServ_idImagenServ WHERE Servicios_idServicios = :Servicios_idServicios;";
         $result = $this->ExecuteQuery($sql, [':Servicios_idServicios' => $id]);
@@ -64,15 +64,16 @@ class ServiciosDAO  extends Model{
         if ($result) {
              foreach ($result as $linha) {
                  $Img[] = new ImagenServ(
-				         $linha['nombre'],
-						$linha['idImagen']);
+				         $linha['Nombre'],
+				         $linha['Imagen'],
+						$linha['idImagenServ']);
                          
              }
             }
         return $Img;
     }
 	 public function insereServicios($serv) {
-        $sql = "INSERT INTO Servicios(servicio,descripcion) VALUES(:Servicio,:Descripcion)";
+        $sql = "INSERT INTO Servicios(Servicio,Descripcion) VALUES(:Servicio,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Servicio' => $serv->getServicio(),
             ':Descripcion' => $serv->getDescripcion()]);
@@ -87,7 +88,7 @@ class ServiciosDAO  extends Model{
 	
 	    public function removerServicios($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Servicios_has_ImagenServ WHERE Servicios_idServicios  = :Servicios_idServicios", [':Servicios_idServicios' => $id])){
+		if($this->ExecuteQuery("SELECT * FROM Servicios WHERE Servicios_idServicios  = :Servicios_idServicios", [':Servicios_idServicios' => $id])){
 			$sql = "DELETE FROM Servicios_has_ImagenServ WHERE Servicios_idServicios = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM Servicios WHERE idServicios = :idServicios";
@@ -112,8 +113,8 @@ class ServiciosDAO  extends Model{
     
 
 	 public function atualizarServicios($servicios) {
-        $sql = 'UPDATE Servicios SET servicio = :Servicio,'
-                . ' descripcion=:Descripcion WHERE idServicios =:idServicios';
+        $sql = 'UPDATE Servicios SET Servicio = :Servicio,'
+                . ' Descripcion=:Descripcion WHERE idServicios =:idServicios';
         $param = [':Servicio'=>$servicios->getServicio(),
             ':Descripcion'=>$servicios->getDescripcion(),
             ':idServicios'=>$servicios->getIdServicios()];

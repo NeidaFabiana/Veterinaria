@@ -18,7 +18,7 @@ $list_cons = $data['listCons'];
 							
 							<div id="imag1">	
 							<?php foreach ($cons->getImgcons() as $imagem): ?>
-								<img src="<?php echo $this->asset."system/upload/".$imagem->getNombre()?>" width="230" height="202" />
+								<img src="<?php echo $this->asset."system/upload/".$imagem->getImagen()?>" width="230" height="202" />
 							<?php endforeach;?>
 							</div>
 							

@@ -27,11 +27,11 @@ class AdminCons extends Admin {
     $caminho = getcwd();
     $diretorio =  $caminho. "/system/upload/";
     //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
+    $novonome = rand(1,9999).$_FILES['arquivo']['Imagen'];
     $arquivo = $diretorio . $novonome;
 
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
+    if (move_uploaded_file($_FILES["arquivo"]["tmp_Imagen"], $arquivo)) {
+        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["Imagen"]). " feito com sucesso .!! <br>";
 
         $caminho = $novonome;
 
@@ -43,7 +43,7 @@ class AdminCons extends Admin {
     if( $if = true){
         $imagen = $caminho;
         
-        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+        $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
         if ($imagen && $nombre ) {
             $img = new ImagenCons($idImagen=null,$imagen,$nombre);
 
@@ -78,9 +78,9 @@ class AdminCons extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
-            $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-            $idImagen = filter_input(INPUT_POST, 'idImagen', FILTER_SANITIZE_STRING);
+            $imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
+            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+            $idImagen = filter_input(INPUT_POST, 'idImagenCons', FILTER_SANITIZE_STRING);
 
             if ($imagen && $nombre && $idImagen) {
                 //atualizar no banco de dados a notícia
@@ -119,7 +119,7 @@ class AdminCons extends Admin {
     public function removeImagenCons() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
-            $idImagen = filter_input(INPUT_POST,'idImagen',FILTER_SANITIZE_STRING);
+            $idImagen = filter_input(INPUT_POST,'idImagenCons',FILTER_SANITIZE_STRING);
             if($this->model->removeImagenCons($idImagen)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{

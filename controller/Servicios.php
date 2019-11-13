@@ -7,8 +7,8 @@ class Servicios extends Controller{
       $this->model=new ServiciosDAO();     
     }
 
-    public function servicios(){
-        $data['listServ']=$this->model->getListServicios();
+    public function index(){
+        $data['listServ']=$this->model->getListServiciosImagens();
         $this->view->load("header");
         $this->view->load("nav");
         $this->view->load("servicios",$data);

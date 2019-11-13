@@ -1,6 +1,6 @@
 <?php
 
-class ProfesionalesDAO  extends Model{
+class ProfesionalesDAO extends Model{
 
     private $listProfesionales;
 
@@ -15,7 +15,7 @@ class ProfesionalesDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $profesionales = new Profesionales( $linha['idProfesionales'], $linha['nombre'], $linha['formacion'],$linha['imgprof']);
+            $profesionales = new Profesionales($linha['Nombre'], $linha['Formacion'],$linha['FotoProf'], $linha['idProfesionales']);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -29,7 +29,7 @@ class ProfesionalesDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $profesionales = new Profesionales($linha['idProfesionales'], $linha['nombre'], $linha['formacion'],$linha['imgprof']);
+            $profesionales = new Profesionales($linha['Nombre'],$linha['Formacion'],$linha['FotoProf'],$linha['idProfesionales']);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -43,9 +43,9 @@ class ProfesionalesDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromProfesionales($linha['idProfesionales']);
+            $FotoProf = $this->getImagenFromProfesionales($linha['idProfesionales']);
 
-            $profesionales = new Profesionales($linha['idProfesionales'], $linha['nombre'], $linha['formacion'], $Img);
+            $profesionales = new Profesionales($linha['Nombre'], $linha['Formacion'], $FotoProf, $linha['idProfesionales']);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -57,9 +57,9 @@ class ProfesionalesDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromProfesionales($linha['idProfesionales']);
+            $FotoProf = $this->getImagenFromProfesionales($linha['idProfesionales']);
 
-            $profesionales = new Profesionales($linha['idProfesionales'], $linha['nombre'], $linha['formacion'], $Img);
+            $profesionales = new Profesionales($linha['Nombre'], $linha['Formacion'], $FotoProf,$linha['idProfesionales']);
 
             $this->listProfesionales[] = $profesionales;
         }
@@ -74,33 +74,33 @@ class ProfesionalesDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromProfesionales($id);
+            $FotoProf = $this->getImagenFromProfesionales($id);
             $prof = $result[0];
-            return new Profesionales($prof['idProfesionales'], $prof['nombre'], $prof['formacion'], $Img);
+            return new Profesionales($prof['Nombre'], $prof['Formacion'], $FotoProf,$prof['idProfesionales']);
         } else {
             return null;
         }
     }
 
     public function getImagenFromProfesionales($id) {
-        $sql =  "SELECT i.* FROM Profesionales_has_ImagenProf AS ni "
+        $sql =  "SELECT i.* FROM Profesionales AS ni "
                 . "INNER JOIN  ImagenProf as i "
                 . "ON i.idImagenProf = ni.ImagenProf_idImagenProf WHERE Profesionales_idProfesionales = :Profesionales_idProfesionales;";
         $result = $this->ExecuteQuery($sql, [':Profesionales_idProfesionales' => $id]);
-        $Img=[];
+        $FotoProf=[];
         if ($result) {
              foreach ($result as $linha) {
-                 $Img[] = new ImagenProf(
-				        $linha['nombre'],
-				        $linha['imagen'],
-						$linha['idImagen']);
+                 $FotoProf[] = new ImagenProf(
+				        $linha['Nombre'],
+				        $linha['Imagen'],
+						$linha['idImagenProf']);
                          
              }
             }
-        return $Img;
+        return $FotoProf;
     }
 	 public function insereProfesionales($prof) {
-        $sql = "INSERT INTO Profesionales(nombre,formacion) VALUES(:Nombre,:Formacion)";
+        $sql = "INSERT INTO Profesionales(Nombre,Formacion) VALUES(:Nombre,:Formacion)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $prof->getNombre(),
             ':Formacion' => $prof->getFormacion()]);
@@ -115,8 +115,8 @@ class ProfesionalesDAO  extends Model{
 	
 	    public function removerProfesionales($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Profesionales_has_ImagenProf WHERE Profesionales_idProfesionales  = :Profesionales_idProfesionales", [':Profesionales_idProfesionales' => $id])){
-			$sql = "DELETE FROM Profesionales_has_ImagenProf WHERE Profesionales_idProfesionales = :idn";
+		if($this->ExecuteQuery("SELECT * FROM Profesionales WHERE Profesionales_idProfesionales  = :Profesionales_idProfesionales", [':Profesionales_idProfesionales' => $id])){
+			$sql = "DELETE FROM Profesionales WHERE Profesionales_idProfesionales = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM Profesionales WHERE idProfesionales = :idProfesionales";
 				if($this->ExecuteCommand($sql, [':idProfesionales'=>$id])){
@@ -140,8 +140,8 @@ class ProfesionalesDAO  extends Model{
     
 
 	 public function atualizarProfesionales($profesionales) {
-        $sql = 'UPDATE Profesionales SET nombre = :Nombre,'
-                . ' formacion=:Formacion WHERE idProfesionales =:idProfesionales';
+        $sql = 'UPDATE Profesionales SET Nombre = :Nombre,'
+                . ' Formacion=:Formacion WHERE idProfesionales =:idProfesionales';
         $param = [':Nombre'=>$profesionales->getNombre(),
             ':Formacion'=>$profesionales->getFormacion(),
             ':idProfesionales'=>$profesionales->getIdProfesionales()];

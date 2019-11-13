@@ -15,7 +15,7 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $noticia = new Noticias( $linha['idNoticias'], $linha['titulo'], $linha['descripcion'],$linha['imgnoti']);
+            $noticia = new Noticias($linha['Titulo'], $linha['Descripcion'],$linha['ImgNot'],$linha['idNoticias']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -29,7 +29,7 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $noticia = new Noticias($linha['idNoticias'], $linha['titulo'], $linha['descripcion'],$linha['imgnoti']);
+            $noticia = new Noticias($linha['Titulo'], $linha['Descripcion'],$linha['ImgNot'],$linha['idNoticias']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -43,9 +43,9 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromNoticias($linha['idNoticias']);
+            $ImgNot = $this->getImagenFromNoticias($linha['idNoticias']);
 
-            $noticia = new Noticias($linha['idNoticias'], $linha['titulo'], $linha['descripcion'], $Img);
+            $noticia = new Noticias($linha['Titulo'], $linha['Descripcion'], $ImgNot,$linha['idNoticias']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -57,9 +57,9 @@ class NoticiasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
-            $Img = $this->getImagenFromNoticias($linha['idNoticias']);
+            $ImgNot = $this->getImagenFromNoticias($linha['idNoticias']);
 
-            $noticia = new Noticias($linha['idNoticias'], $linha['titulo'], $linha['descripcion'], $Img);
+            $noticia = new Noticias($linha['Titulo'], $linha['Descripcion'], $ImgNot,$linha['idNoticias']);
 
             $this->listNoticias[] = $noticia;
         }
@@ -74,33 +74,34 @@ class NoticiasDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $Img = $this->getImagenFromNoticias($id);
+            $ImgNot = $this->getImagenFromNoticias($id);
             $news = $result[0];
-            return new Noticias($news['idNoticias'], $news['titulo'], $news['descripcion'], $Img);
+            return new Noticias($news['Titulo'], $news['Descripcion'], $ImgNot,$news['idNoticias']);
         } else {
             return null;
         }
     }
 
     public function getImagenFromNoticias($id) {
-        $sql =  "SELECT i.* FROM Noticias_has_ImagenNoti AS ni "
+        $sql =  "SELECT i.* FROM Noticias AS ni "
                 . "INNER JOIN  ImagenNoti as i "
-                . "ON i.idImagen = ni.ImagenNoti_idImagen WHERE Noticias_idNoticias = :Noticias_idNoticias;";
+                . "ON i.idImagenNoti = ni.ImagenNoti_idImagenNoti WHERE Noticias_idNoticias = :Noticias_idNoticias;";
         $result = $this->ExecuteQuery($sql, [':Noticias_idNoticias' => $id]);
-        $Img=[];
+        $ImgNot=[];
         if ($result) {
              foreach ($result as $linha) {
-                 $Img[] = new ImagenNoti(
+                 $ImgNot[] = new ImagenNoti(
 				        
 						$linha['Nombre'],
+						$linha['Imagen'],
 						$linha['idImagen']);
                          
              }
             }
         return $Img;
     }
-	 public function insereNoticia($news) {
-        $sql = "INSERT INTO Noticias(titulo,descripcion) VALUES(:Titulo,:Descripcion)";
+	 public function insereNoticias($news) {
+        $sql = "INSERT INTO Noticias(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Titulo' => $news->getTitulo(),
             ':Descripcion' => $news->getDescripcion()]);
@@ -113,10 +114,10 @@ class NoticiasDAO  extends Model{
 	
 	
 	
-	    public function removerNoticia($id) {
+	    public function removerNoticias($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Noticias_has_ImagenNoti WHERE Noticias_idNoticias  = :Noticias_idNoticias", [':Noticias_idNoticias' => $id])){
-			$sql = "DELETE FROM Noticias_has_ImagenNoti WHERE Noticias_idNoticias = :idn";
+		if($this->ExecuteQuery("SELECT * FROM Noticias WHERE Noticias_idNoticias  = :Noticias_idNoticias", [':Noticias_idNoticias' => $id])){
+			$sql = "DELETE FROM Noticias WHERE Noticias_idNoticias = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM Noticias WHERE idNoticias = :idNoticias";
 				if($this->ExecuteCommand($sql, [':idNoticias'=>$id])){
@@ -139,9 +140,9 @@ class NoticiasDAO  extends Model{
     }
     
 
-	 public function atualizarNoticia($noticia) {
-        $sql = 'UPDATE Noticias SET titulo = :Titulo,'
-                . ' descripcion=:Descripcion WHERE idNoticias =:idNoticias';
+	 public function atualizarNoticias($noticia) {
+        $sql = 'UPDATE Noticias SET Titulo = :Titulo,'
+                . ' Descripcion=:Descripcion WHERE idNoticias =:idNoticias';
         $param = [':Titulo'=>$noticia->getTitulo(),
             ':Descripcion'=>$noticia->getDescripcion(),
             ':idNoticias'=>$noticia->getIdNoticias()];

@@ -21,54 +21,25 @@ class AdminConsejos extends Admin {
 
      
  public function add() {
-    $data['msg'] = '';
-
-  if (filter_input(INPUT_POST, 'add')) {
-    $caminho = getcwd();
-    $diretorio =  $caminho. "/system/upload/";
-    //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
-    $arquivo = $diretorio . $novonome;
-
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
-
-        $caminho = $novonome;
-
-        $if = true;
-    } else {
-        $data['msg'] = "Error al subir imagen";
-        $if = false;
-    }
-    if( $if = true){
-        $titulo = $caminho;
-        
-        $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
-        if ($titulo && $descripcion ) {
-            $img = new Consejos($idConsejos=null,$titulo,$descripcion);
-
-            if($this->model->insereConsejos(new Consejos($titulo,$descripcion))){
-
-              $this->view->location('AdminConsejos');
-                return true;
-            } else {
-                $data['msg'] = 'Error al registrar imagen!';
+        $data['msg']="";
+        if (filter_input(INPUT_POST, 'add')) {
+            $titulo = filter_input(INPUT_POST, 'Titulo',FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion',FILTER_SANITIZE_STRING);
+            if($titulo && $descripcion) {
+                if($this->model->insereConsejos(new Consejos($titulo, $descripcion))){
+                    $this->view->location('AdminConsejos');
+                }else{
+                    $data['msg']= "Erro ao cadastrar!!";
+                }
+            }else{
+                $data['msg']= "Preencha todos os campos!";
             }
-        } else {
-            $data['msg'] = 'Complete todos los campos!';
         }
-  }
-  else{$data['msg'] = 'Error al subir img';}
-  }
-
-  $this->view->load('header');
-  $this->view->load('nav');
-  $this->view->load('consejos_add', $data);
-  $this->view->load('footer');
-
-
-
-  }
+        $this->view->load('header');
+        $this->view->load('nav');
+        $this->view->load('consejos_add',$data);
+        $this->view->load('footer');
+    }
 	 
 	 
   
@@ -80,8 +51,8 @@ class AdminConsejos extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
-            $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
+            $titulo = filter_input(INPUT_POST, 'Titulo', FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
             $idConsejos = filter_input(INPUT_POST, 'idConsejos', FILTER_SANITIZE_STRING);
 
             if ($titulo && $descripcion && $idConsejos) {

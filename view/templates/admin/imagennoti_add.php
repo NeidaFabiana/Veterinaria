@@ -34,7 +34,7 @@
 
 						<div class="form-group col-md-3">
 						  <label class="control-label">Nombre:</label>
-						  <input class="form-control" name="nombre" placeholder="Nombre...">
+						  <input class="form-control" name="Nombre" placeholder="Nombre...">
 						</div>
 						<div class="form-group row">
 						  <label class="control-label col-md-3">selecionar imagen</label>

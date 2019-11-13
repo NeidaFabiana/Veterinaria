@@ -1,21 +1,21 @@
 <?php
 
-class AdminServ extends Admin {
+class AdminNosotros extends Admin {
 
     public function __construct() {
         parent::__construct();
-        $this->model = new ImagenServDao();
+        $this->model = new NosotrosDao();
     }
 
     public function index() {
-        $data['listImagenServ'] = $this->model->getListImagenServImagens();
+        $data['listNosotros'] = $this->model->getListNosotros();
     //    echo "<pre>";
     //    print_r($data);
      //  echo "</pre>";
   // die;
         $this->view->load("header");
         $this->view->load("nav");
-        $this->view->load("imagenserv_list", $data);
+        $this->view->load("nosotros_list", $data);
         $this->view->load("footer");
     }
 
@@ -43,13 +43,13 @@ class AdminServ extends Admin {
     if( $if = true){
         $imagen = $caminho;
         
-        $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
-        if ($imagen && $nombre ) {
-            $img = new ImagenServ($idImagen=null,$imagen,$nombre);
+        $descripcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
+        if ( $imagen && $descripcion ) {
+            $img = new Nosotros($idNosotros=null,$imagen,$descripcion);
 
-            if($this->model->insereImagenServ(new ImagenServ($imagen,$nombre))){
+            if($this->model->insereNosotros(new ImagenNoti($imagen,$descripcion))){
 
-              $this->view->location('AdminServ');
+              $this->view->location('AdminNosotros');
                 return true;
             } else {
                 $data['msg'] = 'Erro ao cadastrar imagem!';
@@ -63,7 +63,7 @@ class AdminServ extends Admin {
 
   $this->view->load('header');
   $this->view->load('nav');
-  $this->view->load('imagenserv_add', $data);
+  $this->view->load('nosotros_add', $data);
   $this->view->load('footer');
 
 
@@ -73,22 +73,21 @@ class AdminServ extends Admin {
 	 
   
   
-   public function editImagenServ($id) {
-        $data['imag'] = $this->model->getImagenServById($id);
+   public function editNosotros($id) {
+        $data['nost'] = $this->model->getNosotrosById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
-			
 			$imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
-            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
-            $idImagen = filter_input(INPUT_POST, 'idImagenServ', FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
+            $idNosotros = filter_input(INPUT_POST, 'idNosotros', FILTER_SANITIZE_STRING);
 
-            if ($imagen && $nombre && $idImagen) {
+            if ($imagen && $descripcion && $idNosotros) {
                 //atualizar no banco de dados a notícia
-                $img = new ImagenServ($imagen, $nombre, $idImagen);
-                if ($this->model->atualizarImagenServ($img)) {
-                    $this->view->location("AdminServ");
+                $img = new Nosotros($imagen,$descripcion, $idNosotros);
+                if ($this->model->atualizarNosotros($img)) {
+                    $this->view->location("AdminNosotros");
                     return true;
                 } else {
                     $data['msg'] = "Error al actualizar la imagen!!";
@@ -97,44 +96,44 @@ class AdminServ extends Admin {
                 $data['msg'] = "Informe Todos los campos!!";
             }
         } else if (filter_input(INPUT_POST, 'exit')) {
-            $this->view->location("AdminServ");
+            $this->view->location("AdminNosotros");
 //            $this->index();
             return TRUE;
         }
 
         $this->view->load('header');
         $this->view->load('nav');
-        $this->view->load('imagenserv_upd', $data);
+        $this->view->load('nosotros_upd', $data);
         $this->view->load('footer');
     }
 	
-	 public function delImagenServ($id) {
+	 public function delNosotros($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['imag'] = $this->model->getImagenServById($id);
+        $data['nost'] = $this->model->getNosotrosById($id);
         $this->view->load('header');
         $this->view->load('nav');
-        $this->view->load('imagenserv_del', $data);
+        $this->view->load('nosotros_del', $data);
         $this->view->load('footer');
     }
 
-    public function removeImagenServ() {
+    public function removeNosotros() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
-            $idImagen = filter_input(INPUT_POST,'idImagenServ',FILTER_SANITIZE_STRING);
-            if($this->model->removeImagenServ($idImagen)){
+            $idNosotros = filter_input(INPUT_POST,'idNosotros',FILTER_SANITIZE_STRING);
+            if($this->model->removeNosotros($idNosotros)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la imagen!';            
             }           
         } elseif (filter_input(INPUT_POST, 'exit')) {
-            $this->view->location('AdminServ/');
+            $this->view->location('AdminNosotros/');
         } else {
             $data['msg'] = 'Error en el formulário!';
         }
         $this->view->load('header');
         $this->view->load('nav');
-        $this->view->load('imagenserv_remove', $data);
+        $this->view->load('nosotros_remove', $data);
         $this->view->load('footer');
         
     }

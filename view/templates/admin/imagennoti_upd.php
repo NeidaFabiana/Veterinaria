@@ -33,7 +33,7 @@ if ($data) {
           <form class="row" method="post" enctype="multipart/form-data">
              <div class="form-group col-md-3">
               <label class="control-label">Nombre:</label>
-              <input class="form-control" name="nombre" placeholder="nombre"  value = "<?php echo $imag->getNombre();?>">
+              <input class="form-control" name="Nombre" placeholder="nombre"  value = "<?php echo $imag->getNombre();?>">
             </div>
            
             <div class="form-group row">
@@ -43,7 +43,7 @@ if ($data) {
               </div>
             </div>
 
-				<input type="hidden" value="<?php echo $imag->getIdImagen() ?>" name="idImagen">
+				<input type="hidden" value="<?php echo $imag->getIdImagen() ?>" name="idImagenNoti">
             <div class="form-group">
                 <input name="edit" type="submit" class="btn btn-primary" value="Salvar">
                 <input name="exit" type="submit" class="btn btn-danger" value="Cancelar">

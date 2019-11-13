@@ -13,7 +13,7 @@ $noti = $data['noticias'];
 							<div id="imag-not">	
 							
 							<?php foreach ($noti->getImgnoti() as $imagen): ?>
-								<img src="<?= $this->asset ?>system/upload/<?= $imagen->getNombre() ?>" width="530" height="350" />
+								<img src="<?= $this->asset ?>system/upload/<?= $imagen->getImgnoti() ?>" width="530" height="350" />
 							<?php endforeach; ?>
 							</div>	
 						

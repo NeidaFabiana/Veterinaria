@@ -27,11 +27,11 @@ class AdminNoti extends Admin {
     $caminho = getcwd();
     $diretorio =  $caminho. "/system/upload/";
     //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
+    $novonome = rand(1,9999).$_FILES['arquivo']['Imagen'];
     $arquivo = $diretorio . $novonome;
 
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
+    if (move_uploaded_file($_FILES["arquivo"]["tmp_Imagen"], $arquivo)) {
+        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["Imagen"]). " feito com sucesso .!! <br>";
 
         $caminho = $novonome;
 
@@ -41,13 +41,13 @@ class AdminNoti extends Admin {
         $if = false;
     }
     if( $if = true){
-        $nombre = $caminho;
+        $imagen = $caminho;
         
-        $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
-        if ($nombre && $imagen ) {
-            $img = new ImagenNoti($idImagen=null,$nombre,$imagen);
+        $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+        if ( $imagen && $nombre ) {
+            $img = new ImagenNoti($idImagen=null,$imagen,$nombre);
 
-            if($this->model->insereImagenNoti(new ImagenNoti($nombre,$imagen))){
+            if($this->model->insereImagenNoti(new ImagenNoti($imagen,$nombre))){
 
               $this->view->location('AdminNoti');
                 return true;
@@ -79,14 +79,13 @@ class AdminNoti extends Admin {
 
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
+			$imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
+            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+            $idImagen = filter_input(INPUT_POST, 'idImagenNoti', FILTER_SANITIZE_STRING);
 
-            $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-            $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
-            $idImagen = filter_input(INPUT_POST, 'idImagen', FILTER_SANITIZE_STRING);
-
-            if ($nombre && $imagen && $idImagen) {
+            if ($imagen && $nombre && $idImagen) {
                 //atualizar no banco de dados a notícia
-                $img = new ImagenNoti($nombre, $imagen, $idImagen);
+                $img = new ImagenNoti($imagen,$nombre, $idImagen);
                 if ($this->model->atualizarImagenNoti($img)) {
                     $this->view->location("AdminNoti");
                     return true;
@@ -121,7 +120,7 @@ class AdminNoti extends Admin {
     public function removeImagenNoti() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
-            $idImagen = filter_input(INPUT_POST,'idImagen',FILTER_SANITIZE_STRING);
+            $idImagen = filter_input(INPUT_POST,'idImagenNoti',FILTER_SANITIZE_STRING);
             if($this->model->removeImagenNoti($idImagen)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{

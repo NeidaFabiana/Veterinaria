@@ -23,8 +23,8 @@ class AdminNoticias extends Admin {
  public function add() {
         $data['msg']="";
         if (filter_input(INPUT_POST, 'add')) {
-            $titulo = filter_input(INPUT_POST, 'titulo',FILTER_SANITIZE_STRING);
-            $descripcion = filter_input(INPUT_POST, 'descripcion',FILTER_SANITIZE_STRING);
+            $titulo = filter_input(INPUT_POST, 'Titulo',FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion',FILTER_SANITIZE_STRING);
             if($titulo && $descripcion) {
                 if($this->model->insereNoticias(new Noticias($titulo, $descripcion))){
                     $this->view->location('AdminNoticias');
@@ -51,8 +51,8 @@ class AdminNoticias extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
-            $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
+            $titulo = filter_input(INPUT_POST, 'Titulo', FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
             $idNoticias = filter_input(INPUT_POST, 'idNoticias', FILTER_SANITIZE_STRING);
 
             if ($titulo && $descripcion && $idNoticias) {
@@ -89,11 +89,11 @@ class AdminNoticias extends Admin {
         $this->view->load('footer');
     }
 
-    public function removeNoticias() {
+    public function removerNoticias() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
-            $idimagen = filter_input(INPUT_POST,'idNoticias',FILTER_SANITIZE_STRING);
-            if($this->model->removeNoticias($idNoticias)){
+            $idNoticias = filter_input(INPUT_POST,'idNoticias',FILTER_SANITIZE_STRING);
+            if($this->model->removerNoticias($idNoticias)){
                 $data['msg'] ='Noticia eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la noticia!';            

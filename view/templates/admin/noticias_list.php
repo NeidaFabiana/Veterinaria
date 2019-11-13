@@ -9,17 +9,17 @@ if($data){
 
 	
 
-	<div class="mb_content">
+	<div class="">
 		<h2>Noticias</h2>
 				
-					<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminNoticias/add">Add New Row</button></span>
+					<span style="float:left"><a id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminNoticias/add">Añadir</a></span>
 
 		<div class="mb_content_inner">		
-			<table class="table table-responsive-md table-sm table-bordered makeEditable">
+			<table class="table table-hover table-bordered">
 			 <thead>
 			  <tr>
 				<th>Id:</th>
-				<th>Nombre:</th>
+				<th>Titulo:</th>
 				<th>Descripción:</th>
 				<th>Acciones:</th>
 			  </tr>
@@ -31,7 +31,7 @@ if($data){
                             <?php $count++; $ccs_class=($count%2==0)?'even':'odd';?>  
 						<tr class="<?php echo $ccs_class;?>">
                         <td><?php echo $listNoti->getIdNoticias() ?></td>
-                        <td><?php echo $listNoti->getNombre() ?></td>
+                        <td><?php echo $listNoti->getTitulo() ?></td>
 						<td><?php echo substr($listNoti->getDescripcion(), 0,50)."...";?></td>                        
                          <td class="center" style='font-size:10px; font-weight: bold;'>
                                         <a href="<?php echo $this->base_url?>AdminNoticias/editNoticias/<?php echo $listNoti->getIdNoticias();?>"><i class="fa fa-edit fa-2x"></i></a>

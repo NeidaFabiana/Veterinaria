@@ -17,7 +17,7 @@ $list_noti = $data['listNoti'];
 						
 							<div id="imag1">	
 								<?php foreach ($noti->getImgnoti() as $imagen): ?>
-								<img src="<?php echo $this->asset."system/upload/".$imagen->getNombre()?>" width="230" height="202" />
+								<img src="<?php echo $this->asset."system/upload/".$noti->getImgnoti()?>" width="230" height="202" />
 								 <?php endforeach;?>	
 							</div>
 							

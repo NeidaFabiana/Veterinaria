@@ -11,27 +11,27 @@ class ImagenServDAO extends Model {
     }
 	
 	
-    public function getListImagenServ() {
+    public function getListImagenServImagens() {
         $sql = "SELECT * FROM ImagenServ";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenServ($linha['idImagen'], $linha['nombre'], $linha['imagen']);
+            $Imagen = new ImagenServ($linha['Nombre'], $Imagen,$linha['idImagenServ']);
 
-            $this->listImagem[] = $imagem;
+            $this->listImagem[] = $Imagen;
         }
 
         return $this->listImagem;
     }
 
-	public function getListUltimasImagenServ(){
-        $sql = "SELECT * FROM ImagenServ order by idImagen desc limit 3";
+	public function getListUltimasImagenServImagens(){
+        $sql = "SELECT * FROM ImagenServ order by idImagenServ desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenServ($linha['idImagen'], $linha['nombre'], $linha['imagen']);
+            $Imagen = new ImagenServ($linha['Nombre'], $Imagen,$linha['idImagenServ']);
 
-            $this->listImagem[] = $imagem;
+            $this->listImagem[] = $Imagen;
         }
 
         return $this->listImagem;
@@ -40,13 +40,13 @@ class ImagenServDAO extends Model {
 
     public function getImagenServById($img) {
 
-            $sql = "SELECT * FROM ImagenServ WHERE idImagen = :idImagen;";
-            $result = $this->ExecuteQuery($sql, [':idImagen' => $img]);
+            $sql = "SELECT * FROM ImagenServ WHERE idImagenServ = :idImagenServ;";
+            $result = $this->ExecuteQuery($sql, [':idImagenServ' => $img]);
 
     
  if ($result) {
             $imgl = $result[0];
-            return new ImagenServ($imgl['idImagen'], $imgl['nombre'], $imgl['imagen']);
+            return new ImagenServ($imgl['Nombre'], $imgl['Imagen'],$imgl['idImagenServ']);
         } else {
             return null;
         }
@@ -55,7 +55,7 @@ class ImagenServDAO extends Model {
 	
    
 	 public function insereImagenServ($img) {
-        $sql = "INSERT INTO ImagenServ (nombre,imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO ImagenServ (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $img->getNombre(),
             ':Imagen' => $img->getImagen()]);
@@ -66,10 +66,10 @@ class ImagenServDAO extends Model {
         }
     }
 
-	 public function atualizarImagenProf($img) {
-        $sql = 'UPDATE ImagenProf SET nombre = :Nombre,'
-                . ' imagen=:Imagen  WHERE idImagen =:idImagenServ';
-        $param = [':idImagenServ'=>$img->getIdImagenServ(),
+	 public function atualizarImagenServ($img) {
+        $sql = 'UPDATE ImagenProf SET Nombre = :Nombre,'
+                . ' Imagen=:Imagen  WHERE idImagen =:idImagenServ';
+        $param = [':idImagenServ'=>$img->getIdImagen(),
 		':Nombre'=>$img->getNombre(),
             ':Imagen'=>$img->getImagen()];
         if($this->ExecuteCommand($sql, $param)){
@@ -81,8 +81,8 @@ class ImagenServDAO extends Model {
     
 	
     public function removeImagenServ($id) {
-        $sql = "DELETE FROM ImagenServ WHERE idImagen = :idImagen";
-        if($this->ExecuteCommand($sql, [':idImagen'=>$id])){
+        $sql = "DELETE FROM ImagenServ WHERE idImagenServ = :idImagenServ";
+        if($this->ExecuteCommand($sql, [':idImagenServ'=>$id])){
             return true;
         }else{
             return false;

@@ -1,6 +1,6 @@
 <?php
 $conse = null;
-$message = "Notícia no encontrada !!";
+$message = "Consejo no encontrado !!";
 if ($data) {
     $message = $data['msg'];
     if (isset($data['cons'])) {
@@ -31,12 +31,12 @@ if ($data) {
               <form role="form"  method="post">
                 <div class="form-group">
                   <label class="control-label">Título:</label>
-                  <input class="form-control" placeholder="Título" name="titulo" value = "<?php echo $conse->getTitulo();?>">
+                  <input class="form-control" placeholder="Título" name="Titulo" value = "<?php echo $conse->getTitulo();?>">
                 </div>
               
                 <div class="form-group">
                     <label class="control-label">Descripción:</label>
-                    <textarea name="descripcion" class="form-control" rows="4" placeholder="Descripción" ><?php echo $conse->getDescripcion();?></textarea>
+                    <textarea name="Descripcion" class="form-control" rows="4" placeholder="Descripción" ><?php echo $conse->getDescripcion();?></textarea>
                 </div>
 
                <input type="hidden" value="<?php echo $conse->getIdConsejos() ?>" name="idConsejos">

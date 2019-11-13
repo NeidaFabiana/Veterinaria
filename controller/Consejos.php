@@ -9,12 +9,12 @@ class Consejos extends Controller{
     }
 
     public function index(){
-        $data['listCons']=$this->model->getListImagenCons();
+        $data['listCons']=$this->model->getListConsejosImagens();
         $this->view->load("header");
         $this->view->load("nav");
         $this->view->load("consejos",$data);
         $this->view->load("footer");
     }
-
+	
     
 }

@@ -15,7 +15,7 @@ class ConsultasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $Consultas = new Consultas( $linha['idConsultas'], $linha['nombre'], $linha['fecha'], $linha['horario'],$linha['telefono'],$linha['direccion']);
+            $Consultas = new Consultas( $linha['idConsultas'], $linha['Nombre'], $linha['Fecha'], $linha['Horario'],$linha['Telefono'],$linha['Direccion']);
 
             $this->listConsultas[] = $Consultas;
         }
@@ -25,7 +25,7 @@ class ConsultasDAO  extends Model{
 	
 
 	 public function insereConsultas($cons) {
-        $sql = "INSERT INTO Consultas(nombre,fecha,horario,telefono,direccion) VALUES(:Nombre,:Fecha,:Horario,:Telefono,:Direccion)";
+        $sql = "INSERT INTO Consultas(Nombre,Fecha,Horario,Telefono,Direccion) VALUES(:Nombre,:Fecha,:Horario,:Telefono,:Direccion)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $cons->getNombre(),
                 ':Fecha' => $cons->getFecha(),
@@ -43,7 +43,7 @@ class ConsultasDAO  extends Model{
 	
 	    public function removerConsultas($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Consultas_has_Imagencons WHERE Consultas_idConsultas  = :Consultas_idConsultas", [':Consultas_idConsultas' => $id])){
+		if($this->ExecuteQuery("SELECT * FROM Consultas WHERE Consultas_idConsultas  = :Consultas_idConsultas", [':Consultas_idConsultas' => $id])){
 			$sql = "DELETE FROM Consultas_has_Imagencons WHERE Consultas_idConsultas = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM Consultas WHERE idConsultas = :idConsultas";
@@ -68,11 +68,11 @@ class ConsultasDAO  extends Model{
     
 
 	 public function atualizarConsultas($Consultas) {
-        $sql = 'UPDATE Consultas SET nombre = :Nombre,'
-				.'fecha = :Fecha,'
-				.'horario = :Horario,'
-				.'telefono = :Telefono,'
-                . ' direccion = :Direccion WHERE idConsultas =:idConsultas';
+        $sql = 'UPDATE Consultas SET Nombre = :Nombre,'
+				.'Fecha = :Fecha,'
+				.'Horario = :Horario,'
+				.'Telefono = :Telefono,'
+                . ' Direccion = :Direccion WHERE idConsultas =:idConsultas';
         $param = [':Nombre'=>$Consultas->getNombre(),
             ':Fecha'=>$Consultas->getFecha(),
             ':Horario'=>$Consultas->getHorario(),

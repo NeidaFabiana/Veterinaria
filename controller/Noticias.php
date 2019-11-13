@@ -18,9 +18,9 @@ class Noticias extends Controller {
         $this->view->load("footer");
     }
 
-		 public function viewNoticias($idNoticias) {
+		 public function viewNoticias($idNews) {
         //Método buscar no banco pelo ID 
-        $data['noticias'] = $this->model->getNoticiasById($idNoticias);
+        $data['noticias'] = $this->model->getNoticiasById($idNews);
 		
         //Mostrar a notícia na página 
        if ($data['noticias']) {

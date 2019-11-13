@@ -22,8 +22,8 @@ class AdminProfesionales extends Admin {
 public function add() {
         $data['msg']="";
         if (filter_input(INPUT_POST, 'add')) {
-            $nombre = filter_input(INPUT_POST, 'nombre',FILTER_SANITIZE_STRING);
-            $formacion = filter_input(INPUT_POST, 'formacion',FILTER_SANITIZE_STRING);
+            $nombre = filter_input(INPUT_POST, 'Nombre',FILTER_SANITIZE_STRING);
+            $formacion = filter_input(INPUT_POST, 'Formacion',FILTER_SANITIZE_STRING);
             if($nombre && $formacion) {
                 if($this->model->insereProfesionales(new Profesionales($nombre, $formacion))){
                     $this->view->location('AdminProfesionales');
@@ -50,13 +50,13 @@ public function add() {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-            $formacion = filter_input(INPUT_POST, 'formacion', FILTER_SANITIZE_STRING);
+            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+            $formacion = filter_input(INPUT_POST, 'Formacion', FILTER_SANITIZE_STRING);
             $idProfesionales = filter_input(INPUT_POST, 'idProfesionales', FILTER_SANITIZE_STRING);
 
             if ($nombre && $formacion && $idProfesionales) {
                 //atualizar no banco de dados a notícia
-                $img = new Profesionales($nombre, $formacion, $idProfesionales);
+                $img = new Profesionales($nombre, $formacion, null, $idProfesionales);
                 if ($this->model->atualizarProfesionales($img)) {
                     $this->view->location("AdminProfesionales");
                     return true;

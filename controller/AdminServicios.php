@@ -23,8 +23,8 @@ class AdminServicios extends Admin {
   public function add() {
         $data['msg']="";
         if (filter_input(INPUT_POST, 'add')) {
-            $servicio = filter_input(INPUT_POST, 'servicio',FILTER_SANITIZE_STRING);
-            $descripcion = filter_input(INPUT_POST, 'descripcion',FILTER_SANITIZE_STRING);
+            $servicio = filter_input(INPUT_POST, 'Servicio',FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion',FILTER_SANITIZE_STRING);
             if($servicio && $descripcion) {
                 if($this->model->insereServicios(new Servicios($servicio, $descripcion))){
                     $this->view->location('AdminServicios');
@@ -51,13 +51,13 @@ class AdminServicios extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $servicio = filter_input(INPUT_POST, 'servicio', FILTER_SANITIZE_STRING);
-            $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
+            $servicio = filter_input(INPUT_POST, 'Servicio', FILTER_SANITIZE_STRING);
+            $descripcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
             $idServicios = filter_input(INPUT_POST, 'idServicios', FILTER_SANITIZE_STRING);
 
             if ($servicio && $descripcion && $idServicios) {
                 //atualizar no banco de dados a notícia
-                $img = new Servicios($servicio, $descripcion, $idimagen);
+                $img = new Servicios($servicio, $descripcion, $idServicios);
                 if ($this->model->atualizarServicios($img)) {
                     $this->view->location("AdminServicios");
                     return true;

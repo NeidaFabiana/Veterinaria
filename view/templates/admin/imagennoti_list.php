@@ -7,16 +7,16 @@ if($data){
 
 ?>
 
-			<div class="mb_content">
+			<div class="">
 				<h2>Imagenes Noticias</h2>
 				
 				
 				
-			<span style="float:right"><button id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminNoti/add">Add New Row</button></span>
+			<span style="float:left"><a id="but_add" class="btn btn-danger" href="<?php echo $this->base_url?>AdminNoti/add">Añadir</a></span>
 
 			<div class="mb_content_inner">
 		
-			<table class="table table-responsive-md table-sm table-bordered makeEditable">
+			<table class="table table-hover table-bordered">
 			 <thead>
 			  <tr>
 				<th>Id:</th>
@@ -34,7 +34,7 @@ if($data){
 						<tr class="<?php echo $ccs_class;?>">
                         <td><?php echo $listaImagem->getIdImagen() ?></td>
 						<td>
-						 <img src="<?php echo $this->base_url?>system/upload/<?php echo $listaImagem->getIdImagen()?>" width="100"/>
+						 <img src="<?php echo $this->base_url?>system/upload/<?php echo $listaImagem->getImagen()?>" width="100"/>
 						</td>
                         <td><?php echo substr($listaImagem->getNombre(), 0,50)."...";?></td>      
 						

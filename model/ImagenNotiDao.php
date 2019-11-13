@@ -16,7 +16,7 @@ class ImagenNotiDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenNoti($linha['idImagen'], $linha['nombre'], $linha['imagen']);
+            $imagem = new ImagenNoti($linha['Imagen'],$linha['Nombre'], $linha['idImagenNoti']);
 
             $this->listImagem[] = $imagem;
         }
@@ -25,11 +25,11 @@ class ImagenNotiDAO extends Model {
     }
 
 	public function getListUltimasImagenNoti(){
-        $sql = "SELECT * FROM ImagenNoti order by idImagen desc limit 3";
+        $sql = "SELECT * FROM ImagenNoti order by idImagenNoti desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenNoti($linha['idImagen'], $linha['nombre'], $linha['imagen']);
+            $imagem = new ImagenNoti($linha['Imagen'], $linha['Nombre'],$linha['idImagenNoti']);
 
             $this->listImagem[] = $imagem;
         }
@@ -40,13 +40,13 @@ class ImagenNotiDAO extends Model {
 
     public function getImagenNotiById($img) {
 
-            $sql = "SELECT * FROM ImagenNoti WHERE idImagen = :idImagen;";
-            $result = $this->ExecuteQuery($sql, [':idImagen' => $img]);
+            $sql = "SELECT * FROM ImagenNoti WHERE idImagenNoti = :idImagenNoti;";
+            $result = $this->ExecuteQuery($sql, [':idImagenNoti' => $img]);
 
     
  if ($result) {
             $imgl = $result[0];
-            return new ImagenServ($imgl['idImagen'], $imgl['nombre'], $imgl['imagen']);
+            return new ImagenServ($imgl['Imagen'], $imgl['Nombre'], $imgl['idImagenNoti']);
         } else {
             return null;
         }
@@ -54,11 +54,11 @@ class ImagenNotiDAO extends Model {
 
 	
    
-	 public function insereImagenServ($img) {
-        $sql = "INSERT INTO ImagenNoti (nombre,imagen) VALUES(:Nombre,:Imagen)";
+	 public function insereImagenNoti($img) {
+        $sql = "INSERT INTO ImagenNoti (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
         $result = $this->ExecuteCommand($sql,
-                [':Nombre' => $img->getNombre(),
-            ':Imagen' => $img->getImagen()]);
+                [':Imagen' => $img->getImagen(),
+				':Nombre' => $img->getNombre()]);
         if ($result) {
             return true;
         } else {
@@ -67,11 +67,11 @@ class ImagenNotiDAO extends Model {
     }
 
 	 public function atualizarImagenNoti($img) {
-        $sql = 'UPDATE ImagenNoti SET nombre = :Nombre,'
-                . ' imagen=:Imagen  WHERE idImagen =:idImagen';
+        $sql = 'UPDATE ImagenNoti SET Imagen=:Imagen,'
+                . ' Nombre = :Nombre  WHERE idImagenNoti =:idImagenNoti';
         $param = [':idImagen'=>$img->getIdImagenNoti(),
-		':Nombre'=>$img->getNombre(),
-            ':Imagen'=>$img->getImagen()];
+			':Imagen'=>$img->getImagen(),
+            ':Nombre'=>$img->getNombre()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{
@@ -81,8 +81,8 @@ class ImagenNotiDAO extends Model {
     
 	
     public function removeImagenNoti($id) {
-        $sql = "DELETE FROM ImagenNoti WHERE idImagen = :idImagen";
-        if($this->ExecuteCommand($sql, [':idImagen'=>$id])){
+        $sql = "DELETE FROM ImagenNoti WHERE idImagenNoti = :idImagenNoti";
+        if($this->ExecuteCommand($sql, [':idImagenNoti'=>$id])){
             return true;
         }else{
             return false;

@@ -38,7 +38,7 @@ if ($data) {
                                     <h2><?php echo $imag->getNombre();?></h2>
                                 </div>
                                
-                                <input type="hidden" value="<?php echo $imag->getIdImagen() ?>" name="idImagen">
+                                <input type="hidden" value="<?php echo $imag->getIdImagen() ?>" name="idImagenNoti">
                                 <div class="form-group">
                                     <input name="del" type="submit" class="btn btn-danger" value="Deletar">
                                     <input name="exit" type="submit" class="btn btn-secondary" value="Cancelar">

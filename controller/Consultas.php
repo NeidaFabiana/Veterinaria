@@ -9,7 +9,7 @@ class Consultas extends Controller{
     }
 
     public function index(){
-        $data['listCons']=$this->model->getListImagem();
+        $data['listCons']=$this->model->getListConsultas();
         $this->view->load("header");
         $this->view->load("nav");
         $this->view->load("consultass",$data);
