@@ -2,50 +2,58 @@
 
 class Usuario {
 	
-    private $idUsuario;
 	private $email;
     private $sena;
     private $contrasena;
     private $imgusua;
+	private $idUsuario;
+	
+	public function __construct($email,$sena,$contrasena,$imgusua,$idUsuario=null) {
+			$this->Email = $email;
+			$this->Sena= $sena;
+			$this->Contrasena= $contrasena;
+			$this->Imgusua= $imgusua;
+			$this->idUsuario = $idUsuario;
+	}
    
-    function getIdUsuario() {
-        return $this->idUsuario;
-    }
 
     function getEmail() {
-        return $this->email;
+        return $this->Email;
     }
 	
 	function getSena() {
-        return $this->sena;
+        return $this->Sena;
     }
 	function getContrasena() {
-        return $this->contrasena;
+        return $this->Contrasena;
     }
 	
 	function getImgusua() {
-        return $this->imgusua;
+        return $this->Imgusua;
     }
 	
-
-    function setIdUsuario($idUsuario) {
-        $this->idUsuario = $idUsuario;
+	function getIdUsuario() {
+        return $this->idUsuario;
     }
 
     function setEmail($email) {
-        $this->email = $email;
+        $this->Email = $email;
     }
 
     function setSena($sena) {
-        $this->sena = $sena;
+        $this->Sena = $sena;
     }
 
     function setContraseña($contraseña) {
-        $this->contraseña = $contraseña;
+        $this->Contraseña = $contraseña;
     }
 	
 	function setImgusua($imgusua) {
-		$this->imgusua = $imgusua;
+		$this->Imgusua = $imgusua;
+    }
+	
+	function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
     }
 
 }

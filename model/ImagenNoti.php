@@ -1,40 +1,39 @@
 <?php
 
 class ImagenNoti {
-    
-    private $idImagen;  
+      
     private $nombre;
 	private $imagen;
+	private $idImagen;
     
-    public function __construct($idImagen=null,$nombre,$imagen) {
+    public function __construct($nombre,$imagen,$idImagen=null) {
         $this->idImagen = $idImagen;
-		$this->nombre = $nombre;
-		$this->imagen = $imagen;
+		$this->Nombre = $nombre;
+		$this->Imagen = $imagen;
+    }
+	
+    function getNombre() {
+        return $this->Nombre;
+	}
+	
+	function getImagen() {
+        return $this->Imagen;
     }
 	
 	function getIdImagen() {
         return $this->idImagen;
     }
-
-    function getNombre() {
-        return $this->nombre;
-	}
-	
-	function getImagen() {
-        return $this->imagen;
-    }
-	
-	
-	function setIdImagen($idImagen) {
-        $this->idImagen = $idImagen;
-    }
 	
 	function setNombre($nombre) {
-        $this->nombre = $nombre;
+        $this->Nombre = $nombre;
     }
 	
 	function setImagen($imagen) {
-        $this->imagen = $imagen;
+        $this->Imagen = $imagen;
+    }
+	
+	function setIdImagen($idImagen) {
+        $this->idImagen = $idImagen;
     }
 
 }

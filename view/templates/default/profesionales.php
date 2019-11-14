@@ -1,9 +1,9 @@
 <?php
 
-$list_prof = $data['listProf'];
+//$list_prof = $data['listProf'];
 
 
-?>	
+?>
          <!-- Profesionales-->    		
 			<section class="profesionales">
 				<div class="font-titulo"><p><font><strong>Profesionales</strong></font></p></div>

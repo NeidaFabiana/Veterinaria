@@ -2,42 +2,48 @@
 
 class Servicios {
 	
-    private $idServicios;
 	private $servicio;
     private $descripcion;
     private $imgserv;
+	private $idServicios;
    
-    function getIdServicios() {
-        return $this->idServicios;
-    }
-
+     public function __construct($servicio,$descripcion,$imgserv,$idServicios=null) {
+			$this->Servicios = $servicios;
+			$this->Descripcion= $descripcion;
+			$this->Imgserv= $imgserv;
+			$this->idServicios = $idServicios;
+	}
+   
     function getServicio() {
-        return $this->servicio;
+        return $this->Servicio;
     }
 	
 	function getDescripcion() {
-        return $this->descripcion;
+        return $this->Descripcion;
     }
 	
 	function getImgserv() {
-        return $this->imgserv;
-    }
+        return $this->Imgserv;
+    }	
 	
-
-    function setIdServicios($idServicios) {
-        $this->idServicios = $idServicios;
-    }
+	 function getIdServicios() {
+			return $this->idServicios;
+		}
 
     function setServicio($servicio) {
-        $this->servicio = $servicio;
+        $this->Servicio = $servicio;
     }
 
     function setDescripcion($descripcion) {
-        $this->descripcion = $descripcion;
+        $this->Descripcion = $descripcion;
     }
 	
 	function setImgserv($imgserv) {
-		$this->imgserv = $imgserv;
+		$this->Imgserv = $imgserv;
     }
+
+	function setIdServicios($idServicios) {
+			$this->idServicios = $idServicios;
+		}
 
 }

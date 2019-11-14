@@ -13,42 +13,39 @@
  */
 class Slide {
     //put your code here
-    
-    
-	private $idSlide;
+
     private $nombre;
 	private $imagen;
-   
+    private $idSlide;
     
-    public function __construct($idSlide=null,$nombre,$imagen) {
-        $this->idSlide = $idSlide;
-		$this->nombre = $nombre;
-		$this->imagen = $imagen;
+    public function __construct($nombre,$imagen,$idSlide=null) {
+		$this->Nombre = $nombre;
+		$this->Imagen = $imagen;
+		$this->idSlide = $idSlide;
+    }
+	
+    function getNombre() {
+        return $this->Nombre;
+	 }
+	
+	 function getImagen() {
+        return $this->Imagen;
     }
 	
 	function getIdSlide() {
         return $this->idSlide;
     }
-
-    function getNombre() {
-        return $this->nombre;
-	 }
-	
-	 function getImagen() {
-        return $this->imagen;
-   
-    }
-
-	function setIdSlide($idSlide) {
-        $this->idSlide = $idSlide;
-    }
 	
 	 function setNombre($nombre) {
-        $this->nombre = $nombre;
+        $this->Nombre = $nombre;
     }
 	
     function setImagen($imagen) {
-        $this->imagen = $imagen;
+        $this->Imagen = $imagen;
+    }
+   
+   function setIdSlide($idSlide) {
+        $this->idSlide = $idSlide;
     }
    
 }

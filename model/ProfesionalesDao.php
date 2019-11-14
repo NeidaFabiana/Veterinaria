@@ -11,7 +11,7 @@ class ProfesionalesDAO extends Model{
 	
 
 	  public function getListProfesionales() {
-        $sql = "SELECT * FROM Profesionales";
+        $sql = "SELECT * FROM profesionales";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -21,6 +21,7 @@ class ProfesionalesDAO extends Model{
         }
 
         return $this->listProfesionales;
+		var_dump($this->listProfesionales);die;
     }
 	
 	

@@ -2,42 +2,49 @@
 
 class Profesionales {
 	
-    private $idProfesionales;
 	private $nombre;
     private $formacion;
     private $imgprof;
+    private $idProfesionales;
    
-    function getIdProfesionales() {
-        return $this->idProfesionales;
-    }
+    public function __construct($nombre,$formacion,$imgprof,$idProfesionales=null) {
+			$this->Nombre = $nombre;
+			$this->Formacion= $formacion;
+			$this->Imgprof= $imgprof;
+			$this->idProfesionales = $idProfesionales;
+	}
 
     function getNombre() {
-        return $this->nombre;
+        return $this->Nombre;
     }
 	
 	function getFormacion() {
-        return $this->formacion;
+        return $this->Formacion;
     }
 	
 	function getImgprof() {
-        return $this->imgprof;
+        return $this->Imgprof;
     }
 	
-
-    function setIdProfesionales($idProfesionales) {
-        $this->idProfesionales = $idProfesionales;
+	function getIdProfesionales() {
+        return $this->idProfesionales;
     }
 
     function setNombre($nombre) {
-        $this->nombre = $nombre;
+        $this->Nombre = $nombre;
     }
 
     function setFormacion($formacion) {
-        $this->formacion = $formacion;
+        $this->Formacion = $formacion;
     }
 	
 	function setImgprof($imgprof) {
-		$this->imgprof = $imgprof;
+		$this->Imgprof = $imgprof;
     }
+	
+	function setIdProfesionales($idProfesionales) {
+        $this->idProfesionales = $idProfesionales;
+    }
+
 
 }

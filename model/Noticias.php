@@ -2,42 +2,49 @@
 
 class Noticias {
 	
-    private $idNoticias;
 	private $titulo;
     private $descripcion;
     private $imgnoti;
-   
-    function getIdNoticias() {
-        return $this->idNoticias;
-    }
+    private $idNoticias;
+
+	 public function __construct($titulo,$descripcion,$imgnoti,$idNoticias=null) {
+			$this->Titulo = $titulo;
+			$this->Descripcion= $descripcion;
+			$this->Imgnoti= $imgnoti;
+			$this->idNoticias = $idNoticias;
+	}
 
     function getTitulo() {
-        return $this->titulo;
+        return $this->Titulo;
     }
 	
 	function getDescripcion() {
-        return $this->descripcion;
+        return $this->Descripcion;
     }
 	
 	function getImgnoti() {
-        return $this->imgnoti;
+        return $this->Imgnoti;
     }
 	
-
-    function setIdNoticias($idNoticias) {
-        $this->idNoticias = $idNoticias;
+	function getIdNoticias() {
+        return $this->idNoticias;
     }
 
+
     function setTitulo($titulo) {
-        $this->titulo = $titulo;
+        $this->Titulo = $titulo;
     }
 
     function setDescripcion($descripcion) {
-        $this->descripcion = $descripcion;
+        $this->Descripcion = $descripcion;
     }
 	
 	function setImgnoti($imgnoti) {
-		$this->imgnoti = $imgnoti;
+		$this->Imgnoti = $imgnoti;
+    }
+
+	function setIdNoticias($idNoticias) {
+        $this->idNoticias = $idNoticias;
     }
 
 }

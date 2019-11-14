@@ -2,42 +2,50 @@
 
 class Consejos {
 	
-    private $idConsejos;
 	private $titulo;
     private $descripcion;
     private $imgcons;
-   
-   
-    function getIdConsejos() {
-        return $this->idConsejos;
+	private $idConsejos;
+	
+ public function __construct($titulo,$descripcion,$imgcons,$idConsejos=null) {
+       
+		$this->Titulo = $titulo;
+		$this->Descripcion = $descripcion;
+        $this->Imgcons = $imgcons;
+	    $this->idConsejos = $idConsejos;
     }
 
     function getTitulo() {
-        return $this->titulo;
+        return $this->Titulo;
     }
 	
 	function getDescripcion() {
-        return $this->descripcion;
+        return $this->Descripcion;
     }
 	
 	function getImgcons() {
-        return $this->imgcons;
+        return $this->Imgcons;
     }
 	
-    function setIdConsejos($idConsejos) {
-        $this->idConsejos = $idConsejos;
+	 function getIdConsejos() {
+        return $this->idConsejos;
     }
-
+	
     function setTitulo($titulo) {
-        $this->titulo = $titulo;
+        $this->Titulo = $titulo;
     }
 
     function setDescripcion($descripcion) {
-        $this->descripcion = $descripcion;
+        $this->Descripcion = $descripcion;
     }
 
 	function setImgcons($imgcons) {
-        $this->imgcons = $imgcons;
+        $this->Imgcons = $imgcons;
     }
+	
+	function setIdConsejos($idConsejos) {
+        $this->idConsejos = $idConsejos;
+    }
+
  
 }

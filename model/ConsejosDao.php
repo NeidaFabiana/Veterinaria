@@ -39,7 +39,7 @@ class ConsejosDAO  extends Model{
 	
 	
 	  public function getListConsejosImagens() {
-        $sql = "SELECT * FROM Consejos";
+        $sql = "SELECT * FROM consejos";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -48,7 +48,7 @@ class ConsejosDAO  extends Model{
             $consejos = new Consejos($linha['Titulo'], $linha['Descripcion'], $ImgCons,$linha['idConsejos']);
 
             $this->listConsejos[] = $consejos;
-        }
+        }var_dump($this->listConsejos);
         return $this->listConsejos;
     }
 	
@@ -83,9 +83,9 @@ class ConsejosDAO  extends Model{
     }
 
     public function getImagenFromconsejos($id) {
-        $sql =  "SELECT i.* FROM Consejos AS ni "
-                . "INNER JOIN  ImagenCons as i "
-                . "ON i.idImagenCons = ni.ImagenCons_idImagenCons WHERE Consejos_idConsejos = :Consejos_idConsejos;";
+        $sql =  "SELECT i.* FROM consejos AS ni "
+                . "INNER JOIN  imagencons as i "
+                . "ON i.idImagenCons = ni.ImagenCons_idImagenCons WHERE consejos_idConsejos = :Consejos_idConsejos;";
         $result = $this->ExecuteQuery($sql, [':Consejos_idConsejos' => $id]);
         $ImgCons=[];
         if ($result) {

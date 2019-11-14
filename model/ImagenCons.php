@@ -2,39 +2,39 @@
 
 class ImagenCons {
 	
-    private $idImagen;
 	private $nombre;
     private $imagen;
+	private $idImagen;
     
-	public function __construct($idImagen=null,$nombre,$imagen) {
-        $this->idImagen = $idImagen;
-		$this->nombre = $nombre;
-		$this->imagen = $imagen;
-    }
-   
-    function getIdImagen() {
-        return $this->idImagen;
+	public function __construct($nombre,$imagen,$idImagen=null) {
+		$this->Nombre = $nombre;
+		$this->Imagen = $imagen;
+		$this->idImagen = $idImagen;
+
     }
 
     function getNombre() {
-        return $this->nombre;
+        return $this->Nombre;
     }
 	
 	function getImagen() {
-        return $this->imagen;
+        return $this->Imagen;
     }
 
-
-    function setIdImagen($idImagen) {
-        $this->idImagen = $idImagen;
-    }
+	function getIdImagen() {
+		return $this->idImagen;
+	}
 
     function setNombre($nombre) {
-        $this->nombre = $nombre;
+        $this->Nombre = $nombre;
     }
 
     function setImagen($imagen) {
-        $this->imagen = $imagen;
+        $this->Imagen = $imagen;
+    }
+	
+	function setIdImagen($idImagen) {
+        $this->idImagen = $idImagen;
     }
 
 }
