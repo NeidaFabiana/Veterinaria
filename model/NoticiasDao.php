@@ -11,7 +11,7 @@ class NoticiasDAO  extends Model{
 	
 
 	  public function getListNoticias() {
-        $sql = "SELECT * FROM Noticias";
+        $sql = "SELECT * FROM noticias";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -25,7 +25,7 @@ class NoticiasDAO  extends Model{
 	
 	
  public function getListUltimasNoticias(){
-        $sql = "SELECT * FROM Noticias order by idNoticias desc limit 3";
+        $sql = "SELECT * FROM noticias order by idNoticias desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -39,7 +39,7 @@ class NoticiasDAO  extends Model{
 	
 	
 	  public function getListNoticiasImagens() {
-        $sql = "SELECT * FROM Noticias";
+        $sql = "SELECT * FROM noticias";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -53,7 +53,7 @@ class NoticiasDAO  extends Model{
     }
 	
 	 public function getListUltimasNoticiasImagens() {
-        $sql = "SELECT * FROM Noticias order by idNoticias desc limit 3";
+        $sql = "SELECT * FROM noticias order by idNoticias desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -67,7 +67,7 @@ class NoticiasDAO  extends Model{
     }
 
     public function getNoticiasById($id) {
-        $sql = "SELECT * FROM Noticias WHERE idNoticias = :idNoticias";
+        $sql = "SELECT * FROM noticias WHERE idNoticias = :idNoticias";
         $result = $this->ExecuteQuery($sql, [':idNoticias' => $id]);
        // echo "<pre>";
        // print_r($result);
@@ -83,10 +83,10 @@ class NoticiasDAO  extends Model{
     }
 
     public function getImagenFromNoticias($id) {
-        $sql =  "SELECT i.* FROM Noticias AS ni "
-                . "INNER JOIN  ImagenNoti as i "
-                . "ON i.idImagenNoti = ni.ImagenNoti_idImagenNoti WHERE Noticias_idNoticias = :Noticias_idNoticias;";
-        $result = $this->ExecuteQuery($sql, [':Noticias_idNoticias' => $id]);
+        $sql =  "SELECT i.* FROM noticias_has_imagennoti AS ni "
+                . "INNER JOIN  imagennoti as i "
+                . "ON i.idImagenNoti = ni.imagennoti_idImagenNoti WHERE noticias_idNoticias = :noticias_idNoticias;";
+        $result = $this->ExecuteQuery($sql, [':noticias_idNoticias' => $id]);
         $ImgNot=[];
         if ($result) {
              foreach ($result as $linha) {
@@ -101,7 +101,7 @@ class NoticiasDAO  extends Model{
         return $Img;
     }
 	 public function insereNoticias($news) {
-        $sql = "INSERT INTO Noticias(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
+        $sql = "INSERT INTO noticias(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Titulo' => $news->getTitulo(),
             ':Descripcion' => $news->getDescripcion()]);
@@ -116,10 +116,10 @@ class NoticiasDAO  extends Model{
 	
 	    public function removerNoticias($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Noticias WHERE Noticias_idNoticias  = :Noticias_idNoticias", [':Noticias_idNoticias' => $id])){
-			$sql = "DELETE FROM Noticias WHERE Noticias_idNoticias = :idn";
+		if($this->ExecuteQuery("SELECT * FROM noticias_has_imagennoti WHERE noticias_idNoticias  = :noticias_idNoticias", [':noticias_idNoticias' => $id])){
+			$sql = "DELETE FROM noticias_has_imagennoti WHERE noticias_idNoticias = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
-				$sql = "DELETE FROM Noticias WHERE idNoticias = :idNoticias";
+			$sql = "DELETE FROM noticias WHERE idNoticias = :idNoticias";
 				if($this->ExecuteCommand($sql, [':idNoticias'=>$id])){
 					return true;
 				}else{
@@ -129,7 +129,7 @@ class NoticiasDAO  extends Model{
 				return false;
 			}	
 		}else{
-			$sql = "DELETE FROM Noticias WHERE idNoticias = :idNoticias";
+			$sql = "DELETE FROM noticias WHERE idNoticias = :idNoticias";
 			if($this->ExecuteCommand($sql, [':idNoticias'=>$id])){
 				return true;
 			}else{
@@ -141,7 +141,7 @@ class NoticiasDAO  extends Model{
     
 
 	 public function atualizarNoticias($noticia) {
-        $sql = 'UPDATE Noticias SET Titulo = :Titulo,'
+        $sql = 'UPDATE noticias SET Titulo = :Titulo,'
                 . ' Descripcion=:Descripcion WHERE idNoticias =:idNoticias';
         $param = [':Titulo'=>$noticia->getTitulo(),
             ':Descripcion'=>$noticia->getDescripcion(),

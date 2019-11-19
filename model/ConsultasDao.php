@@ -11,11 +11,11 @@ class ConsultasDAO  extends Model{
 	
 
 	  public function getListConsultas() {
-        $sql = "SELECT * FROM Consultas";
+        $sql = "SELECT * FROM consultas";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $Consultas = new Consultas( $linha['idConsultas'], $linha['Nombre'], $linha['Fecha'], $linha['Horario'],$linha['Telefono'],$linha['Direccion']);
+            $Consultas = new Consultas($linha['Nombre'], $linha['Fecha'], $linha['Horario'],$linha['Telefono'],$linha['Direccion'],$linha['idConsultas']);
 
             $this->listConsultas[] = $Consultas;
         }
@@ -25,7 +25,7 @@ class ConsultasDAO  extends Model{
 	
 
 	 public function insereConsultas($cons) {
-        $sql = "INSERT INTO Consultas(Nombre,Fecha,Horario,Telefono,Direccion) VALUES(:Nombre,:Fecha,:Horario,:Telefono,:Direccion)";
+        $sql = "INSERT INTO consultas(Nombre,Fecha,Horario,Telefono,Direccion) VALUES(:Nombre,:Fecha,:Horario,:Telefono,:Direccion)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $cons->getNombre(),
                 ':Fecha' => $cons->getFecha(),
@@ -43,10 +43,10 @@ class ConsultasDAO  extends Model{
 	
 	    public function removerConsultas($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Consultas WHERE Consultas_idConsultas  = :Consultas_idConsultas", [':Consultas_idConsultas' => $id])){
-			$sql = "DELETE FROM Consultas_has_Imagencons WHERE Consultas_idConsultas = :idn";
+		if($this->ExecuteQuery("SELECT * FROM consultas WHERE consultas_idConsultas  = :consultas_idConsultas", [':consultas_idConsultas' => $id])){
+			$sql = "DELETE FROM consultas WHERE consultas_idConsultas = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
-				$sql = "DELETE FROM Consultas WHERE idConsultas = :idConsultas";
+				$sql = "DELETE FROM consultas WHERE idConsultas = :idConsultas";
 				if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
 					return true;
 				}else{
@@ -56,7 +56,7 @@ class ConsultasDAO  extends Model{
 				return false;
 			}	
 		}else{
-			$sql = "DELETE FROM Consultas WHERE idConsultas = :idConsultas";
+			$sql = "DELETE FROM consultas WHERE idConsultas = :idConsultas";
 			if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
 				return true;
 			}else{
@@ -68,7 +68,7 @@ class ConsultasDAO  extends Model{
     
 
 	 public function atualizarConsultas($Consultas) {
-        $sql = 'UPDATE Consultas SET Nombre = :Nombre,'
+        $sql = 'UPDATE consultas SET Nombre = :Nombre,'
 				.'Fecha = :Fecha,'
 				.'Horario = :Horario,'
 				.'Telefono = :Telefono,'

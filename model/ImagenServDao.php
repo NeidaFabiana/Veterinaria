@@ -69,9 +69,9 @@ class ImagenServDAO extends Model {
 	 public function atualizarImagenServ($img) {
         $sql = 'UPDATE ImagenProf SET Nombre = :Nombre,'
                 . ' Imagen=:Imagen  WHERE idImagen =:idImagenServ';
-        $param = [':idImagenServ'=>$img->getIdImagen(),
-		':Nombre'=>$img->getNombre(),
-            ':Imagen'=>$img->getImagen()];
+        $param = [':Nombre'=>$img->getNombre(),
+            ':Imagen'=>$img->getImagen(),
+			':idImagenServ'=>$img->getIdImagen()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{

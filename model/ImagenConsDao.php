@@ -12,7 +12,7 @@ class ImagenConsDAO extends Model {
 	
 	
     public function getListImagenCons() {
-        $sql = "SELECT * FROM ImagenCons";
+        $sql = "SELECT * FROM imagencons";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -25,7 +25,7 @@ class ImagenConsDAO extends Model {
     }
 
 	public function getListUltimasImagenCons(){
-        $sql = "SELECT * FROM ImagenCons order by idImagenCons desc limit 3";
+        $sql = "SELECT * FROM imagencons order by idImagenCons desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,7 +40,7 @@ class ImagenConsDAO extends Model {
 
     public function getImagenConsById($img) {
 
-            $sql = "SELECT * FROM ImagenCons  WHERE idImagenCons = :idImagenCons;";
+            $sql = "SELECT * FROM imagencons  WHERE idImagenCons = :idImagenCons;";
             $result = $this->ExecuteQuery($sql, [':idImagenCons' => $img]);
 
     
@@ -55,7 +55,7 @@ class ImagenConsDAO extends Model {
 	
    
 	 public function insereImagenCons($img) {
-        $sql = "INSERT INTO ImagenCons (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
+        $sql = "INSERT INTO imagencons (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
         $result = $this->ExecuteCommand($sql,
             [':Imagen' => $img->getImagen(),
             ':Nombre' => $img->getNombre()]);
@@ -67,7 +67,7 @@ class ImagenConsDAO extends Model {
     }
 
 	 public function atualizarImagenCons($img) {
-        $sql = 'UPDATE ImagenProf SET Imagen=:Imagen,'
+        $sql = 'UPDATE imagenprof SET Imagen=:Imagen,'
                 . ' Nombre = :Nombre  WHERE idImagenCons =:idImagenCons';
         $param = [':Imagen'=>$img->getImagen(),
             ':Nombre'=>$img->getNombre(),
@@ -81,7 +81,7 @@ class ImagenConsDAO extends Model {
     
 	
     public function removeImagenCons($id) {
-        $sql = "DELETE FROM ImagenCons WHERE idImagenCons = :idImagenCons";
+        $sql = "DELETE FROM imagencons WHERE idImagenCons = :idImagenCons";
         if($this->ExecuteCommand($sql, [':idImagenCons'=>$id])){
             return true;
         }else{

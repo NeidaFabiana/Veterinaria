@@ -11,7 +11,7 @@ class ServiciosDAO  extends Model{
 	
 
 	  public function getListServicios() {
-        $sql = "SELECT * FROM Servicios";
+        $sql = "SELECT * FROM servicios";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -25,7 +25,7 @@ class ServiciosDAO  extends Model{
 		
 	
 	  public function getListServiciosImagens() {
-        $sql = "SELECT * FROM Servicios";
+        $sql = "SELECT * FROM servicios";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -40,7 +40,7 @@ class ServiciosDAO  extends Model{
 	
 
     public function getServiciosById($id) {
-        $sql = "SELECT * FROM Servicios WHERE idServicios = :idServicios";
+        $sql = "SELECT * FROM servicios WHERE idServicios = :idServicios";
         $result = $this->ExecuteQuery($sql, [':idServicios' => $id]);
        // echo "<pre>";
        // print_r($result);
@@ -56,10 +56,10 @@ class ServiciosDAO  extends Model{
     }
 
     public function getImagenFromServicios($id) {
-        $sql =  "SELECT i.* FROM Servicios AS ni "
-                . "INNER JOIN  ImagenServ as i "
-                . "ON i.idImagenServ = ni.ImagenServ_idImagenServ WHERE Servicios_idServicios = :Servicios_idServicios;";
-        $result = $this->ExecuteQuery($sql, [':Servicios_idServicios' => $id]);
+        $sql = "SELECT i.* FROM servicios_has_imagenserv AS ni "
+                . "INNER JOIN  imagenserv as i "
+                . "ON i.idImagenServ = ni.imagenserv_idImagenServ WHERE servicios_idServicios = :servicios_idServicios;";
+        $result = $this->ExecuteQuery($sql, [':servicios_idServicios' => $id]);
         $Img=[];
         if ($result) {
              foreach ($result as $linha) {
@@ -73,7 +73,7 @@ class ServiciosDAO  extends Model{
         return $Img;
     }
 	 public function insereServicios($serv) {
-        $sql = "INSERT INTO Servicios(Servicio,Descripcion) VALUES(:Servicio,:Descripcion)";
+        $sql = "INSERT INTO servicios(Servicio,Descripcion) VALUES(:Servicio,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Servicio' => $serv->getServicio(),
             ':Descripcion' => $serv->getDescripcion()]);
@@ -88,10 +88,10 @@ class ServiciosDAO  extends Model{
 	
 	    public function removerServicios($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Servicios WHERE Servicios_idServicios  = :Servicios_idServicios", [':Servicios_idServicios' => $id])){
-			$sql = "DELETE FROM Servicios_has_ImagenServ WHERE Servicios_idServicios = :idn";
+		if($this->ExecuteQuery("SELECT * FROM servicios_has_imagenserv WHERE servicios_idServicios = :servicios_idServicios", [':servicios_idServicios' => $id])){
+			$sql = "DELETE FROM servicios_has_imagenserv WHERE servicios_idServicios = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
-				$sql = "DELETE FROM Servicios WHERE idServicios = :idServicios";
+				$sql = "DELETE FROM servicios WHERE idServicios = :idServicios";
 				if($this->ExecuteCommand($sql, [':idServicios'=>$id])){
 					return true;
 				}else{
@@ -101,7 +101,7 @@ class ServiciosDAO  extends Model{
 				return false;
 			}	
 		}else{
-			$sql = "DELETE FROM Servicios WHERE idServicios = :idServicios";
+			$sql = "DELETE FROM servicios WHERE idServicios = :idServicios";
 			if($this->ExecuteCommand($sql, [':idServicios'=>$id])){
 				return true;
 			}else{
@@ -113,7 +113,7 @@ class ServiciosDAO  extends Model{
     
 
 	 public function atualizarServicios($servicios) {
-        $sql = 'UPDATE Servicios SET Servicio = :Servicio,'
+        $sql = 'UPDATE servicios SET servicio = :Servicio,'
                 . ' Descripcion=:Descripcion WHERE idServicios =:idServicios';
         $param = [':Servicio'=>$servicios->getServicio(),
             ':Descripcion'=>$servicios->getDescripcion(),

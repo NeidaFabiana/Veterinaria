@@ -12,7 +12,7 @@ class NosotrosDAO extends Model {
 	
 	
     public function getListNosotros() {
-        $sql = "SELECT * FROM Nosotros";
+        $sql = "SELECT * FROM nosotros";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -29,7 +29,7 @@ class NosotrosDAO extends Model {
 
     public function getNosotrosById($img) {
 
-            $sql = "SELECT * FROM Nosotros WHERE idNosotros = :idNosotros;";
+            $sql = "SELECT * FROM nosotros WHERE idNosotros = :idNosotros;";
             $result = $this->ExecuteQuery($sql, [':idNosotros' => $img]);
 
     
@@ -44,7 +44,7 @@ class NosotrosDAO extends Model {
 	
    
 	 public function insereNosotros($img) {
-        $sql = "INSERT INTO Nosotros (Imagen,Descripcion) VALUES(:Imagen,:Descripcion)";
+        $sql = "INSERT INTO nosotros (Imagen,Descripcion) VALUES(:Imagen,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Imagen' => $img->getImagen(),
 				':Descripcion' => $img->getDescripcion()]);
@@ -56,11 +56,11 @@ class NosotrosDAO extends Model {
     }
 
 	 public function atualizarNosotros($img) {
-        $sql = 'UPDATE Nosotros SET Imagen=:Imagen,'
+        $sql = 'UPDATE nosotros SET Imagen=:Imagen,'
                 . ' Descripcion = :Descripcion WHERE idNosotros=:idNosotros';
-        $param = [':idNosotros'=>$img->getIdNosotros(),
-			':Imagen'=>$img->getImagen(),
-            ':Descripcion'=>$img->getDescripcion()];
+        $param = [':Imagen'=>$img->getImagen(),
+            ':Descripcion'=>$img->getDescripcion(),
+			':idNosotros'=>$img->getIdNosotros()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{
@@ -70,7 +70,7 @@ class NosotrosDAO extends Model {
     
 	
     public function removeNosotros($id) {
-        $sql = "DELETE FROM Nosotros WHERE idNosotros = :idNosotros";
+        $sql = "DELETE FROM nosotros WHERE idNosotros = :idNosotros";
         if($this->ExecuteCommand($sql, [':idNosotros'=>$id])){
             return true;
         }else{

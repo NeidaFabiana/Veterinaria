@@ -11,7 +11,7 @@ class ConsejosDAO  extends Model{
 	
 
 	  public function getListConsejos() {
-        $sql = "SELECT * FROM Consejos";
+        $sql = "SELECT * FROM consejos";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -25,7 +25,7 @@ class ConsejosDAO  extends Model{
 	
 	
  public function getListUltimasConsejos(){
-        $sql = "SELECT * FROM Consejos order by idConsejos desc limit 1";
+        $sql = "SELECT * FROM consejos order by idConsejos desc limit 1";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -53,7 +53,7 @@ class ConsejosDAO  extends Model{
     }
 	
 	 public function getListUltimasConsejosImagens() {
-        $sql = "SELECT * FROM Consejos order by idConsejos desc limit 1";
+        $sql = "SELECT * FROM consejos order by idConsejos desc limit 1";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -67,7 +67,7 @@ class ConsejosDAO  extends Model{
     }
 
     public function getConsejosById($id) {
-        $sql = "SELECT * FROM Consejos WHERE idConsejos = :idConsejos";
+        $sql = "SELECT * FROM consejos WHERE idConsejos = :idConsejos";
         $result = $this->ExecuteQuery($sql, [':idConsejos' => $id]);
        // echo "<pre>";
        // print_r($result);
@@ -83,10 +83,10 @@ class ConsejosDAO  extends Model{
     }
 
     public function getImagenFromconsejos($id) {
-        $sql =  "SELECT i.* FROM consejos AS ni "
+        $sql = "SELECT i.* FROM consejos_has_imagencons AS ni "
                 . "INNER JOIN  imagencons as i "
-                . "ON i.idImagenCons = ni.ImagenCons_idImagenCons WHERE consejos_idConsejos = :Consejos_idConsejos;";
-        $result = $this->ExecuteQuery($sql, [':Consejos_idConsejos' => $id]);
+                . "ON i.idImagenCons = ni.consejos_idImagenCons WHERE consejos_idConsejos = :consejos_idConsejos;";
+        $result = $this->ExecuteQuery($sql, [':consejos_idConsejos' => $id]);
         $ImgCons=[];
         if ($result) {
              foreach ($result as $linha) {
@@ -101,7 +101,7 @@ class ConsejosDAO  extends Model{
         return $ImgCons;
     }
 	 public function insereConsejos($cons) {
-        $sql = "INSERT INTO Consejos(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
+        $sql = "INSERT INTO consejos(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
                 [':Titulo' => $cons->getTitulo(),
             ':Descripcion' => $cons->getDescripcion()]);
@@ -116,10 +116,10 @@ class ConsejosDAO  extends Model{
 	
 	    public function removerConsejos($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Consejos WHERE Consejos_idConsejos  = :Consejos_idConsejos", [':Consejos_idConsejos' => $id])){
-			$sql = "DELETE FROM Consejos_has_ImagenCons WHERE Consejos_idConsejos = :idn";
+		if($this->ExecuteQuery("SELECT * FROM consejos_has_imagencons WHERE consejos_idConsejos  = :consejos_idConsejos", [':consejos_idConsejos' => $id])){
+			$sql = "DELETE FROM consejos_has_imagencons WHERE consejos_idConsejos = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
-				$sql = "DELETE FROM Consejos WHERE idConsejos = :idConsejos";
+			$sql = "DELETE FROM consejos WHERE idConsejos = :idConsejos";
 				if($this->ExecuteCommand($sql, [':idConsejos'=>$id])){
 					return true;
 				}else{
@@ -129,7 +129,7 @@ class ConsejosDAO  extends Model{
 				return false;
 			}	
 		}else{
-			$sql = "DELETE FROM Consejos WHERE idConsejos = :idConsejos";
+			$sql = "DELETE FROM consejos WHERE idConsejos = :idConsejos";
 			if($this->ExecuteCommand($sql, [':idConsejos'=>$id])){
 				return true;
 			}else{
@@ -141,7 +141,7 @@ class ConsejosDAO  extends Model{
     
 
 	 public function atualizarConsejos($consejos) {
-        $sql = 'UPDATE Consejos SET Titulo = :Titulo,'
+        $sql = 'UPDATE consejos SET Titulo = :Titulo,'
                 . ' Descripcion=:Descripcion WHERE idConsejos =:idConsejos';
         $param = [':Titulo'=>$consejos->getTitulo(),
             ':Descripcion'=>$consejos->getDescripcion(),

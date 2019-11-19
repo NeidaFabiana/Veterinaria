@@ -26,7 +26,7 @@ class ProfesionalesDAO extends Model{
 	
 	
  public function getListUltimasProfesionales(){
-        $sql = "SELECT * FROM Profesionales order by idProfesionales desc limit 3";
+        $sql = "SELECT * FROM profesionales order by idProfesionales desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,7 +40,7 @@ class ProfesionalesDAO extends Model{
 	
 	
 	  public function getListProfesionalesImagens() {
-        $sql = "SELECT * FROM Profesionales";
+        $sql = "SELECT * FROM profesionales";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -54,7 +54,7 @@ class ProfesionalesDAO extends Model{
     }
 	
 	 public function getListUltimasProfesionalesImagens() {
-        $sql = "SELECT * FROM Profesionales order by idProfesionales desc limit 3";
+        $sql = "SELECT * FROM profesionales order by idProfesionales desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
         foreach ($result as $linha) {
 
@@ -68,7 +68,7 @@ class ProfesionalesDAO extends Model{
     }
 
     public function getProfesionalesById($id) {
-        $sql = "SELECT * FROM Profesionales WHERE idProfesionales = :idProfesionales";
+        $sql = "SELECT * FROM profesionales WHERE idProfesionales = :idProfesionales";
         $result = $this->ExecuteQuery($sql, [':idProfesionales' => $id]);
        // echo "<pre>";
        // print_r($result);
@@ -84,10 +84,10 @@ class ProfesionalesDAO extends Model{
     }
 
     public function getImagenFromProfesionales($id) {
-        $sql =  "SELECT i.* FROM Profesionales AS ni "
-                . "INNER JOIN  ImagenProf as i "
-                . "ON i.idImagenProf = ni.ImagenProf_idImagenProf WHERE Profesionales_idProfesionales = :Profesionales_idProfesionales;";
-        $result = $this->ExecuteQuery($sql, [':Profesionales_idProfesionales' => $id]);
+        $sql =  "SELECT i.* FROM profesionales_has_imagenprof AS ni "
+                . "INNER JOIN  imagenprof as i "
+                . "ON i.idImagenProf = ni.imagenprof_idImagenProf WHERE profesionales_idProfesionales = :profesionales_idProfesionales;";
+        $result = $this->ExecuteQuery($sql, [':profesionales_idProfesionales' => $id]);
         $FotoProf=[];
         if ($result) {
              foreach ($result as $linha) {
@@ -101,7 +101,7 @@ class ProfesionalesDAO extends Model{
         return $FotoProf;
     }
 	 public function insereProfesionales($prof) {
-        $sql = "INSERT INTO Profesionales(Nombre,Formacion) VALUES(:Nombre,:Formacion)";
+        $sql = "INSERT INTO profesionales(Nombre,Formacion) VALUES(:Nombre,:Formacion)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $prof->getNombre(),
             ':Formacion' => $prof->getFormacion()]);
@@ -116,10 +116,10 @@ class ProfesionalesDAO extends Model{
 	
 	    public function removerProfesionales($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM Profesionales WHERE Profesionales_idProfesionales  = :Profesionales_idProfesionales", [':Profesionales_idProfesionales' => $id])){
-			$sql = "DELETE FROM Profesionales WHERE Profesionales_idProfesionales = :idn";
+		if($this->ExecuteQuery("SELECT * FROM profesionales_has_imagenprof WHERE profesionales_idProfesionales  = :profesionales_idProfesionales", [':profesionales_idProfesionales' => $id])){
+			$sql = "DELETE FROM profesionales_has_imagenprof WHERE profesionales_idProfesionales = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
-				$sql = "DELETE FROM Profesionales WHERE idProfesionales = :idProfesionales";
+				$sql = "DELETE FROM profesionales WHERE idProfesionales = :idProfesionales";
 				if($this->ExecuteCommand($sql, [':idProfesionales'=>$id])){
 					return true;
 				}else{
@@ -129,7 +129,7 @@ class ProfesionalesDAO extends Model{
 				return false;
 			}	
 		}else{
-			$sql = "DELETE FROM Profesionales WHERE idProfesionales = :idProfesionales";
+			$sql = "DELETE FROM profesionales WHERE idProfesionales = :idProfesionales";
 			if($this->ExecuteCommand($sql, [':idProfesionales'=>$id])){
 				return true;
 			}else{
@@ -141,7 +141,7 @@ class ProfesionalesDAO extends Model{
     
 
 	 public function atualizarProfesionales($profesionales) {
-        $sql = 'UPDATE Profesionales SET Nombre = :Nombre,'
+        $sql = 'UPDATE profesionales SET Nombre = :Nombre,'
                 . ' Formacion=:Formacion WHERE idProfesionales =:idProfesionales';
         $param = [':Nombre'=>$profesionales->getNombre(),
             ':Formacion'=>$profesionales->getFormacion(),

@@ -43,7 +43,7 @@ class AdminSlide extends Admin {
     if( $if = true){
         $nombre = $caminho;
         
-        $imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
+        $imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
         if ($nombre && $imagen ) {
             $img = new ImagenSlide($idSlide=null,$nombre,$imagen);
 
@@ -80,8 +80,8 @@ class AdminSlide extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-			$imagen = filter_input(INPUT_POST, 'imagen', FILTER_SANITIZE_STRING);
+            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
+			$imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
             $idSlide = filter_input(INPUT_POST, 'idSlide', FILTER_SANITIZE_STRING);
 
             if ($nombre && $imagen && $idSlide) {

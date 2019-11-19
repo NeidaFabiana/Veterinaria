@@ -12,7 +12,7 @@ class ImagenNotiDAO extends Model {
 	
 	
     public function getListImagenNoti() {
-        $sql = "SELECT * FROM ImagenNoti";
+        $sql = "SELECT * FROM imagennoti";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -25,7 +25,7 @@ class ImagenNotiDAO extends Model {
     }
 
 	public function getListUltimasImagenNoti(){
-        $sql = "SELECT * FROM ImagenNoti order by idImagenNoti desc limit 3";
+        $sql = "SELECT * FROM imagennoti order by idImagenNoti desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,7 +40,7 @@ class ImagenNotiDAO extends Model {
 
     public function getImagenNotiById($img) {
 
-            $sql = "SELECT * FROM ImagenNoti WHERE idImagenNoti = :idImagenNoti;";
+            $sql = "SELECT * FROM imagennoti WHERE idImagenNoti = :idImagenNoti;";
             $result = $this->ExecuteQuery($sql, [':idImagenNoti' => $img]);
 
     
@@ -55,7 +55,7 @@ class ImagenNotiDAO extends Model {
 	
    
 	 public function insereImagenNoti($img) {
-        $sql = "INSERT INTO ImagenNoti (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
+        $sql = "INSERT INTO imagennoti (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
         $result = $this->ExecuteCommand($sql,
                 [':Imagen' => $img->getImagen(),
 				':Nombre' => $img->getNombre()]);
@@ -67,11 +67,11 @@ class ImagenNotiDAO extends Model {
     }
 
 	 public function atualizarImagenNoti($img) {
-        $sql = 'UPDATE ImagenNoti SET Imagen=:Imagen,'
+        $sql = 'UPDATE imagennoti SET Imagen=:Imagen,'
                 . ' Nombre = :Nombre  WHERE idImagenNoti =:idImagenNoti';
-        $param = [':idImagen'=>$img->getIdImagenNoti(),
-			':Imagen'=>$img->getImagen(),
-            ':Nombre'=>$img->getNombre()];
+        $param = [':Imagen'=>$img->getImagen(),
+            ':Nombre'=>$img->getNombre(),
+			':idImagenNoti'=>$img->getIdImagenNoti()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{
@@ -81,7 +81,7 @@ class ImagenNotiDAO extends Model {
     
 	
     public function removeImagenNoti($id) {
-        $sql = "DELETE FROM ImagenNoti WHERE idImagenNoti = :idImagenNoti";
+        $sql = "DELETE FROM imagennoti WHERE idImagenNoti = :idImagenNoti";
         if($this->ExecuteCommand($sql, [':idImagenNoti'=>$id])){
             return true;
         }else{

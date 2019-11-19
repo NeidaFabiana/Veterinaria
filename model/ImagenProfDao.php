@@ -12,7 +12,7 @@ class ImagenProfDAO extends Model {
 	
 	
     public function getListImagenProf() {
-        $sql = "SELECT * FROM ImagenProf";
+        $sql = "SELECT * FROM imagenprof";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -25,7 +25,7 @@ class ImagenProfDAO extends Model {
     }
 
 	public function getListUltimasImagenProf(){
-        $sql = "SELECT * FROM ImagenProf order by idImagenProf desc limit 3";
+        $sql = "SELECT * FROM imagenprof order by idImagenProf desc limit 3";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
@@ -40,7 +40,7 @@ class ImagenProfDAO extends Model {
 
     public function getImagenProfById($img) {
 
-            $sql = "SELECT * FROM ImagenProf  WHERE idImagenProf = :idImagenProf;";
+            $sql = "SELECT * FROM imagenprof  WHERE idImagenProf = :idImagenProf;";
             $result = $this->ExecuteQuery($sql, [':idImagenProf' => $img]);
 
     
@@ -55,7 +55,7 @@ class ImagenProfDAO extends Model {
 	
    
 	 public function insereImagenProf($img) {
-        $sql = "INSERT INTO ImagenProf (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO imagenprof (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
         $result = $this->ExecuteCommand($sql,
                 [':Nombre' => $img->getNombre(),
             ':Imagen' => $img->getImagen()]);
@@ -67,11 +67,11 @@ class ImagenProfDAO extends Model {
     }
 
 	 public function atualizarImagenProf($img) {
-        $sql = 'UPDATE ImagenProf SET Nombre = :Nombre,'
+        $sql = 'UPDATE imagenprof SET Nombre = :Nombre,'
                 . ' Imagen=:Imagen  WHERE idImagen =:idImagenProf';
-        $param = [':idImagenProf'=>$img->getIdImagen(),
-		':Nombre'=>$img->getNombre(),
-            ':Imagen'=>$img->getImagen()];
+        $param = [':Nombre'=>$img->getNombre(),
+            ':Imagen'=>$img->getImagen(),
+			':idImagenProf'=>$img->getIdImagen()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{
