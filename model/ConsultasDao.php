@@ -15,12 +15,27 @@ class ConsultasDAO  extends Model{
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $Consultas = new Consultas($linha['Nombre'], $linha['Fecha'], $linha['Horario'],$linha['Telefono'],$linha['Direccion'],$linha['idConsultas']);
+            $consultas = new Consultas($linha['Nombre'], $linha['Fecha'], $linha['Horario'],$linha['Telefono'],$linha['Direccion'],$linha['idConsultas']);
 
-            $this->listConsultas[] = $Consultas;
+            $this->listConsultas[] = $consultas;
         }
 
         return $this->listConsultas;
+    }
+	
+	 public function getConsultasById($id) {
+        $sql = "SELECT * FROM consultas WHERE idConsultas = :idConsultas";
+        $result = $this->ExecuteQuery($sql, [':idConsultas' => $id]);
+       // echo "<pre>";
+       // print_r($result);
+       //  echo "</pre>";
+		// die;
+        if ($result) {
+            $cons = $result[0];
+            return new Noticia($cons['Nombre'], $cons['Fecha'], $cons['Horario'],$cons['Telefono'],$cons['Direccion'], $cons['idConsultas']);
+        } else {
+            return null;
+        }
     }
 	
 
@@ -44,8 +59,8 @@ class ConsultasDAO  extends Model{
 	    public function removerConsultas($id) {
 			
 		if($this->ExecuteQuery("SELECT * FROM consultas WHERE consultas_idConsultas  = :consultas_idConsultas", [':consultas_idConsultas' => $id])){
-			$sql = "DELETE FROM consultas WHERE consultas_idConsultas = :idn";
-			if($this->ExecuteCommand($sql, [':idn'=>$id])){
+			$sql = "DELETE FROM consultas WHERE consultas_idConsultas = :idConsultas";
+			if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
 				$sql = "DELETE FROM consultas WHERE idConsultas = :idConsultas";
 				if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
 					return true;
@@ -67,18 +82,18 @@ class ConsultasDAO  extends Model{
     }
     
 
-	 public function atualizarConsultas($Consultas) {
+	 public function atualizarConsultas($consultas) {
         $sql = 'UPDATE consultas SET Nombre = :Nombre,'
 				.'Fecha = :Fecha,'
 				.'Horario = :Horario,'
 				.'Telefono = :Telefono,'
                 . ' Direccion = :Direccion WHERE idConsultas =:idConsultas';
-        $param = [':Nombre'=>$Consultas->getNombre(),
-            ':Fecha'=>$Consultas->getFecha(),
-            ':Horario'=>$Consultas->getHorario(),
-            ':Telefono'=>$Consultas->getTelefono(),
-            ':Direccion'=>$Consultas->getDireccion(),
-            ':idConsultas'=>$Consultas->getIdConsultas()];
+        $param = [':Nombre'=>$consultas->getNombre(),
+            ':Fecha'=>$consultas->getFecha(),
+            ':Horario'=>$consultas->getHorario(),
+            ':Telefono'=>$consultas->getTelefono(),
+            ':Direccion'=>$consultas->getDireccion(),
+            ':idConsultas'=>$consultas->getIdConsultas()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{

@@ -35,21 +35,19 @@ class Controller {
 
     public function route($query = null) {
         $class = null;
-//        var_dump($query);
-//        die;
+
         $this->query = $query;
         if ($this->query) {
-			//var_dump("aq2ui");
+
             $this->query = explode('/', $this->query);
 			
             $class_name = $this->query[0];
-			
-			//var_dump($class_name);die;
+
             if (count($this->query) > 1) {
-				//var_dump("aq3ui");die;
+
                 $method = $this->query[1];
             } else {
-				//var_dump("aq4ui");die;
+
                 $method = null;
             }
             $param = (count($this->query) > 2) ? $this->query[2] : null;
@@ -58,7 +56,9 @@ class Controller {
                 $class = new $class_name;
 				
 				//var_dump($class);die;
+
                 if ($class instanceof Controller) {
+					//var_dump($class, "aquui");die;
 					
                     if (method_exists($class, $method)) {
                         if ($param) {

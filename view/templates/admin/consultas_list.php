@@ -40,7 +40,7 @@ if($data){
                         <td><?php echo $listConsu->getTelefono() ?></td>
 						<td><?php echo substr($listConsu->getDireccion(), 0,50)."...";?></td>                        
                          <td class="center" style='font-size:10px; font-weight: bold;'>
-                                        <a href="<?php echo $this->base_url?>AdminConsultas/add/editConsultas/<?php echo $listConsu->getIdConsultas();?>"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="<?php echo $this->base_url?>AdminConsultas/editConsultas/<?php echo $listConsu->getIdConsultas();?>"><i class="fa fa-edit fa-2x"></i></a>
                           
                                         <a href='<?php echo $this->base_url?>AdminConsultas/delConsultas/<?php echo $listConsu->getIdConsultas();?>'>&#128465;</a>
                                     </td>

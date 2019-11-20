@@ -68,7 +68,7 @@ class ImagenProfDAO extends Model {
 
 	 public function atualizarImagenProf($img) {
         $sql = 'UPDATE imagenprof SET Nombre = :Nombre,'
-                . ' Imagen=:Imagen  WHERE idImagen =:idImagenProf';
+                . ' Imagen=:Imagen  WHERE idImagenProf =:idImagenProf';
         $param = [':Nombre'=>$img->getNombre(),
             ':Imagen'=>$img->getImagen(),
 			':idImagenProf'=>$img->getIdImagen()];
@@ -81,7 +81,7 @@ class ImagenProfDAO extends Model {
     
 	
     public function removeImagenProf($id) {
-        $sql = "DELETE FROM ImagenProf WHERE idImagenProf = :idImagenProf";
+        $sql = "DELETE FROM imagenprof WHERE idImagenProf = :idImagenProf";
         if($this->ExecuteCommand($sql, [':idImagenProf'=>$id])){
             return true;
         }else{
