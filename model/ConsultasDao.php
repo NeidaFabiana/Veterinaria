@@ -8,14 +8,12 @@ class ConsultasDAO  extends Model{
         parent::__construct();
         $this->listaConsultas = [];
     }
-	
-
-	  public function getListConsultas() {
+		 public function getListConsultas() {
         $sql = "SELECT * FROM consultas";
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $consultas = new Consultas($linha['Nombre'], $linha['Fecha'], $linha['Horario'],$linha['Telefono'],$linha['Direccion'],$linha['idConsultas']);
+            $consultas = new Consultas($linha['Nombre'], $linha['Fecha'],$linha['Horario'], $linha['Telefono'], $linha['Direccion'], $linha['idConsultas']);
 
             $this->listConsultas[] = $consultas;
         }
@@ -23,7 +21,9 @@ class ConsultasDAO  extends Model{
         return $this->listConsultas;
     }
 	
-	 public function getConsultasById($id) {
+	
+
+	   public function getConsultasById($id) {
         $sql = "SELECT * FROM consultas WHERE idConsultas = :idConsultas";
         $result = $this->ExecuteQuery($sql, [':idConsultas' => $id]);
        // echo "<pre>";
@@ -31,13 +31,12 @@ class ConsultasDAO  extends Model{
        //  echo "</pre>";
 		// die;
         if ($result) {
-            $cons = $result[0];
-            return new Noticia($cons['Nombre'], $cons['Fecha'], $cons['Horario'],$cons['Telefono'],$cons['Direccion'], $cons['idConsultas']);
+            $consu = $result[0];
+            return new Consultas($consu['Nombre'], $consu['Fecha'],$consu['Horario'], $consu['Telefono'], $consu['Direccion'], $consu['idConsultas']);
         } else {
             return null;
         }
     }
-	
 
 	 public function insereConsultas($cons) {
         $sql = "INSERT INTO consultas(Nombre,Fecha,Horario,Telefono,Direccion) VALUES(:Nombre,:Fecha,:Horario,:Telefono,:Direccion)";
@@ -59,8 +58,8 @@ class ConsultasDAO  extends Model{
 	    public function removerConsultas($id) {
 			
 		if($this->ExecuteQuery("SELECT * FROM consultas WHERE consultas_idConsultas  = :consultas_idConsultas", [':consultas_idConsultas' => $id])){
-			$sql = "DELETE FROM consultas WHERE consultas_idConsultas = :idConsultas";
-			if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
+			$sql = "DELETE FROM consultas WHERE consultas_idConsultas = :idn";
+			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM consultas WHERE idConsultas = :idConsultas";
 				if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
 					return true;

@@ -7,7 +7,7 @@ class Consejos {
     private $imgcons;
 	private $idConsejos;
 	
- public function __construct($titulo,$descripcion,$imgcons,$idConsejos=null) {
+ public function __construct($titulo,$descripcion,$imgcons=null,$idConsejos=null) {
        
 		$this->Titulo = $titulo;
 		$this->Descripcion = $descripcion;

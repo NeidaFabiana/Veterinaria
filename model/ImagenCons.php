@@ -6,7 +6,7 @@ class ImagenCons {
     private $imagen;
 	private $idImagen;
     
-	public function __construct($nombre,$imagen,$idImagen=null) {
+	public function __construct($nombre,$imagen=null,$idImagen=null) {
 		$this->Nombre = $nombre;
 		$this->Imagen = $imagen;
 		$this->idImagen = $idImagen;

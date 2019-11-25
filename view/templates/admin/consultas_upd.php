@@ -32,27 +32,27 @@ if ($data) {
 			 
                 <div class="form-group">
                   <label class="control-label">Nombre:</label>
-                  <input class="form-control" placeholder="Nombre" name="nombre" value = "<?php echo $cons->getNombre();?>">
+                  <input class="form-control" placeholder="Nombre" name="Nombre" value = "<?php echo $cons->getNombre();?>">
                 </div>
 				
 				<div class="form-group">
                   <label class="control-label">Fecha:</label>
-                  <input class="form-control" placeholder="Fecha" name="fecha" value = "<?php echo $cons->getFecha();?>">
+                  <input class="form-control" placeholder="Fecha" name="Fecha" value = "<?php echo $cons->getFecha();?>">
                 </div>
 				
 				<div class="form-group">
                   <label class="control-label">Horario:</label>
-                  <input class="form-control" placeholder="Horario" name="horario" value = "<?php echo $cons->getHorario();?>">
+                  <input class="form-control" placeholder="Horario" name="Horario" value = "<?php echo $cons->getHorario();?>">
                 </div>
 				
 				<div class="form-group">
                   <label class="control-label">Telefono:</label>
-                  <input class="form-control" placeholder="Telefono" name="telefono" value = "<?php echo $cons->getTelefono();?>">
+                  <input class="form-control" placeholder="Telefono" name="Telefono" value = "<?php echo $cons->getTelefono();?>">
                 </div>
 				
 				<div class="form-group">
                   <label class="control-label">Dirección:</label>
-                  <input class="form-control" placeholder="Dirección" name="direccion" value = "<?php echo $cons->getDireccion();?>">
+                  <input class="form-control" placeholder="Dirección" name="Direccion" value = "<?php echo $cons->getDireccion();?>">
                 </div>
               
                 

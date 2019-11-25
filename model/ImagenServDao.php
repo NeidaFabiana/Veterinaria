@@ -16,26 +16,14 @@ class ImagenServDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $Imagen = new ImagenServ($linha['Nombre'], $linha['Imagen'],$linha['idImagenProf']);
+            $imagem = new ImagenServ($linha['Nombre'], $linha['Imagen'], $linha['idImagenServ']);
 
-            $this->listImagem[] = $Imagen;
+            $this->listImagem[] = $imagem;
         }
 
         return $this->listImagem;
     }
 
-	public function getListUltimasImagenServ(){
-        $sql = "SELECT * FROM imagenserv order by idImagenServ desc limit 3";
-        $result = $this->ExecuteQuery($sql, []);
-
-        foreach ($result as $linha) {
-            $Imagen = new ImagenServ($linha['Nombre'], $linha['Imagen'],$linha['idImagenProf']);
-
-            $this->listImagem[] = $Imagen;
-        }
-
-        return $this->listImagem;
-    }
 	
 
     public function getImagenServById($img) {
@@ -68,7 +56,7 @@ class ImagenServDAO extends Model {
 
 	 public function atualizarImagenServ($img) {
         $sql = 'UPDATE imagenserv SET Nombre = :Nombre,'
-                . ' Imagen=:Imagen  WHERE idImagen =:idImagenServ';
+                . ' Imagen=:Imagen  WHERE idImagenServ =:idImagenServ';
         $param = [':Nombre'=>$img->getNombre(),
             ':Imagen'=>$img->getImagen(),
 			':idImagenServ'=>$img->getIdImagen()];

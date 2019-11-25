@@ -6,10 +6,8 @@ class Profesionales {
     private $formacion;
     private $imgprof;
     private $idProfesionales;
-	
-	//$nombre,$formacion,$imgprof,$idProfesionales=null
    
-    public function __construct($nombre,$formacion,$imgprof,$idProfesionales=null) {
+    public function __construct($nombre,$formacion,$imgprof=null,$idProfesionales=null) {
 			$this->Nombre = $nombre;
 			$this->Formacion= $formacion;
 			$this->Imgprof= $imgprof;

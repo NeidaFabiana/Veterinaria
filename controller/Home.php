@@ -10,7 +10,7 @@ class Home extends Controller{
     public function index(){
 		$data['listNoti']=$this->model->getListUltimasNoticiasImagens();
 		$this->model=new SlideDAO(); 
-		$data['listImagenSlide']=$this->model->getListUltimasImagem();
+		$data['listImagenSlide']=$this->model->getListUltimasImagenSlide();
 		$this->model=new ProfesionalesDAO(); 
 		$data['listProf']=$this->model->getListUltimasProfesionalesImagens();
 		$this->model=new ConsejosDAO(); 

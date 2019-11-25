@@ -113,7 +113,7 @@ class ServiciosDAO  extends Model{
     
 
 	 public function atualizarServicios($servicios) {
-        $sql = 'UPDATE servicios SET servicio = :Servicio,'
+        $sql = 'UPDATE servicios SET Servicio = :Servicio,'
                 . ' Descripcion=:Descripcion WHERE idServicios =:idServicios';
         $param = [':Servicio'=>$servicios->getServicio(),
             ':Descripcion'=>$servicios->getDescripcion(),

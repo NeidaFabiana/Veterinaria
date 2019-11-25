@@ -27,11 +27,11 @@ class AdminSlide extends Admin {
     $caminho = getcwd();
     $diretorio =  $caminho. "/system/upload/";
     //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['nombre'];
+    $novonome = rand(1,9999).$_FILES['arquivo']['imagen'];
     $arquivo = $diretorio . $novonome;
 
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_nombre"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["nombre"]). " feito com sucesso .!! <br>";
+    if (move_uploaded_file($_FILES["arquivo"]["tmp_imagen"], $arquivo)) {
+        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["imagen"]). " feito com sucesso .!! <br>";
 
         $caminho = $novonome;
 
@@ -41,13 +41,13 @@ class AdminSlide extends Admin {
         $if = false;
     }
     if( $if = true){
-        $nombre = $caminho;
+        $imagen = $caminho;
         
-        $imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
+        $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
         if ($nombre && $imagen ) {
-            $img = new ImagenSlide($idSlide=null,$nombre,$imagen);
+            $img = new ImagenSlide($idSlide=null,$imagen,$nombre);
 
-            if($this->model->insereImagenSlide(new ImagenSlide($nombre,$imagen))){
+            if($this->model->insereImagenSlide(new ImagenSlide($imagen,$nombre))){
 
               $this->view->location('AdminSlide');
                 return true;
@@ -80,13 +80,13 @@ class AdminSlide extends Admin {
         if (filter_input(INPUT_POST, 'edit')) {
             //ler formulário e atualizar o banco
 
-            $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
 			$imagen = filter_input(INPUT_POST, 'Imagen', FILTER_SANITIZE_STRING);
+			$nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
             $idSlide = filter_input(INPUT_POST, 'idSlide', FILTER_SANITIZE_STRING);
 
-            if ($nombre && $imagen && $idSlide) {
+            if ($imagen && $nombre && $idSlide) {
                 //atualizar no banco de dados a notícia
-                $img = new ImagenSlide($nombre, $imagen, $idSlide);
+                $img = new ImagenSlide($imagen, $nombre, $idSlide);
                 if ($this->model->atualizarImagenSlide($img)) {
                     $this->view->location("AdminSlide");
                     return true;

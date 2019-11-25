@@ -7,8 +7,8 @@ class Servicios {
     private $imgserv;
 	private $idServicios;
    
-     public function __construct($servicio,$descripcion,$imgserv,$idServicios=null) {
-			$this->Servicios = $servicios;
+     public function __construct($servicio,$descripcion,$imgserv=null,$idServicios=null) {
+			$this->Servicio = $servicio;
 			$this->Descripcion= $descripcion;
 			$this->Imgserv= $imgserv;
 			$this->idServicios = $idServicios;

@@ -65,8 +65,8 @@ class AdminConsultas extends Admin {
 
             if ($nombre && $fecha && $horario && $telefono && $direccion && $idConsultas) {
                 //atualizar no banco de dados a notícia
-                $img = new Consultas($nombre,$fecha,$horario,$telefono,$direccion,$idConsultas);
-                if ($this->model->atualizarConsultas($img)) {
+                $consultas = new Consultas($nombre,$fecha,$horario,$telefono,$direccion,null,$idConsultas);
+                if ($this->model->atualizarConsultas($consultas)) {
                     $this->view->location("AdminConsultas");
                     return true;
                 } else {
@@ -97,11 +97,11 @@ class AdminConsultas extends Admin {
         $this->view->load('footer');
     }
 
-    public function removeConsultas() {
+    public function removerConsultas() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
             $idConsultas = filter_input(INPUT_POST,'idConsultas',FILTER_SANITIZE_STRING);
-            if($this->model->removeConsultas($idConsultas)){
+            if($this->model->removerConsultas($idConsultas)){
                 $data['msg'] ='Consulta eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la consulta!';            

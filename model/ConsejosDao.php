@@ -48,7 +48,7 @@ class ConsejosDAO  extends Model{
             $consejos = new Consejos($linha['Titulo'], $linha['Descripcion'], $ImgCons,$linha['idConsejos']);
 
             $this->listConsejos[] = $consejos;
-        }var_dump($this->listConsejos);
+        }
         return $this->listConsejos;
     }
 	
@@ -82,10 +82,10 @@ class ConsejosDAO  extends Model{
         }
     }
 
-    public function getImagenFromconsejos($id) {
+    public function getImagenFromConsejos($id) {
         $sql = "SELECT i.* FROM consejos_has_imagencons AS ni "
                 . "INNER JOIN  imagencons as i "
-                . "ON i.idImagenCons = ni.consejos_idImagenCons WHERE consejos_idConsejos = :consejos_idConsejos;";
+                . "ON i.idImagenCons = ni.imagencons_idImagenCons WHERE consejos_idConsejos = :consejos_idConsejos;";
         $result = $this->ExecuteQuery($sql, [':consejos_idConsejos' => $id]);
         $ImgCons=[];
         if ($result) {

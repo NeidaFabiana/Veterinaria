@@ -6,7 +6,7 @@ class ImagenServ {
 	private $imagen;
 	private $idImagen;
     
-    public function __construct($nombre,$imagen,$idImagen=null) {
+    public function __construct($nombre,$imagen=null,$idImagen=null) {
         $this->idImagen = $idImagen;
 		$this->Nombre = $nombre;
 		$this->Imagen = $imagen;

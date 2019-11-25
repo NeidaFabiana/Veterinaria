@@ -57,8 +57,8 @@ class AdminConsejos extends Admin {
 
             if ($titulo && $descripcion && $idConsejos) {
                 //atualizar no banco de dados a notícia
-                $img = new Consejos($titulo, $descripcion, $idConsejos);
-                if ($this->model->atualizarConsejos($img)) {
+                $consejos = new Consejos($titulo, $descripcion,null, $idConsejos);
+                if ($this->model->atualizarConsejos($consejos)) {
                     $this->view->location("AdminConsejos");
                     return true;
                 } else {
@@ -89,11 +89,11 @@ class AdminConsejos extends Admin {
         $this->view->load('footer');
     }
 
-    public function removeConsejos() {
+    public function removerConsejos() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
             $idConsejos = filter_input(INPUT_POST,'idConsejos',FILTER_SANITIZE_STRING);
-            if($this->model->removeConsejos($idConsejos)){
+            if($this->model->removerConsejos($idConsejos)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la imagen!';            

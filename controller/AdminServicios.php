@@ -57,7 +57,7 @@ class AdminServicios extends Admin {
 
             if ($servicio && $descripcion && $idServicios) {
                 //atualizar no banco de dados a notícia
-                $img = new Servicios($servicio, $descripcion, $idServicios);
+                $img = new Servicios($servicio, $descripcion,null, $idServicios);
                 if ($this->model->atualizarServicios($img)) {
                     $this->view->location("AdminServicios");
                     return true;

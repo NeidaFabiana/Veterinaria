@@ -16,7 +16,7 @@ class SlideDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new Slide($linha['Nombre'], $linha['Imagen'],$linha['idSlide']);
+            $imagem = new Slide($linha['Imagen'],$linha['Nombre'],$linha['idSlide']);
 
             $this->listImagem[] = $imagem;
         }
@@ -24,12 +24,12 @@ class SlideDAO extends Model {
         return $this->listImagem;
     }
 
-	public function getListUltimasImagem(){
+	public function getListUltimasImagenSlide(){
 			$sql = "SELECT * FROM slide order by idSlide desc limit 6";
 			$result = $this->ExecuteQuery($sql, []);
 
 			foreach ($result as $linha) {
-				$imagem = new Slide($linha['Nombre'], $linha['Imagen'],$linha['idSlide']);
+				$imagem = new Slide($linha['Imagen'],$linha['Nombre'],$linha['idSlide']);
 
 				$this->listImagem[] = $imagem;
 			}
@@ -38,7 +38,7 @@ class SlideDAO extends Model {
 		}
 	
 
-    public function getImagemById($img) {
+    public function getImagenSlideById($img) {
 
             $sql = "SELECT * FROM slide  WHERE idSlide = :idSlide;";
             $result = $this->ExecuteQuery($sql, [':idSlide' => $img]);
@@ -46,7 +46,7 @@ class SlideDAO extends Model {
     
  if ($result) {
             $imgl = $result[0];
-            return new Slide($imgl['Nombre'], $imgl['Imagen'],$imgl['idSlide']);
+            return new Slide( $imgl['Imagen'],$imgl['Nombre'],$imgl['idSlide']);
         } else {
             return null;
         }
@@ -55,10 +55,10 @@ class SlideDAO extends Model {
 	
    
 	 public function insereImagem($img) {
-        $sql = "INSERT INTO slide (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO slide (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
         $result = $this->ExecuteCommand($sql,
-                [':Nombre' => $img->getNombre(),
-            ':Imagen' => $img->getImagen()]);
+                [':Imagen' => $img->getImagen(),
+            ':Nombre' => $img->getNombre()]);
         if ($result) {
             return true;
         } else {
@@ -66,12 +66,12 @@ class SlideDAO extends Model {
         }
     }
 
-	 public function atualizarImagem($img) {
-        $sql = 'UPDATE slide SET Nombre = :Nombre,'
-                . ' Imagen=:Imagen  WHERE idSlide =:idSlide';
+	 public function atualizarImagenSlide($img) {
+        $sql = 'UPDATE slide SET Imagen=:Imagen,'
+                . ' Nombre = :Nombre  WHERE idSlide =:idSlide';
         $param = [':idSlide'=>$img->getIdSlide(),
-			':Nombre'=>$img->getNombre(),
-            ':Imagen'=>$img->getImagen()];
+			':Imagen'=>$img->getImagen(),
+            ':Nombre'=>$img->getNombre()];
         if($this->ExecuteCommand($sql, $param)){
             return true;
         }else{
@@ -80,7 +80,7 @@ class SlideDAO extends Model {
     }
     
 	
-    public function removeImagem($id) {
+    public function removeImagenSlide($id) {
         $sql = "DELETE FROM slide WHERE idSlide = :idSlide";
         if($this->ExecuteCommand($sql, [':idSlide'=>$id])){
             return true;

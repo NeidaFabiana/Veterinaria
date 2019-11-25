@@ -98,7 +98,7 @@ class NoticiasDAO  extends Model{
                          
              }
             }
-        return $Img;
+        return $ImgNot;
     }
 	 public function insereNoticias($news) {
         $sql = "INSERT INTO noticias(Titulo,Descripcion) VALUES(:Titulo,:Descripcion)";

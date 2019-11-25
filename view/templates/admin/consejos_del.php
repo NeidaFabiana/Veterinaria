@@ -32,7 +32,7 @@ if ($data) {
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                   Deseas eliminar?
                                 </div>
-                        <form role="form"  method="post" action='<?php echo $this->url?>AdminConsejos/removeConsejos/'>
+                        <form role="form"  method="post" action='<?php echo $this->url?>AdminConsejos/removerConsejos/'>
                                 <div class="form-group">
                                     <label>Título:</label>
                                     <h2><?php echo $conse->getTitulo();?></h2>

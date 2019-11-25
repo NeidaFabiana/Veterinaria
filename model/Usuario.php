@@ -8,7 +8,7 @@ class Usuario {
     private $imgusua;
 	private $idUsuario;
 	
-	public function __construct($email,$sena,$contrasena,$imgusua,$idUsuario=null) {
+	public function __construct($email,$sena,$contrasena,$imgusua=null,$idUsuario=null) {
 			$this->Email = $email;
 			$this->Sena= $sena;
 			$this->Contrasena= $contrasena;

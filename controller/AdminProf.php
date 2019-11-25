@@ -83,7 +83,7 @@ class AdminProf extends Admin {
             $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
             $idImagen = filter_input(INPUT_POST, 'idImagenProf', FILTER_SANITIZE_STRING);
 
-            if ($imagen && $nombre && $idImagen) {
+            if ($imagen && $nombre && $idImagenProf) {
                 //atualizar no banco de dados a notícia
                 $img = new ImagenProf($imagen, $nombre, $idImagen);
                 if ($this->model->atualizarImagenProf($img)) {
@@ -121,7 +121,7 @@ class AdminProf extends Admin {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
             $idImagen = filter_input(INPUT_POST,'idImagenProf',FILTER_SANITIZE_STRING);
-            if($this->model->removeImagenProf($idImagen)){
+            if($this->model->removeImagenProf($idImagenProf)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la imagen!';            

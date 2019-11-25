@@ -18,7 +18,7 @@ class Slide {
 	private $imagen;
     private $idSlide;
     
-    public function __construct($nombre,$imagen,$idSlide=null) {
+    public function __construct($nombre,$imagen=null,$idSlide=null) {
 		$this->Nombre = $nombre;
 		$this->Imagen = $imagen;
 		$this->idSlide = $idSlide;
