@@ -24,6 +24,18 @@ class NosotrosDAO extends Model {
         return $this->listImagem;
     }
 
+	public function getListUltimasNosotros(){
+        $sql = "SELECT * FROM nosotros order by idNosotros desc limit 1";
+        $result = $this->ExecuteQuery($sql, []);
+
+        foreach ($result as $linha) {
+            $imagem = new Nosotros($linha['Imagen'], $linha['Descripcion'], $linha['idNosotros']);
+
+            $this->listImagem[] = $imagem;
+        }
+
+        return $this->listImagem;
+    }
 	
 	
 

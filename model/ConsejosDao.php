@@ -69,10 +69,7 @@ class ConsejosDAO  extends Model{
     public function getConsejosById($id) {
         $sql = "SELECT * FROM consejos WHERE idConsejos = :idConsejos";
         $result = $this->ExecuteQuery($sql, [':idConsejos' => $id]);
-       // echo "<pre>";
-       // print_r($result);
-       //  echo "</pre>";
-		// die;
+       
         if ($result) {
             $ImgCons = $this->getImagenFromConsejos($id);
             $cons = $result[0];

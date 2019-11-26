@@ -47,7 +47,7 @@ class AdminNosotros extends Admin {
         if ( $imagen && $descripcion ) {
             $img = new Nosotros($idNosotros=null,$imagen,$descripcion);
 
-            if($this->model->insereNosotros(new ImagenNoti($imagen,$descripcion))){
+            if($this->model->insereNosotros(new Nosotros($imagen,$descripcion))){
 
               $this->view->location('AdminNosotros');
                 return true;
@@ -74,7 +74,7 @@ class AdminNosotros extends Admin {
   
   
    public function editNosotros($id) {
-        $data['nost'] = $this->model->getNosotrosById($id);
+        $data['nos'] = $this->model->getNosotrosById($id);
         $data['msg'] = "";
 
         if (filter_input(INPUT_POST, 'edit')) {
@@ -110,7 +110,7 @@ class AdminNosotros extends Admin {
 	 public function delNosotros($id) {
         $data['msg'] = '';
 //        echo "Deletar Notícia: $id";
-        $data['nost'] = $this->model->getNosotrosById($id);
+        $data['nos'] = $this->model->getNosotrosById($id);
         $this->view->load('header');
         $this->view->load('nav');
         $this->view->load('nosotros_del', $data);

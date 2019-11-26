@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Login </title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
-
-</head>
-<body style="background-color: #666666;">
+<?php
+$list_cons = $data['usuario'];
+?>
 	
 	<div class="limiter">
 		<div class="container-login100">
@@ -80,7 +71,6 @@
 	</div>
 	
 
-	<script src="assets/js/main.js"></script>
 
 </body>
 </html>

@@ -57,7 +57,7 @@ class AdminNoticias extends Admin {
 
             if ($titulo && $descripcion && $idNoticias) {
                 //atualizar no banco de dados a notícia
-                $img = new Noticias($titulo, $descripcion, $idNoticias);
+                $img = new Noticias($titulo, $descripcion,null, $idNoticias);
                 if ($this->model->atualizarNoticias($img)) {
                     $this->view->location("AdminNoticias");
                     return true;

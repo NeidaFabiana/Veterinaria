@@ -11,6 +11,8 @@ class Home extends Controller{
 		$data['listNoti']=$this->model->getListUltimasNoticiasImagens();
 		$this->model=new SlideDAO(); 
 		$data['listImagenSlide']=$this->model->getListUltimasImagenSlide();
+		$this->model=new NosotrosDAO(); 
+		$data['listNosotros']=$this->model->getListUltimasNosotros();
 		$this->model=new ProfesionalesDAO(); 
 		$data['listProf']=$this->model->getListUltimasProfesionalesImagens();
 		$this->model=new ConsejosDAO(); 

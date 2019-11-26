@@ -27,11 +27,11 @@ class AdminServ extends Admin {
     $caminho = getcwd();
     $diretorio =  $caminho. "/system/upload/";
     //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['imagen'];
+    $novonome = rand(1,9999).$_FILES['arquivo']['Imagen'];
     $arquivo = $diretorio . $novonome;
 
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_imagen"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["imagen"]). " feito com sucesso .!! <br>";
+    if (move_uploaded_file($_FILES["arquivo"]["tmp_Imagen"], $arquivo)) {
+        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["Imagen"]). " feito com sucesso .!! <br>";
 
         $caminho = $novonome;
 
@@ -44,7 +44,7 @@ class AdminServ extends Admin {
         $imagen = $caminho;
         
         $nombre = filter_input(INPUT_POST, 'Nombre', FILTER_SANITIZE_STRING);
-        if ($imagen && $nombre ) {
+        if ( $imagen && $nombre ) {
             $img = new ImagenServ($idImagen=null,$imagen,$nombre);
 
             if($this->model->insereImagenServ(new ImagenServ($imagen,$nombre))){

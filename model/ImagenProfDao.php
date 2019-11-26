@@ -16,7 +16,7 @@ class ImagenProfDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenProf($linha['Nombre'], $linha['Imagen'],$linha['idImagenProf']);
+            $imagem = new ImagenProf( $linha['Imagen'],$linha['Nombre'],$linha['idImagenProf']);
 
             $this->listImagem[] = $imagem;
         }
@@ -29,7 +29,7 @@ class ImagenProfDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenProf($linha['Nombre'], $linha['Imagen'],$linha['idImagenProf']);
+            $imagem = new ImagenProf($linha['Imagen'],$linha['Nombre'],$linha['idImagenProf']);
 
             $this->listImagem[] = $imagem;
         }
@@ -46,7 +46,7 @@ class ImagenProfDAO extends Model {
     
  if ($result) {
             $imgl = $result[0];
-            return new ImagenProf($imgl['Nombre'], $imgl['Imagen'],$imgl['idImagenProf']);
+            return new ImagenProf($imgl['Imagen'],$imgl['Nombre'],$imgl['idImagenProf']);
         } else {
             return null;
         }
@@ -55,10 +55,10 @@ class ImagenProfDAO extends Model {
 	
    
 	 public function insereImagenProf($img) {
-        $sql = "INSERT INTO imagenprof (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO imagenprof (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
         $result = $this->ExecuteCommand($sql,
-                [':Nombre' => $img->getNombre(),
-            ':Imagen' => $img->getImagen()]);
+                [':Imagen' => $img->getImagen(),
+            ':Nombre' => $img->getNombre()]);
         if ($result) {
             return true;
         } else {
@@ -67,10 +67,10 @@ class ImagenProfDAO extends Model {
     }
 
 	 public function atualizarImagenProf($img) {
-        $sql = 'UPDATE imagenprof SET Nombre = :Nombre,'
-                . ' Imagen=:Imagen  WHERE idImagenProf =:idImagenProf';
-        $param = [':Nombre'=>$img->getNombre(),
-            ':Imagen'=>$img->getImagen(),
+        $sql = 'UPDATE imagenprof SET Imagen=:Imagen ,'
+                . ' Nombre = :Nombre WHERE idImagenProf =:idImagenProf';
+        $param = [':Imagen'=>$img->getImagen(),
+            ':Nombre'=>$img->getNombre(),
 			':idImagenProf'=>$img->getIdImagen()];
         if($this->ExecuteCommand($sql, $param)){
             return true;

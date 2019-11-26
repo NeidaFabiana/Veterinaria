@@ -9,6 +9,5 @@
 						<li><a href="<?php echo $this->url?>Noticias"><span>Noticias</span></a></li>
 						<li><a href="<?php echo $this->url?>Consejos"><span>Consejos</span></a></li>						
 					</ul>
-					    <a id="login" href="<?php echo $this->url?>login.html"><span>Login</span></a>
 				</nav>
 			</header>	

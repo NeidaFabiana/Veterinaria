@@ -21,15 +21,10 @@ class ConsultasDAO  extends Model{
         return $this->listConsultas;
     }
 	
-	
 
 	   public function getConsultasById($id) {
         $sql = "SELECT * FROM consultas WHERE idConsultas = :idConsultas";
         $result = $this->ExecuteQuery($sql, [':idConsultas' => $id]);
-       // echo "<pre>";
-       // print_r($result);
-       //  echo "</pre>";
-		// die;
         if ($result) {
             $consu = $result[0];
             return new Consultas($consu['Nombre'], $consu['Fecha'],$consu['Horario'], $consu['Telefono'], $consu['Direccion'], $consu['idConsultas']);
@@ -38,14 +33,15 @@ class ConsultasDAO  extends Model{
         }
     }
 
-	 public function insereConsultas($cons) {
+	
+	 public function insereConsultas($consu) {
         $sql = "INSERT INTO consultas(Nombre,Fecha,Horario,Telefono,Direccion) VALUES(:Nombre,:Fecha,:Horario,:Telefono,:Direccion)";
         $result = $this->ExecuteCommand($sql,
-                [':Nombre' => $cons->getNombre(),
-                ':Fecha' => $cons->getFecha(),
-                ':Horario' => $cons->getHorario(),
-                ':Telefono' => $cons->getTelefono(),
-            ':Direccion' => $cons->getDireccion()]);
+                [':Nombre' => $consu->getNombre(),
+                ':Fecha' => $consu->getFecha(),
+                ':Horario' => $consu->getHorario(),
+                ':Telefono' => $consu->getTelefono(),
+            ':Direccion' => $consu->getDireccion()]);
         if ($result) {
             return true;
         } else {
@@ -53,32 +49,15 @@ class ConsultasDAO  extends Model{
         }
     }
 	
-	
-	
-	    public function removerConsultas($id) {
-			
-		if($this->ExecuteQuery("SELECT * FROM consultas WHERE consultas_idConsultas  = :consultas_idConsultas", [':consultas_idConsultas' => $id])){
-			$sql = "DELETE FROM consultas WHERE consultas_idConsultas = :idn";
-			if($this->ExecuteCommand($sql, [':idn'=>$id])){
-				$sql = "DELETE FROM consultas WHERE idConsultas = :idConsultas";
-				if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
+		public function removeConsultas($id) {
+				$sql = "DELETE FROM consultas WHERE idConsultas = :idCons";
+				if($this->ExecuteCommand($sql, [':idCons'=>$id])){
 					return true;
 				}else{
 					return false;
 				}
-			}else{
-				return false;
-			}	
-		}else{
-			$sql = "DELETE FROM consultas WHERE idConsultas = :idConsultas";
-			if($this->ExecuteCommand($sql, [':idConsultas'=>$id])){
-				return true;
-			}else{
-				return false;
 			}
-		}
-		
-    }
+			
     
 
 	 public function atualizarConsultas($consultas) {

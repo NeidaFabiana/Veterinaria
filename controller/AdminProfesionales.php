@@ -40,10 +40,8 @@ public function add() {
         $this->view->load('footer');
     }
 	 
-	 
-  
-  
-   public function editProfesionales($id) {
+	
+	public function editProfesionales($id) {
         $data['prof'] = $this->model->getProfesionalesById($id);
         $data['msg'] = "";
 
@@ -56,12 +54,12 @@ public function add() {
 
             if ($nombre && $formacion && $idProfesionales) {
                 //atualizar no banco de dados a notícia
-                $img = new Profesionales($nombre, $formacion, null, $idProfesionales);
-                if ($this->model->atualizarProfesionales($img)) {
+                $profesionales = new Profesionales($nombre, $formacion,null, $idProfesionales);
+                if ($this->model->atualizarProfesionales($profesionales)) {
                     $this->view->location("AdminProfesionales");
                     return true;
                 } else {
-                    $data['msg'] = "Error al actualizar profesional!!";
+                    $data['msg'] = "Error al actualizar la imagen!!";
                 }
             } else {
                 $data['msg'] = "Informe Todos los campos!!";
@@ -77,6 +75,10 @@ public function add() {
         $this->view->load('profesionales_upd', $data);
         $this->view->load('footer');
     }
+	
+	
+	
+	
 	
 	 public function delProfesionales($id) {
         $data['msg'] = '';

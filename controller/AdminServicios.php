@@ -57,8 +57,8 @@ class AdminServicios extends Admin {
 
             if ($servicio && $descripcion && $idServicios) {
                 //atualizar no banco de dados a notícia
-                $img = new Servicios($servicio, $descripcion,null, $idServicios);
-                if ($this->model->atualizarServicios($img)) {
+                $servicios = new Servicios($servicio, $descripcion,null, $idServicios);
+                if ($this->model->atualizarServicios($servicios)) {
                     $this->view->location("AdminServicios");
                     return true;
                 } else {
@@ -89,11 +89,11 @@ class AdminServicios extends Admin {
         $this->view->load('footer');
     }
 
-    public function removeServicios() {
+    public function removerServicios() {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
             $idServicios = filter_input(INPUT_POST,'idServicios',FILTER_SANITIZE_STRING);
-            if($this->model->removeServicios($idServicios)){
+            if($this->model->removerServicios($idServicios)){
                 $data['msg'] ='Servicio eliminado con exito!';
             }else{
                 $data['msg'] ='Error al eliminar servicio!';            

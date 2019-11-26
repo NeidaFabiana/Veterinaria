@@ -3,7 +3,12 @@
     <head>
         <title>Administrador VV</title>
 		<meta charset=utf-8>
-        
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->asset?>assets/css/util.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->asset?>assets/css/main.css">
+			
         <link rel="stylesheet" type="text/css" href="<?php echo $this->asset?>assets/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Astloch:regular,bold' rel='stylesheet' type='text/css' />

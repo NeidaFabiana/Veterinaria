@@ -15,6 +15,7 @@
 			<a href="<?php echo $this->base_url ?>AdminConsejos">Consejos</a>
 			<a href="<?php echo $this->base_url ?>AdminCons">Imagenes Consejos</a>
 			<a href="<?php echo $this->base_url ?>AdminSlide">Imagenes Slide</a>
+			<a href="<?php echo $this->base_url ?>AdminNosotros">Nosotros</a>
 		</div>
 	</nav>
 </header>

@@ -42,10 +42,7 @@ class ServiciosDAO  extends Model{
     public function getServiciosById($id) {
         $sql = "SELECT * FROM servicios WHERE idServicios = :idServicios";
         $result = $this->ExecuteQuery($sql, [':idServicios' => $id]);
-       // echo "<pre>";
-       // print_r($result);
-       //  echo "</pre>";
-		// die;
+       
         if ($result) {
             $ImgSer = $this->getImagenFromServicios($id);
             $serv = $result[0];
@@ -60,18 +57,19 @@ class ServiciosDAO  extends Model{
                 . "INNER JOIN  imagenserv as i "
                 . "ON i.idImagenServ = ni.imagenserv_idImagenServ WHERE servicios_idServicios = :servicios_idServicios;";
         $result = $this->ExecuteQuery($sql, [':servicios_idServicios' => $id]);
-        $Img=[];
+        $ImgSer=[];
         if ($result) {
              foreach ($result as $linha) {
-                 $Img[] = new ImagenServ(
+                 $ImgSer[] = new ImagenServ(
 				         $linha['Nombre'],
 				         $linha['Imagen'],
 						$linha['idImagenServ']);
                          
              }
             }
-        return $Img;
+        return $ImgSer;
     }
+	
 	 public function insereServicios($serv) {
         $sql = "INSERT INTO servicios(Servicio,Descripcion) VALUES(:Servicio,:Descripcion)";
         $result = $this->ExecuteCommand($sql,
@@ -86,9 +84,9 @@ class ServiciosDAO  extends Model{
 	
 	
 	
-	    public function removerServicios($id) {
+	     public function removerServicios($id) {
 			
-		if($this->ExecuteQuery("SELECT * FROM servicios_has_imagenserv WHERE servicios_idServicios = :servicios_idServicios", [':servicios_idServicios' => $id])){
+		if($this->ExecuteQuery("SELECT * FROM servicios_has_imagenserv WHERE servicios_idServicios  = :servicios_idServicios", [':servicios_idServicios' => $id])){
 			$sql = "DELETE FROM servicios_has_imagenserv WHERE servicios_idServicios = :idn";
 			if($this->ExecuteCommand($sql, [':idn'=>$id])){
 				$sql = "DELETE FROM servicios WHERE idServicios = :idServicios";

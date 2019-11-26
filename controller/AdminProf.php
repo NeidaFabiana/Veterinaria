@@ -9,10 +9,7 @@ class AdminProf extends Admin {
 
     public function index() {
         $data['listImagenProf'] = $this->model->getListImagenProf();
-    //    echo "<pre>";
-    //    print_r($data);
-     //  echo "</pre>";
-  // die;
+    
         $this->view->load("header");
         $this->view->load("nav");
         $this->view->load("imagenprof_list", $data);
@@ -121,7 +118,7 @@ class AdminProf extends Admin {
         $data['msg'] = '';
         if (filter_input(INPUT_POST, 'del')) {
             $idImagen = filter_input(INPUT_POST,'idImagenProf',FILTER_SANITIZE_STRING);
-            if($this->model->removeImagenProf($idImagenProf)){
+            if($this->model->removeImagenProf($idImagen)){
                 $data['msg'] ='Imagen eliminada con exito!';
             }else{
                 $data['msg'] ='Error al eliminar la imagen!';            

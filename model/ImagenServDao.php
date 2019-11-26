@@ -16,7 +16,7 @@ class ImagenServDAO extends Model {
         $result = $this->ExecuteQuery($sql, []);
 
         foreach ($result as $linha) {
-            $imagem = new ImagenServ($linha['Nombre'], $linha['Imagen'], $linha['idImagenServ']);
+            $imagem = new ImagenServ( $linha['Imagen'],$linha['Nombre'], $linha['idImagenServ']);
 
             $this->listImagem[] = $imagem;
         }
@@ -34,7 +34,7 @@ class ImagenServDAO extends Model {
     
  if ($result) {
             $imgl = $result[0];
-            return new ImagenServ($imgl['Nombre'], $imgl['Imagen'],$imgl['idImagenServ']);
+            return new ImagenServ($imgl['Imagen'],$imgl['Nombre'],$imgl['idImagenServ']);
         } else {
             return null;
         }
@@ -43,10 +43,10 @@ class ImagenServDAO extends Model {
 	
    
 	 public function insereImagenServ($img) {
-        $sql = "INSERT INTO imagenserv (Nombre,Imagen) VALUES(:Nombre,:Imagen)";
+        $sql = "INSERT INTO imagenserv (Imagen,Nombre) VALUES(:Imagen,:Nombre)";
         $result = $this->ExecuteCommand($sql,
-                [':Nombre' => $img->getNombre(),
-            ':Imagen' => $img->getImagen()]);
+                [':Imagen' => $img->getImagen(),
+            ':Nombre' => $img->getNombre()]);
         if ($result) {
             return true;
         } else {
@@ -55,10 +55,10 @@ class ImagenServDAO extends Model {
     }
 
 	 public function atualizarImagenServ($img) {
-        $sql = 'UPDATE imagenserv SET Nombre = :Nombre,'
-                . ' Imagen=:Imagen  WHERE idImagenServ =:idImagenServ';
-        $param = [':Nombre'=>$img->getNombre(),
-            ':Imagen'=>$img->getImagen(),
+        $sql = 'UPDATE imagenserv SET Imagen=:Imagen,'
+                . ' Nombre = :Nombre  WHERE idImagenServ =:idImagenServ';
+        $param = [':Imagen'=>$img->getImagen(),
+            ':Nombre'=>$img->getNombre(),
 			':idImagenServ'=>$img->getIdImagen()];
         if($this->ExecuteCommand($sql, $param)){
             return true;

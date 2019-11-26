@@ -9,10 +9,10 @@ class Admin extends Controller{
 
  public function index() {
         
-	    $this->model = new NoticiasDAO();
+	    $this->model = new UsuarioDAO();
         $this->view->load("header");
         $this->view->load("nav");
-        $this->view->load("index",$data);
+        $this->view->load("login",$data);
         $this->view->load("footer");
     }
 	

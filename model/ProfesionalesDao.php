@@ -21,7 +21,6 @@ class ProfesionalesDAO extends Model{
         }
 
         return $this->listProfesionales;
-		var_dump($this->listProfesionales);die;
     }
 	
 	
@@ -138,10 +137,10 @@ class ProfesionalesDAO extends Model{
 		}
 		
     }
-    
-
+  
+	
 	 public function atualizarProfesionales($profesionales) {
-        $sql = 'UPDATE profesionales SET Nombre = :Nombre,'
+        $sql = 'UPDATE consejos SET Nombre = :Nombre,'
                 . ' Formacion=:Formacion WHERE idProfesionales =:idProfesionales';
         $param = [':Nombre'=>$profesionales->getNombre(),
             ':Formacion'=>$profesionales->getFormacion(),
@@ -152,5 +151,11 @@ class ProfesionalesDAO extends Model{
             return false;
         }
     }
+	
+	
+	
+	
+	
+	
 	
 }

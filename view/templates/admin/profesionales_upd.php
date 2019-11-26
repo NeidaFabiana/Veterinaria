@@ -31,12 +31,12 @@ if ($data) {
               <form role="form"  method="post">
                 <div class="form-group">
                   <label class="control-label">Nombre:</label>
-                  <input class="form-control" placeholder="Nombre" name="nombre" value = "<?php echo $profe->getNombre();?>">
+                  <input class="form-control" placeholder="Nombre" name="Nombre" value = "<?php echo $profe->getNombre();?>">
                 </div>
               
                 <div class="form-group">
                     <label class="control-label">Formacion:</label>
-                    <textarea name="formacion" class="form-control" rows="4" placeholder="Formación" ><?php echo $profe->getFormacion();?></textarea>
+                    <textarea name="Formacion" class="form-control" rows="4" placeholder="Formación" ><?php echo $profe->getFormacion();?></textarea>
                 </div>
 
                <input type="hidden" value="<?php echo $profe->getIdProfesionales() ?>" name="idProfesionales">

@@ -41,12 +41,10 @@ class ImagenNotiDAO extends Model {
     public function getImagenNotiById($img) {
 
             $sql = "SELECT * FROM imagennoti WHERE idImagenNoti = :idImagenNoti;";
-            $result = $this->ExecuteQuery($sql, [':idImagenNoti' => $img]);
-
-    
+            $result = $this->ExecuteQuery($sql, [':idImagenNoti' => $img]); 
  if ($result) {
             $imgl = $result[0];
-            return new ImagenServ($imgl['Imagen'], $imgl['Nombre'], $imgl['idImagenNoti']);
+            return new ImagenNoti($imgl['Imagen'], $imgl['Nombre'], $imgl['idImagenNoti']);
         } else {
             return null;
         }

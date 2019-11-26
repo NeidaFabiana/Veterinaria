@@ -1,12 +1,12 @@
 <?php
 
-class NoticiasDAO  extends Model{
+class UsuarioDAO  extends Model{
 
     private $listNoticias;
 
   public function __construct() {
         parent::__construct();
-        $this->listaNoticias = [];
+        $this->listaUsuario = [];
     }
 	
 
