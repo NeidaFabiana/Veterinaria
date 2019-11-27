@@ -27,11 +27,11 @@ class AdminCons extends Admin {
     $caminho = getcwd();
     $diretorio =  $caminho. "/system/upload/";
     //$arquivo = $diretorio . basename($_FILES["arquivo"]["nombre"]);
-    $novonome = rand(1,9999).$_FILES['arquivo']['Imagen'];
+    $novonome = rand(1,9999).$_FILES['arquivo']['name'];
     $arquivo = $diretorio . $novonome;
 
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_Imagen"], $arquivo)) {
-        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["Imagen"]). " feito com sucesso .!! <br>";
+    if (move_uploaded_file($_FILES["arquivo"]["tmp_name"], $arquivo)) {
+        $data['msg'] = "Upload do arquivo  ". basename( $_FILES["arquivo"]["name"]). " feito com sucesso .!! <br>";
 
         $caminho = $novonome;
 
